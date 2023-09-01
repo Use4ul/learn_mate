@@ -2,11 +2,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import categoriesSlice from '../features/mainpage/categoriesSlice';
-
+import authSlice from '../features/auth/log/authSlice';
 
 const store = configureStore({
   reducer: {
-    // auth: authSlice,
+    auth: authSlice,
     // games: gamesSlice,
     categories: categoriesSlice,
   },
