@@ -1,14 +1,15 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
-import categoriesSlice from '../features/mainpage/categoriesSlice';
-
+import categoriesSlice from '../features/mainpage/slices/categoriesSlice';
+import modulesSlice from '../features/modulitem/modulesSlice';
 
 const store = configureStore({
   reducer: {
     // auth: authSlice,
     // games: gamesSlice,
     categories: categoriesSlice,
+    modules: modulesSlice,
   },
 });
 
