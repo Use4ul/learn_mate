@@ -1,4 +1,7 @@
-nav {
-  display: flex;
-  justify-content: center;
+
+.profil {
+  &__container {
+    display: flex;
+    justify-content: center;
+  }
 }
