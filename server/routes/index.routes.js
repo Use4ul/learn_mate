@@ -1,7 +1,10 @@
 const router = require('express').Router();
 
-const apiGameRouter = require('./api/games.routes');
+const apiCategoryRouter = require('./api/categories.routes');
+const apiModuleRouter = require('./api/modules.routes');
+const apiCardRouter = require('./api/cards.routes');
 
-router.use('/api/games', apiGameRouter);
-
+router.use('/api/categories', apiCategoryRouter);
+router.use('/api/modules', apiModuleRouter);
+router.use('/api/cards', apiCardRouter);
 module.exports = router;
