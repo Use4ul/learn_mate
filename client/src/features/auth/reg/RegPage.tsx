@@ -5,6 +5,7 @@ function RegPage(): JSX.Element {
   const [nickName, setNickName] =
     useState(''); /** проверка на уникальность по стейту с выводом в p тег, сразу при вводе пользователем */
   const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
   const [nickNameCheck, setNickNameCheck] = useState(true);
   const [regCheck, setRegCheck] = useState(''); /** проверка на уникальность по стейту с выводом в p тег */
 
@@ -36,6 +37,16 @@ function RegPage(): JSX.Element {
         <p className={nickNameCheck ? 'reg__nick-error' : 'reg__error error-true'}>
           Такой никнейм уже зарегистрирован
         </p>
+        <label>
+          Email
+          <input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            name="email"
+            type="text"
+            placeholder="Ваш Email здесь"
+          />
+        </label>
         <label>
           Пароль
           <input

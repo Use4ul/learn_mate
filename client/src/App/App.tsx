@@ -5,8 +5,8 @@ import './App.css';
 import Navbar from '../features/navbar/Navbar';
 import ProfilePage from '../features/profilepage/ProfilePage';
 import MainPage from '../features/mainpage/MainPage';
-import RegPage from '../features/regpage/RegPage';
-import LoginPage from '../features/loginpage/LoginPage';
+import RegPage from '../features/auth/reg/RegPage';
+import LoginPage from '../features/auth/log/LoginPage';
 
 function App(): JSX.Element {
   return (
