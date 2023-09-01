@@ -2,3 +2,25 @@ nav {
   display: flex;
   justify-content: center;
 }
+
+nav {
+  border: 1px solid black;
+}
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+li {
+  margin: 0 30px;
+}
