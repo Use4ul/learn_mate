@@ -2,3 +2,21 @@ nav {
   display: flex;
   justify-content: center;
 }
+
+.reg {
+  &__nick-error {
+    display: none;
+  }
+
+  &__nick-error.error-true {
+    display: block;
+  }
+
+  &__error {
+    display: none;
+  }
+
+  &__error.error-true {
+    display: block;
+  }
+}
