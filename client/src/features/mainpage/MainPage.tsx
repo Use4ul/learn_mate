@@ -4,6 +4,7 @@ import { RootState, useAppDispatch } from '../../redux/store';
 import { loadCategories } from './slices/categoriesSlice';
 import ModulItem from '../modulitem/ModulItem';
 import { loadModules } from '../modulitem/modulesSlice';
+import { loadCards } from '../cardsPage/cardsSlice';
 
 function MainPage(): JSX.Element {
   const [category, setCategory] = useState('');
@@ -12,6 +13,7 @@ function MainPage(): JSX.Element {
 
   const categories = useSelector((store: RootState) => store.categories.categories);
   const modules = useSelector((store: RootState) => store.modules.modules);
+
   const filteredModules = category
     ? modules.filter((module) => module.Category.title === category)
     : modules;
@@ -19,6 +21,7 @@ function MainPage(): JSX.Element {
   useEffect(() => {
     dispatch(loadCategories());
     dispatch(loadModules());
+    dispatch(loadCards());
   }, []);
 
   return (

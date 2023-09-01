@@ -3,6 +3,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import categoriesSlice from '../features/mainpage/slices/categoriesSlice';
 import modulesSlice from '../features/modulitem/modulesSlice';
+import cardsSlice from '../features/cardsPage/cardsSlice';
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     // games: gamesSlice,
     categories: categoriesSlice,
     modules: modulesSlice,
+    cards: cardsSlice,
   },
 });
 
