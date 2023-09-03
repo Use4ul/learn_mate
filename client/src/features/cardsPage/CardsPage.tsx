@@ -54,7 +54,7 @@ function CardsPage(): JSX.Element {
         ? Boolean(cards.length - cardIndex - 1) && (
             <button type="button" onClick={handeleForward}>
               {' '}
-              вперед
+              Вперед
             </button>
           )
         : 'Упс'}

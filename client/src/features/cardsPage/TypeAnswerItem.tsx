@@ -8,6 +8,7 @@ function TypeAnswerItem({ card }: { card: Card }): JSX.Element {
     e.preventDefault();
     if (answer.toLocaleLowerCase() === card.definition) {
       setCorrectAnswers('Правильно');
+      setAnswer('');
     } else {
       setCorrectAnswers(`Неверно. Ответ: ${card.definition}`);
     }
