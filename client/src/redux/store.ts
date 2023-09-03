@@ -2,9 +2,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 
-import categoriesSlice from '../features/mainpage/categoriesSlice';
-import authSlice from '../features/auth/log/authSlice';
-
+import categoriesSlice from '../features/mainpage/slices/categoriesSlice';
+import authSlice from '../features/auth/reg/authSlice';
+import modulesSlice from '../features/modulitem/modulesSlice';
 
 const store = configureStore({
   reducer: {
