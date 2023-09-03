@@ -22,7 +22,7 @@ function FourAnswerItem({
   //   setCorrectAnswers(`Неверно. Ответ: ${card.definition}`);
   // }
   // };
-  console.log(answer);
+
 
   return (
     <>

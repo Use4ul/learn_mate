@@ -1,17 +1,11 @@
 nav {
+  margin-bottom: 20px;
   display: flex;
+  color: black;
   justify-content: center;
-}
-
-nav {
+  background-color: var(--nav-background-color);
+  font-size: 26px;
   border: 1px solid black;
-}
-a {
-  text-decoration: none;
-}
-
-a:visited {
-  color: inherit;
 }
 
 ul {

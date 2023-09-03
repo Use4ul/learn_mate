@@ -23,7 +23,7 @@ function RegPage(): JSX.Element {
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     dispatch(signUp({ name, nickname, email, password, role }));
-    
+
     navigate('/');
   };
 
@@ -54,59 +54,65 @@ function RegPage(): JSX.Element {
   }, [email]);
 
   return (
-    <div>
-      <h1>Зарегистрироваться</h1>
+    <div className="form_wrapper">
       <form onSubmit={handleSubmit} className="reg__form">
+        <h1>Регистрация</h1>
         {/** добавить обработчик на форму с учетомч слайсера и редюсера */}
-        <label>
-          Имя
-          <input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            name="name"
-            type="text"
-            placeholder="Ваше имя здесь"
-          />
-        </label>
-        <label>
-          Никнейм
-          <input
-            value={nickname}
-            onChange={(e) => {
-              setNickName(e.target.value);
-            }}
-            name="nickname"
-            type="text"
-            placeholder="Ваш никнейм здесь"
-          />
-        </label>
+        <div>
+          <label>
+            <input
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              name="name"
+              type="text"
+              placeholder="Ваше имя здесь"
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            <input
+              value={nickname}
+              onChange={(e) => {
+                setNickName(e.target.value);
+              }}
+              name="nickname"
+              type="text"
+              placeholder="Никнейм"
+            />
+          </label>
+        </div>
         {!nickNameCheck && <p> Такой никнейм уже зарегистрирован</p>}
-        <label>
-          Email
-          <input
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            name="email"
-            type="text"
-            placeholder="Ваш Email здесь"
-          />
-        </label>
-        <label>
-          Пароль
-          <input
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            name="password"
-            type="text"
-            placeholder="Ваш пароль здесь"
-          />
-        </label>
-        <label>
-          <select value={role} onChange={(e) => setRole(+e.target.value)}>
-            <option disabled>Выберите:</option> <option value="2">Обычный пользователь</option>
-            <option value="1">Учитель</option>
-          </select>
-        </label>
+        <div>
+          <label>
+            <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              name="email"
+              type="text"
+              placeholder="Email"
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            <input
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              name="password"
+              type="text"
+              placeholder="Ваш пароль здесь"
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            <select value={role} onChange={(e) => setRole(+e.target.value)}>
+              <option disabled>Выберите:</option> <option value="2">Обычный пользователь</option>
+              <option value="1">Учитель</option>
+            </select>
+          </label>
+        </div>
 
         <button className="btn login__btn" type="submit">
           Зарегистрироваться

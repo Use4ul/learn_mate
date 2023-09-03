@@ -27,7 +27,7 @@ function TypeAnswerItem({
       <form onSubmit={handaleAnswer}>
         <input
           type="text"
-          placeholder="твой ответ здесь"
+          placeholder="Ввести ответ"
           value={answer}
           onChange={(e) => setAnswer(e.target.value)}
         />

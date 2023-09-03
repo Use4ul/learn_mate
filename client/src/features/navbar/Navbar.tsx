@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
@@ -23,10 +24,11 @@ function Navbar(): JSX.Element {
 
   const { theme, setTheme } = useTheme();
   const [themeName, setThemeName] = useState('Темная тема');
-
   const themeFunc = () => {
-    theme === 'dark' ? setTheme('ligth') : setTheme('dark');
-    theme === 'dark' ? setThemeName('Светлая тема') : setThemeName('Темная тема');
+    localStorage.userTheme === 'Темная тема' ? setTheme('Светлая тема') : setTheme('Темная тема');
+    localStorage.userTheme === 'Темная тема'
+      ? setThemeName('Темная тема')
+      : setThemeName('Светлая тема');
   };
 
   return (
@@ -44,10 +46,7 @@ function Navbar(): JSX.Element {
                   <NavLink to="/profile_page">Моя страница</NavLink>
                 </li>
                 <li>
-                  <a href="/profile_page">{authUser.name}</a>
-                </li>
-                <li>
-                  <NavLink to="/profile_page">Пользователь</NavLink>
+                  <NavLink to="/profile_page">{authUser.name}</NavLink>
                 </li>
                 <li>
                   <NavLink to="/">

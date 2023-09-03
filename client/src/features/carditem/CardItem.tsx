@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React from 'react';
 import { Card } from '../cardsPage/types/types';
 import './styles/style.scss';
