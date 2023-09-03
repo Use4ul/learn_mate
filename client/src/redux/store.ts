@@ -1,7 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
-
 import categoriesSlice from '../features/mainpage/slices/categoriesSlice';
 import authSlice from '../features/auth/reg/authSlice';
 import modulesSlice from '../features/modulitem/modulesSlice';
