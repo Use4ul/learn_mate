@@ -21,12 +21,11 @@ function MainPage(): JSX.Element {
       ? modules.filter((module) => module.Category.title === category)
       : modules;
 
-  const user = useSelector((store: RootState) => store.auth.authUser);
+
 
   useEffect(() => {
     dispatch(loadCategories());
     dispatch(loadModules());
-    dispatch(checkUser());
   }, []);
 
   return (

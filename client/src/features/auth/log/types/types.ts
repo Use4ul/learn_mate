@@ -4,9 +4,5 @@ export type AuthUser = {
   nickname: string;
   email: string;
   password: string;
-};
-
-export type UserSingIn = {
-  email: string;
-  password: string;
+  role: number;
 };

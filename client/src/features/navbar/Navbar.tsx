@@ -6,6 +6,7 @@ import './styles/style.scss';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../../redux/store';
+import { logOut } from '../auth/reg/authSlice';
 import { fetchLogOut } from '../auth/log/api';
 import { checkUser } from '../auth/reg/authSlice';
 import useTheme from '../../hooks/useTheme';
@@ -16,11 +17,8 @@ function Navbar(): JSX.Element {
   const navigate = useNavigate();
 
   const handleLogOut = async (): Promise<void> => {
-    const data = await fetchLogOut();
-    if (data.message === 'success') {
-      dispatch({ type: 'auth/logout' });
-      navigate('/');
-    }
+    dispatch(logOut());
+    navigate('/');
   };
 
   const { theme, setTheme } = useTheme();
@@ -47,6 +45,9 @@ function Navbar(): JSX.Element {
                 </li>
                 <li>
                   <a href="/profile_page">{authUser.name}</a>
+                </li>
+                <li>
+                  <NavLink to="/profile_page">Пользователь</NavLink>
                 </li>
                 <li>
                   <NavLink to="/">
