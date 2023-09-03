@@ -10,8 +10,7 @@ function ModulItem({ module }: { module: Module }): JSX.Element {
     <Link to={`/modules/${module.id}`}>
       <div className="module__container">
         {/* onClick={() => navigate(`/modules/${module.id}`)}> */}
-
-        <p>{module.title}</p>
+        <h3>{module.title}</h3>
         <button type="button">добавить к себе</button>
         {/* добавить ховер  */}
       </div>

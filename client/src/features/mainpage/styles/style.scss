@@ -1,7 +1,6 @@
-.main {
-    &__container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
+.modules_wrapper {
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }

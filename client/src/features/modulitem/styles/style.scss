@@ -1,8 +1,14 @@
-.module {
+.module__container {
+  border: 1px solid black;
+  border-radius: 15px;
+  width: 200px;
+  height: 150px;
   display: flex;
   flex-wrap: wrap;
-  &__container {
-    border: 1px solid black;
-    border-radius: 15px;
-  }
+}
+
+a {
+  width: 200px;
+  height: 150px;
+  margin: 10px;
 }
