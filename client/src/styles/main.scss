@@ -1,0 +1,11 @@
+@import url('../styles/variables.scss');
+
+body {
+  color: var(--button-text-color);
+  background-color: var(--background-color);
+}
+
+button {
+  border-radius: 6px;
+  background-color: var(--button-background-color);
+}

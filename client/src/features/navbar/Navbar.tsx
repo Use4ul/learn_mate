@@ -1,10 +1,14 @@
-import React, { useEffect } from 'react';
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/no-unused-expressions */
+import React, { useState } from 'react';
 import './styles/style.scss';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../../redux/store';
 import { fetchLogOut } from '../auth/log/api';
 import { checkUser } from '../auth/reg/authSlice';
+import useTheme from '../../hooks/useTheme';
 
 function Navbar(): JSX.Element {
   const authUser = useSelector((store: RootState) => store.auth.authUser);
@@ -19,31 +23,40 @@ function Navbar(): JSX.Element {
     }
   };
 
+  const { theme, setTheme } = useTheme();
+  const [themeName, setThemeName] = useState('Темная тема');
+
+  const themeFunc = () => {
+    theme === 'dark' ? setTheme('ligth') : setTheme('dark');
+    theme === 'dark' ? setThemeName('Светлая тема') : setThemeName('Темная тема');
+  };
+
   return (
     <>
       <nav>
         <div>
           <ul>
             <li>
-              <NavLink to="/profile_page">Пользователь</NavLink>
-            </li>
-            <li>
               <NavLink to="/">Главная</NavLink>
             </li>
-
+            <li onClick={themeFunc}>{themeName}</li>
             {authUser ? (
               <>
-                <li>{authUser.name}</li>
+                <li>
+                  <NavLink to="/profile_page">Моя страница</NavLink>
+                </li>
+                <li>
+                  <a href="/profile_page">{authUser.name}</a>
+                </li>
                 <li>
                   <NavLink to="/">
-                    <button
-                      type="button"
+                    <a
                       onClick={() => {
                         handleLogOut();
                       }}
                     >
                       Выход
-                    </button>
+                    </a>
                   </NavLink>
                 </li>
               </>
