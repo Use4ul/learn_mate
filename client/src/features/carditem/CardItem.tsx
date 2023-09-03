@@ -1,22 +1,15 @@
 import React from 'react';
+import { Card } from '../cardsPage/types/types';
+import './styles/style.scss';
 
-function CardItem(): JSX.Element {
+function CardItem({ card }: { card: Card }): JSX.Element {
   return (
     <div className="card__container">
-      <h5>Название модуля</h5>
       <div>
-        <div> Карточка
-          <button type="button"> назад</button>
-          <button type="button"> вперед</button>
-        </div>
-        <div>
-          <button type="button">Варианты обучения</button>
-          <button type="button">Варианты обучения</button>
-          <button type="button">Варианты обучения</button>
-        </div>
+        <div>{card.term}</div>
+        <div>{card.definition}</div>
       </div>
       <div> Прогресс</div>
-
     </div>
   );
 }

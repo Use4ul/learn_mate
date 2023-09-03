@@ -10,5 +10,12 @@ router.get('/', async (req, res) => {
     res.json({ message });
   }
 });
-
+router.get('/:', async (req, res) => {
+  try {
+    const cards = await Card.findAll();
+    res.json(cards);
+  } catch ({ message }) {
+    res.json({ message });
+  }
+});
 module.exports = router;
