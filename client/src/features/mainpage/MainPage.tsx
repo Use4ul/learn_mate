@@ -21,7 +21,6 @@ function MainPage(): JSX.Element {
   useEffect(() => {
     dispatch(loadCategories());
     dispatch(loadModules());
-    dispatch(loadCards());
   }, []);
 
   return (
@@ -30,7 +29,7 @@ function MainPage(): JSX.Element {
         <select value={category} onChange={(e) => setCategory(e.target.value)}>
           <option disabled>Выберите категорию</option>{' '}
           {categories.map((el) => (
-            <option>{el.title}</option>
+            <option key={el.id}>{el.title}</option>
           ))}
           {/** добавить onchange на выбор опции */}
           {/** мапнем категории подтянутые с бэка */}
@@ -41,7 +40,7 @@ function MainPage(): JSX.Element {
       <div className="main__container-modules">
         {' '}
         {filteredModules.map((module) => (
-          <ModulItem module={module} />
+          <ModulItem key={module.id} module={module} />
         ))}
       </div>
     </div>

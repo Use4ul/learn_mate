@@ -1,13 +1,14 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from './api';
 import State from './types/State';
+import { ModuleId } from '../modulitem/types/types';
 
 const initialState: State = {
   cards: [],
   error: undefined,
 };
 
-export const loadCards = createAsyncThunk('cards/load', () => api.fetchCards());
+export const loadCards = createAsyncThunk('cards/load', (id: ModuleId) => api.fetchCards(id));
 
 const cardsSlice = createSlice({
   name: 'cards',
