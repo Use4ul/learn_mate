@@ -13,7 +13,6 @@ router.get('/', async (req, res) => {
 
 router.get('/:moduleId', async (req, res) => {
   const { moduleId } = req.params;
-  console.log(moduleId, '----------------');
   try {
     const cardsInModule = await Card.findAll({ where: { module_id: +moduleId } });
     res.json(cardsInModule);

@@ -6,7 +6,6 @@ router.post('/registration', async (req, res) => {
   try {
     let user;
     const { name, nickname, email, password, role } = req.body;
-    console.log(name, nickname, email, password, role);
     if (name.trim() && nickname.trim() && email.trim() && password.trim()) {
       user = await User.findOne({ where: { email } });
 
@@ -33,9 +32,7 @@ router.post('/registration', async (req, res) => {
 router.post('/checkNickname', async (req, res) => {
   try {
     const { nickname } = req.body;
-    console.log(nickname, 'fsdfsdfs');
     const user = await User.findOne({ where: { nickname: nickname } });
-    console.log(user, 'user');
     if (user) {
       res.json({ message: 'Такой пользователь уже существует' });
       return;

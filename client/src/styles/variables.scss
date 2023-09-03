@@ -1,6 +1,10 @@
-html[data-theme='dark'] {
+html[data-theme='Темная тема'] {
+  --nav-background-color: #d9ed92;
+
+  --main-text-color: #ffffff;
+
   --button-text-color: #ffffff;
-  --button-background-color: #0077b6;
+  --button-background-color: #99d98c;
   --button-border-color: #00b4d8;
 
   --input-text-color: #ffffff;
@@ -8,12 +12,16 @@ html[data-theme='dark'] {
   --input-border-color: #00b4d8;
   --input-placeholder-color: #ffffff;
 
-  --background-color: #023e8a;
+  --background-color: #1e6091;
 }
 
-html[data-theme='ligth'] {
+html[data-theme='Светлая тема'] {
+  --nav-background-color: #d9ed92;
+
+  --main-text-color: #000000;
+
   --button-text-color: #000000;
-  --button-background-color: #90e0ef;
+  --button-background-color: #52b69a;
   --button-border-color: #00b4d8;
 
   --input-text-color: #ffffff;
@@ -21,6 +29,5 @@ html[data-theme='ligth'] {
   --input-border-color: #00b4d8;
   --input-placeholder-color: #ffffff;
 
-  --background-color: #48cae4;
+  --background-color: #168aad;
 }
-

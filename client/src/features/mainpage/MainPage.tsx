@@ -43,7 +43,6 @@ function MainPage(): JSX.Element {
         </select>
       </div>
       <div className="modules_wrapper">
-        {' '}
         {filteredModules.map((module) => (
           <ModulItem key={module.id} module={module} />
         ))}
