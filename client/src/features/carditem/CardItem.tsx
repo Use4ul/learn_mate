@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card } from '../cardsPage/types/types';
+import './styles/style.scss';
 
 function CardItem({ card }: { card: Card }): JSX.Element {
   return (

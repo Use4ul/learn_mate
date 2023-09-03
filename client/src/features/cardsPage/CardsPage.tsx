@@ -3,14 +3,14 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { RootState, useAppDispatch } from '../../redux/store';
 import CardItem from '../carditem/CardItem';
-import { Card } from './types/types';
+
 import { loadCards } from './cardsSlice';
 import { ModuleId } from '../modulitem/types/types';
+import './styles/style.scss';
 
 function CardsPage(): JSX.Element {
   const { moduleId } = useParams();
   const [cardIndex, setCardIndex] = useState(0);
-  // const [step, setStep] = useState(1);
 
   const dispatch = useAppDispatch();
   let id: ModuleId;
@@ -35,24 +35,24 @@ function CardsPage(): JSX.Element {
   return (
     <>
       <h5>Название модуля</h5>
-      <div>
+      <div className="cards__container">
         <div>{cards.length && <CardItem card={cards[cardIndex]} />}</div>
-
-        {Boolean(cardIndex) && (
-          <button type="button" onClick={handeleBack}>
-            {' '}
-            Назад
-          </button>
-        )}
-        {cards
-          ? Boolean(cards.length - cardIndex - 1) && (
-              <button type="button" onClick={handeleForward}>
-                {' '}
-                вперед
-              </button>
-            )
-          : 'Упс'}
       </div>
+
+      {Boolean(cardIndex) && (
+        <button type="button" onClick={handeleBack}>
+          {' '}
+          Назад
+        </button>
+      )}
+      {cards
+        ? Boolean(cards.length - cardIndex - 1) && (
+            <button type="button" onClick={handeleForward}>
+              {' '}
+              вперед
+            </button>
+          )
+        : 'Упс'}
       <div>
         <button type="button">Варианты обучения</button>
         <button type="button">Варианты обучения</button>
