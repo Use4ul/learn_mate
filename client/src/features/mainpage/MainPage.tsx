@@ -5,6 +5,8 @@ import { loadCategories } from './slices/categoriesSlice';
 import ModulItem from '../modulitem/ModulItem';
 import { loadModules } from '../modulitem/modulesSlice';
 import { loadCards } from '../cardsPage/cardsSlice';
+import { checkUser } from '../auth/reg/authSlice';
+
 
 function MainPage(): JSX.Element {
   const [category, setCategory] = useState('');
@@ -18,9 +20,14 @@ function MainPage(): JSX.Element {
     ? modules.filter((module) => module.Category.title === category)
     : modules;
 
+  const user = useSelector((store: RootState) => store.auth.authUser);
+  console.log(user, 'fsdfsdf');
+
   useEffect(() => {
     dispatch(loadCategories());
     dispatch(loadModules());
+    dispatch(checkUser());
+    console.log('fds');
   }, []);
 
   return (
