@@ -13,6 +13,7 @@ function CardsPage(): JSX.Element {
   const { moduleId } = useParams();
   const [cardIndex, setCardIndex] = useState(0);
   const [trainingOptions, setrainingOptions] = useState('');
+  const [correctAnswers, setCorrectAnswers] = useState('');
 
   const dispatch = useAppDispatch();
   let id: ModuleId;
@@ -24,6 +25,7 @@ function CardsPage(): JSX.Element {
 
   const handeleForward = (): void => {
     setCardIndex((prev) => prev + 1);
+    setCorrectAnswers('');
   };
 
   const handeleBack = (): void => {
@@ -68,7 +70,15 @@ function CardsPage(): JSX.Element {
         </button>
       </div>
       <div>
-        {trainingOptions === 'WriteAnswers' ? <TypeAnswerItem card={cards[cardIndex]} /> : <div />}
+        {trainingOptions === 'WriteAnswers' ? (
+          <TypeAnswerItem
+            card={cards[cardIndex]}
+            setCorrectAnswers={setCorrectAnswers}
+            correctAnswers={correctAnswers}
+          />
+        ) : (
+          <div />
+        )}
       </div>
     </>
   );

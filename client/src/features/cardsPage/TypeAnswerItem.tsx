@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
 import { Card } from './types/types';
 
-function TypeAnswerItem({ card }: { card: Card }): JSX.Element {
+function TypeAnswerItem({
+  card,
+  correctAnswers,
+  setCorrectAnswers,
+}: {
+  card: Card;
+  correctAnswers: string;
+  setCorrectAnswers: React.Dispatch<React.SetStateAction<string>>;
+}): JSX.Element {
   const [answer, setAnswer] = useState('');
-  const [correctAnswers, setCorrectAnswers] = useState('');
+  // const [correctAnswers, setCorrectAnswers] = useState('');
   const handaleAnswer: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     if (answer.toLocaleLowerCase() === card.definition) {
