@@ -8,6 +8,7 @@ import { loadCards } from './cardsSlice';
 import { ModuleId } from '../modulitem/types/types';
 import './styles/style.scss';
 import TypeAnswerItem from './TypeAnswerItem';
+import FourAnswerItem from './FourAnswerItem';
 
 function CardsPage(): JSX.Element {
   const { moduleId } = useParams();
@@ -61,13 +62,23 @@ function CardsPage(): JSX.Element {
           )
         : 'Упс'}
       <div>
-        <button type="button">Заучивание</button>
+        <button type="button" onClick={() => handeleTypeTraining('')}>
+          Заучивание
+        </button>
         <button type="button" onClick={() => handeleTypeTraining('SeveralAnswers')}>
           Варианты ответа
         </button>
         <button type="button" onClick={() => handeleTypeTraining('WriteAnswers')}>
           Напиши правильный ответ
         </button>
+      </div>
+
+      <div>
+        {trainingOptions === 'SeveralAnswers' ? (
+          <FourAnswerItem card={cards[cardIndex]} cards={cards} cardIndex={cardIndex} />
+        ) : (
+          <div />
+        )}
       </div>
       <div>
         {trainingOptions === 'WriteAnswers' ? (
