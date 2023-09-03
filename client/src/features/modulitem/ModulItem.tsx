@@ -5,8 +5,8 @@ import './styles/style.scss';
 function ModulItem({ module }: { module: Module }): JSX.Element {
   return (
     <div className="module__container">
-      <p>{module.title}</p>
-      <button type="button">добавить к себе</button>
+      <h3>{module.title}</h3>
+      <button type="button">Добавить к себе</button>
       {/* добавить ховер  */}
     </div>
   );

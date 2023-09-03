@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
+import './styles/style.scss';
 
 function RegPage(): JSX.Element {
   const [name, setName] = useState('');
   const [nickName, setNickName] =
-    useState(''); /** проверка на уникальность по стейту с выводом в p тег, сразу при вводе пользователем */
+    useState(
+      '',
+    ); /** проверка на уникальность по стейту с выводом в p тег, сразу при вводе пользователем */
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [nickNameCheck, setNickNameCheck] = useState(true);
-  const [regCheck, setRegCheck] = useState(''); /** проверка на уникальность по стейту с выводом в p тег */
+  const [regCheck, setRegCheck] =
+    useState(''); /** проверка на уникальность по стейту с выводом в p тег */
 
   return (
     <div>
-      <h1>Зарегистрироваться</h1>
       <form className="reg__form">
+      <h1>Регистрация</h1>
         {/** добавить обработчик на форму с учетомч слайсера и редюсера */}
         <label>
           Имя
@@ -57,9 +61,13 @@ function RegPage(): JSX.Element {
             placeholder="Ваш пароль здесь"
           />
         </label>
-        <button className="btn login__btn" type="submit">Зарегистрироваться</button>
+        <button className="btn login__btn" type="submit">
+          Зарегистрироваться
+        </button>
       </form>
-      <p className={regCheck ? 'reg__error' : 'reg__error error-true'}>Уже зарегистрирован, войдите</p>
+      <p className={regCheck ? 'reg__error' : 'reg__error error-true'}>
+        Уже зарегистрирован, войдите
+      </p>
     </div>
   );
 }

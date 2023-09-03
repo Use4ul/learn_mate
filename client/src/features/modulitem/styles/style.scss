@@ -3,6 +3,17 @@
   flex-wrap: wrap;
   &__container {
     border: 1px solid black;
-    border-radius: 15px;
+    border-radius: 10px;
   }
+}
+
+.module__container {
+  margin: 10px;
+  width: 200px;
+  height: 150px;
+  text-align: center;
+}
+
+.main__container-filter {
+  margin-left: 20px;
 }
