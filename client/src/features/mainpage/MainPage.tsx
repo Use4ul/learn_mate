@@ -17,14 +17,9 @@ function MainPage(): JSX.Element {
     ? modules.filter((module) => module.Category.title === category)
     : modules;
 
-  const user = useSelector((store: RootState) => store.auth.authUser);
-  console.log(user, 'fsdfsdf');
-
   useEffect(() => {
     dispatch(loadCategories());
     dispatch(loadModules());
-    dispatch(checkUser());
-    console.log('fds');
   }, []);
 
   return (

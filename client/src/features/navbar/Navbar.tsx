@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './styles/style.scss';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../../redux/store';
-import { fetchLogOut } from '../auth/log/api';
-import { checkUser } from '../auth/reg/authSlice';
+import { logOut } from '../auth/reg/authSlice';
 
 function Navbar(): JSX.Element {
   const authUser = useSelector((store: RootState) => store.auth.authUser);
@@ -12,12 +11,11 @@ function Navbar(): JSX.Element {
   const navigate = useNavigate();
 
   const handleLogOut = async (): Promise<void> => {
-    const data = await fetchLogOut();
-    if (data.message === 'success') {
-      dispatch({ type: 'auth/logout' });
-      navigate('/');
-    }
+    dispatch(logOut());
+    navigate('/');
   };
+
+  console.log(authUser);
 
   return (
     <>
@@ -25,15 +23,15 @@ function Navbar(): JSX.Element {
         <div>
           <ul>
             <li>
-              <NavLink to="/profile_page">Пользователь</NavLink>
-            </li>
-            <li>
               <NavLink to="/">Главная</NavLink>
             </li>
 
             {authUser ? (
               <>
                 <li>{authUser.name}</li>
+                <li>
+                  <NavLink to="/profile_page">Пользователь</NavLink>
+                </li>
                 <li>
                   <NavLink to="/">
                     <button

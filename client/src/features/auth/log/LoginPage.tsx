@@ -11,20 +11,13 @@ function LoginPage(): JSX.Element {
     useState(''); /** проверка на корректность по стейту с выводом в p тег */
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const user = useSelector((store: RootState) => store.auth.userSingIn);
+  const user = useSelector((store: RootState) => store.auth.authUser);
 
   const handleSubmitAuth: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     dispatch(signIn({ email, password }));
     navigate('/');
   };
-  
-
-  useEffect(() => {
-    if (user) {
-      navigate('/');
-    }
-  }, [user, navigate]);
 
   return (
     <div>

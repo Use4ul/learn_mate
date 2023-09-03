@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../../redux/store';
 import { signUp } from './authSlice';
+import { fetchCheckEmail, fetchCheckNick, fetchSignUp } from '../log/api';
 
 function RegPage(): JSX.Element {
   const [name, setName] = useState('');
@@ -11,18 +12,46 @@ function RegPage(): JSX.Element {
     ); /** проверка на уникальность по стейту с выводом в p тег, сразу при вводе пользователем */
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-  const [nickNameCheck, setNickNameCheck] = useState(true);
-  const [regCheck, setRegCheck] =
-    useState(''); /** проверка на уникальность по стейту с выводом в p тег */
+  const [nickNameCheck, setNickNameCheck] = useState(false);
+  const [regCheck, setRegCheck] = useState(false);
+
+  const [role, setRole] = useState(2);
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
-    dispatch(signUp({ name, nickname, email, password }));
+    dispatch(signUp({ name, nickname, email, password, role }));
+    
     navigate('/');
   };
+
+  const checkEmail = async (): Promise<void> => {
+    const data = await fetchCheckEmail(email);
+    if (data.message === 'Такой пользователь уже существует') {
+      setRegCheck(false);
+    } else {
+      setRegCheck(true);
+    }
+  };
+
+  const nickCheck = async (): Promise<void> => {
+    const data = await fetchCheckNick(nickname);
+    if (data.message === 'success') {
+      setNickNameCheck(true);
+    } else {
+      setNickNameCheck(false);
+    }
+  };
+
+  useEffect(() => {
+    nickCheck();
+  }, [nickname]);
+
+  useEffect(() => {
+    checkEmail();
+  }, [email]);
 
   return (
     <div>
@@ -43,15 +72,15 @@ function RegPage(): JSX.Element {
           Никнейм
           <input
             value={nickname}
-            onChange={(e) => setNickName(e.target.value)}
+            onChange={(e) => {
+              setNickName(e.target.value);
+            }}
             name="nickname"
             type="text"
             placeholder="Ваш никнейм здесь"
           />
         </label>
-        <p className={nickNameCheck ? 'reg__nick-error' : 'reg__error error-true'}>
-          Такой никнейм уже зарегистрирован
-        </p>
+        {!nickNameCheck && <p> Такой никнейм уже зарегистрирован</p>}
         <label>
           Email
           <input
@@ -72,13 +101,18 @@ function RegPage(): JSX.Element {
             placeholder="Ваш пароль здесь"
           />
         </label>
+        <label>
+          <select value={role} onChange={(e) => setRole(+e.target.value)}>
+            <option disabled>Выберите:</option> <option value="2">Обычный пользователь</option>
+            <option value="1">Учитель</option>
+          </select>
+        </label>
+
         <button className="btn login__btn" type="submit">
           Зарегистрироваться
         </button>
       </form>
-      <p className={regCheck ? 'reg__error' : 'reg__error error-true'}>
-        Уже зарегистрирован, войдите
-      </p>
+      {!regCheck && <p> Уже зарегистрирован, войдите</p>}
     </div>
   );
 }
