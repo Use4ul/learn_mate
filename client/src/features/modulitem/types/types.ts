@@ -7,3 +7,5 @@ export type Module = {
   category_id: number;
   Category: Category;
 };
+
+export type ModuleId = Module['id'];

@@ -4,7 +4,9 @@ import { RootState, useAppDispatch } from '../../redux/store';
 import { loadCategories } from './slices/categoriesSlice';
 import ModulItem from '../modulitem/ModulItem';
 import { loadModules } from '../modulitem/modulesSlice';
+import { loadCards } from '../cardsPage/cardsSlice';
 import { checkUser } from '../auth/reg/authSlice';
+
 
 function MainPage(): JSX.Element {
   const [category, setCategory] = useState('');
@@ -13,6 +15,7 @@ function MainPage(): JSX.Element {
 
   const categories = useSelector((store: RootState) => store.categories.categories);
   const modules = useSelector((store: RootState) => store.modules.modules);
+
   const filteredModules = category
     ? modules.filter((module) => module.Category.title === category)
     : modules;
@@ -33,7 +36,7 @@ function MainPage(): JSX.Element {
         <select value={category} onChange={(e) => setCategory(e.target.value)}>
           <option disabled>Выберите категорию</option>{' '}
           {categories.map((el) => (
-            <option>{el.title}</option>
+            <option key={el.id}>{el.title}</option>
           ))}
           {/** добавить onchange на выбор опции */}
           {/** мапнем категории подтянутые с бэка */}
@@ -44,7 +47,7 @@ function MainPage(): JSX.Element {
       <div className="main__container-modules">
         {' '}
         {filteredModules.map((module) => (
-          <ModulItem module={module} />
+          <ModulItem key={module.id} module={module} />
         ))}
       </div>
     </div>
