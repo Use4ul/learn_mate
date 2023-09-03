@@ -1,7 +1,6 @@
 /* eslint-disable no-undef */
 import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import './App.css';
 import Navbar from '../features/navbar/Navbar';
 import ProfilePage from '../features/profilepage/ProfilePage';
 import MainPage from '../features/mainpage/MainPage';
@@ -11,6 +10,7 @@ import { useAppDispatch } from '../redux/store';
 import { checkUser } from '../features/auth/reg/authSlice';
 import RegPage from '../features/auth/reg/RegPage';
 import LoginPage from '../features/auth/log/LoginPage';
+import useTheme from '../hooks/useTheme';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
