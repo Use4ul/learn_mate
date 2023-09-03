@@ -10,3 +10,5 @@ export type UserSingIn = {
   email: string;
   password: string;
 };
+
+export type AuthUserId = AuthUser['id'];
