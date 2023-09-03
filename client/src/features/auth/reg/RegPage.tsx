@@ -1,18 +1,33 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../../redux/store';
+import { signUp } from './authSlice';
 
 function RegPage(): JSX.Element {
   const [name, setName] = useState('');
-  const [nickName, setNickName] =
-    useState(''); /** проверка на уникальность по стейту с выводом в p тег, сразу при вводе пользователем */
+  const [nickname, setNickName] =
+    useState(
+      '',
+    ); /** проверка на уникальность по стейту с выводом в p тег, сразу при вводе пользователем */
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [nickNameCheck, setNickNameCheck] = useState(true);
-  const [regCheck, setRegCheck] = useState(''); /** проверка на уникальность по стейту с выводом в p тег */
+  const [regCheck, setRegCheck] =
+    useState(''); /** проверка на уникальность по стейту с выводом в p тег */
+
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault();
+    dispatch(signUp({ name, nickname, email, password }));
+    navigate('/');
+  };
 
   return (
     <div>
       <h1>Зарегистрироваться</h1>
-      <form className="reg__form">
+      <form onSubmit={handleSubmit} className="reg__form">
         {/** добавить обработчик на форму с учетомч слайсера и редюсера */}
         <label>
           Имя
@@ -27,9 +42,9 @@ function RegPage(): JSX.Element {
         <label>
           Никнейм
           <input
-            value={nickName}
+            value={nickname}
             onChange={(e) => setNickName(e.target.value)}
-            name="nickName"
+            name="nickname"
             type="text"
             placeholder="Ваш никнейм здесь"
           />
@@ -57,9 +72,13 @@ function RegPage(): JSX.Element {
             placeholder="Ваш пароль здесь"
           />
         </label>
-        <button className="btn login__btn" type="submit">Зарегистрироваться</button>
+        <button className="btn login__btn" type="submit">
+          Зарегистрироваться
+        </button>
       </form>
-      <p className={regCheck ? 'reg__error' : 'reg__error error-true'}>Уже зарегистрирован, войдите</p>
+      <p className={regCheck ? 'reg__error' : 'reg__error error-true'}>
+        Уже зарегистрирован, войдите
+      </p>
     </div>
   );
 }
