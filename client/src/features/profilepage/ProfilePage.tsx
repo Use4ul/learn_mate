@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+import { group } from 'console';
 import { RootState, useAppDispatch } from '../../redux/store';
 import { loadModulesForUser } from './profileSlice';
-import { useParams } from 'react-router-dom';
 import ModulItem from '../modulitem/ModulItem';
+import { loadGroups } from '../grouppage/slices/groupsSlice';
+import GroupItem from '../groupItem/GroupItem';
 
 function ProfilePage(): JSX.Element {
   const [search, setSearch] = useState('');
+  const navigate = useNavigate();
 
   const modules = useSelector((store: RootState) => store.profile.modules);
 
   console.log(modules);
+
+  const grops = useSelector((store: RootState) => store.groups.groups);
+
 
   const { userId } = useParams();
 
@@ -18,6 +25,7 @@ function ProfilePage(): JSX.Element {
 
   useEffect(() => {
     dispatch(loadModulesForUser(Number(userId)));
+    dispatch(loadGroups());
   }, []);
 
   return (
@@ -38,12 +46,17 @@ function ProfilePage(): JSX.Element {
         </div>
       </div>
       <div>
+        <button type="button" onClick={() => navigate('/newGrop')}>
+          Создать новую группу
+        </button>
         {/* <button type="button"> назначить модуль для обучения</button> */}
         <div className="profil__grups">
           <div>
-            <div>Название группы</div>
-            <button type="button"> изменить</button>
-            <button type="button"> удалить</button>
+            <div>
+              {grops.map((elGroup) => (
+                <GroupItem elGroup={elGroup} />
+              ))}
+            </div>
           </div>
         </div>
       </div>

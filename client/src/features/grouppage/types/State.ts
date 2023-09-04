@@ -1,6 +1,6 @@
 import { Group } from './types';
 
 export type State = {
-  group: Group[];
+  groups: Group[];
   error: undefined | string;
 };
