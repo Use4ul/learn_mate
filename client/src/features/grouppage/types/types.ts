@@ -3,3 +3,8 @@ export type Group = {
   teacher_id: number;
   title: string;
 };
+export type NewGroup = {
+  title: string;
+};
+
+export type GroupId = Group['id'];

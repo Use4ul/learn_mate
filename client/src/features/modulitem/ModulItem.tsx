@@ -5,6 +5,7 @@ import { Module } from './types/types';
 import './styles/style.scss';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
+import { Group } from '../grouppage/types/types';
 
 function ModulItem({ module }: { module: Module }): JSX.Element {
   const navigate = useNavigate();
@@ -23,7 +24,9 @@ function ModulItem({ module }: { module: Module }): JSX.Element {
             <button type="button"> Назначить модуль группе</button>
           </>
         ) : (
-          <button className="btn-rel" type="button">добавить к себе</button>
+          <button className="btn-rel" type="button">
+            добавить к себе
+          </button>
         )}
 
         {/* добавить ховер  */}

@@ -27,9 +27,9 @@ router.delete('/:groupId', async (req, res) => {
     if (req.session.user_id) {
       const currentUser = await User.findOne({
         where: { id: req.session.user_id },
-        include: { model: Role },
       });
-      if (currentUser.id === groupId) {
+      const currentGroup = await Group.findOne({ where: { id: groupId } });
+      if (currentGroup.teacher_id === req.session.user_id) {
         const result = await Group.destroy({ where: { id: groupId } });
         if (result > 0) {
           res.status(200).json(+groupId);
