@@ -6,6 +6,7 @@ import { AuthUser } from '../log/types/types';
 const initialState: State = {
   authUser: undefined,
   error: undefined,
+  pending: false,
 };
 
 export const signUp = createAsyncThunk('auth/sign-up', (user: AuthUser) => api.fetchSignUp(user));
@@ -21,7 +22,11 @@ export const signIn = createAsyncThunk('auth/sign-in', (user: Partial<AuthUser>)
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    stopPending: (state) => {
+      state.pending = false;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(signUp.fulfilled, (state, action) => {
@@ -35,6 +40,10 @@ const authSlice = createSlice({
       })
       .addCase(signIn.rejected, (state, action) => {
         state.error = action.error.message;
+      })
+
+      .addCase(checkUser.pending, (state, action) => {
+        state.pending = true;
       })
       .addCase(checkUser.fulfilled, (state, action) => {
         state.authUser = action.payload;
@@ -51,4 +60,5 @@ const authSlice = createSlice({
   },
 });
 
+export const { stopPending } = authSlice.actions;
 export default authSlice.reducer;

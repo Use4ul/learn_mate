@@ -2,6 +2,7 @@ const router = require('express').Router();
 
 const { Module, Category, Card } = require('../../db/models');
 
+//отображение модулей
 router.get('/', async (req, res) => {
   try {
     const modules = await Module.findAll({ include: { model: Category } });
@@ -11,6 +12,7 @@ router.get('/', async (req, res) => {
   }
 });
 
+//отображение в профиле карточек по модулю
 router.get('/:moduleId', async (req, res) => {
   const { moduleId } = req.params;
   console.log(moduleId);
@@ -26,6 +28,27 @@ router.get('/:moduleId', async (req, res) => {
   }
 });
 
+//добавление карточки в профиле
+router.post('/', async (req, res) => {
+  try {
+    const { title, category } = req.body;
+
+    const categ = await Category.findOne({ where: { title: category } });
+    const categoryId = categ.id;
+
+    const newModule = await Module.create({
+      title,
+      user_id: req.session.user_id,
+      categoryId,
+    });
+
+    res.json([newModule]);
+  } catch ({ message }) {
+    res.json(message);
+  }
+});
+
+// изменение модуля
 router.put('/:moduleId', async (req, res) => {
   const { moduleId } = req.params;
   const { title, categ } = req.body;
