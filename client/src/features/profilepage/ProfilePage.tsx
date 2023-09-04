@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { group } from 'console';
 import { RootState, useAppDispatch } from '../../redux/store';
 import { loadModulesForUser } from './profileSlice';
@@ -14,10 +14,7 @@ function ProfilePage(): JSX.Element {
 
   const modules = useSelector((store: RootState) => store.profile.modules);
 
-  console.log(modules);
-
   const grops = useSelector((store: RootState) => store.groups.groups);
-
 
   const { userId } = useParams();
 
@@ -35,7 +32,9 @@ function ProfilePage(): JSX.Element {
 
         <div className="profile__module">
           <div>
-            <button type="button">Создать новый модуль</button>
+            <Link to="/modules/add">
+              <button type="button">Создать новый модуль</button>
+            </Link>
           </div>
 
           {modules.map((module) => (

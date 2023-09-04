@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const { User, Group, Role } = require('../../db/models');
+const { User, Group, GroupItem, Role } = require('../../db/models');
 
 router.get('/', async (req, res) => {
   const currentUser = await User.findOne({
@@ -11,6 +11,29 @@ router.get('/', async (req, res) => {
     if (currentUser && currentUser.Role.title === 'Учитель') {
       const groups = await Group.findAll({ where: { teacher_id: req.session.user_id } });
       res.json(groups);
+      return;
+    } else {
+      res.json({ message: 'Ты не учитель, куда лезешь!' });
+      return;
+    }
+  } catch ({ message }) {
+    res.json({ message });
+  }
+});
+
+router.get('/:groupId', async (req, res) => {
+  const { groupId } = req.params;
+  const currentUser = await User.findOne({
+    where: { id: req.session.user_id },
+    include: { model: Role },
+  });
+  const currentGroup = await Group.findAll({
+    where: { id: groupId },
+    include: { model: GroupItem, include: { model: User } },
+  });
+  try {
+    if (currentUser && currentUser.Role.title === 'Учитель') {
+      res.json(currentGroup[0].GroupItems.map((el) => el.User.name));
       return;
     } else {
       res.json({ message: 'Ты не учитель, куда лезешь!' });
@@ -71,24 +94,23 @@ router.post('/', async (req, res) => {
   }
 });
 
-// router.put('/:groupId', async (req, res) => {
-//   const { groupId } = req.params;
-//   const { title } = req.body;
-//   try {
-//     const group = await Group.findOne({ where: { id: groupId } });
-//     if (oneModule.user_id === req.session.user_id) {
-//       oneModule.title = title;
-//       oneModule.category = categoryId;
-//       oneModule.save();
-//       res.json(oneModule);
-//       return;
-//     } else {
-//       res.json({ message: 'Не отработал' });
-//       return;
-//     }
-//   } catch ({ message }) {
-//     res.json({ message });
-//   }
-// });
+router.put('/:groupId', async (req, res) => {
+  const { groupId } = req.params;
+  const { title } = req.body;
+  try {
+    const group = await Group.findOne({ where: { id: groupId } });
+    if (group.teacher_id === req.session.user_id) {
+      group.title = title;
+      group.save();
+      res.json(group);
+      return;
+    } else {
+      res.json({ message: 'Не отработал' });
+      return;
+    }
+  } catch ({ message }) {
+    res.json({ message });
+  }
+});
 
 module.exports = router;

@@ -7,7 +7,7 @@ import './styles/style.scss';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../../redux/store';
-import { logOut, checkUser } from '../auth/reg/authSlice';
+import { logOut, checkUser, stopPending } from '../auth/reg/authSlice';
 import { fetchLogOut } from '../auth/log/api';
 import useTheme from '../../hooks/useTheme';
 
