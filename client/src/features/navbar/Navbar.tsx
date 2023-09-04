@@ -55,7 +55,7 @@ function Navbar(): JSX.Element {
                         handleLogOut();
                       }}
                     >
-                      Выход
+                    Выход
                     </a>
                   </NavLink>
                 </li>

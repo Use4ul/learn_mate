@@ -13,19 +13,13 @@ router.get('/', async (req, res) => {
 
 router.get('/:moduleId', async (req, res) => {
   const { moduleId } = req.params;
+  console.log(moduleId);
   try {
     const cardsInModule = await Card.findAll(
       { where: { module_id: +moduleId } },
       { order: [['id', 'ASC']] },
     );
-    res.json(cardsInModule);
-    /* const cardsInModule = await Module.findAll({
-      where: { id: +moduleId },
-      include: {
-        model: Card,
-      },
-    }); */
-
+    console.log(cardsInModule);
     res.json(cardsInModule);
   } catch ({ message }) {
     res.json({ message });
