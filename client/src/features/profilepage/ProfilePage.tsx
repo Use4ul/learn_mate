@@ -14,7 +14,9 @@ function ProfilePage(): JSX.Element {
 
   const modules = useSelector((store: RootState) => store.profile.modules);
 
+
   const grops = useSelector((store: RootState) => store.groups.groups);
+
 
   const { userId } = useParams();
 

@@ -19,7 +19,9 @@ function ModulItem({ module }: { module: Module }): JSX.Element {
         {/* onClick={() => navigate(`/modules/${module.id}`)}> */}
         {module.user_id === user?.id ? (
           <>
-            <button type="button"> изменить</button>
+            <Link to={`/profile/${module.user_id}/modules/${module.id}`}>
+              <button type="button"> изменить</button>
+            </Link>
             <button type="button"> удалить</button>
             <button type="button"> Назначить модуль группе</button>
           </>
