@@ -10,12 +10,14 @@ function ProfilePage(): JSX.Element {
 
   const modules = useSelector((store: RootState) => store.profile.modules);
 
+
   const { userId } = useParams();
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(loadModulesForUser(Number(userId)));
+
   }, []);
 
   return (
