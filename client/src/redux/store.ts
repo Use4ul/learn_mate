@@ -6,6 +6,7 @@ import authSlice from '../features/auth/reg/authSlice';
 import modulesSlice from '../features/modulitem/modulesSlice';
 import cardsSlice from '../features/cardsPage/cardsSlice';
 import profileSlice from '../features/profilepage/profileSlice';
+import groupsSlice from '../features/grouppage/slices/groupsSlice';
 
 const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
     modules: modulesSlice,
     cards: cardsSlice,
     profile: profileSlice,
+    groups: groupsSlice,
   },
 });
 
