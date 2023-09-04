@@ -38,7 +38,7 @@ function App(): JSX.Element {
       ) : (
         <Routes>
           <Route path="/" element={<Navbar />}>
-            <Route path="/profile/:userId/modules" element={<ProfilePage />} />
+            <Route path="/profile/:userId" element={<ProfilePage />} />
             <Route path="/" element={<MainPage />} />
             <Route path="/auth/register" element={<RegPage />} />
             <Route path="/auth/log" element={<LoginPage />} />
