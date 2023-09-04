@@ -8,6 +8,7 @@ import {
 } from './profileSlice';
 import CardItem from '../carditem/CardItem';
 import { loadCategories } from '../mainpage/slices/categoriesSlice';
+import CardItemForProfilePage from './CardItemForProfilePage';
 
 function ModuleAddPage(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -28,6 +29,10 @@ function ModuleAddPage(): JSX.Element {
   const handleModuleAdd: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     dispatch(addModule({ title, category }));
+    setCardTerm('');
+    setCardDefinition('');
+    setCardImg('');
+    setCardAudio('');
   };
 
   const handleCardAdd: React.FormEventHandler<HTMLFormElement> = async (e) => {
@@ -86,7 +91,7 @@ function ModuleAddPage(): JSX.Element {
           </form>
           <div>
             {module[0].Cards.length &&
-              module[0].Cards.map((card) => <CardItem card={card} />)}
+              module[0].Cards.map((card) => <CardItemForProfilePage card={card} />)}
           </div>
         </>
       )}

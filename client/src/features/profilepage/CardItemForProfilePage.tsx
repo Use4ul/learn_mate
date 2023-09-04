@@ -1,0 +1,29 @@
+/* eslint-disable no-undef */
+import React from 'react';
+import { Card } from '../cardsPage/types/types';
+import './styles/style.scss';
+import { useAppDispatch } from '../../redux/store';
+import { deleteCard } from './profileSlice';
+
+function CardItemForProfilePage({ card }: { card: Card }): JSX.Element {
+  const dispatch = useAppDispatch();
+
+  const handleCardDelete: React.MouseEventHandler<HTMLButtonElement> = async () => {
+    dispatch(deleteCard(card.id));
+  };
+
+  return (
+    <div className="card__container">
+      <div>
+        <div>{card.term}</div>
+        <div>{card.definition}</div>
+      </div>
+      <div> Прогресс</div>
+      <button type="button" onClick={handleCardDelete}>
+        Удалить карточку
+      </button>
+    </div>
+  );
+}
+
+export default CardItemForProfilePage;

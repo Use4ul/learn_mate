@@ -6,3 +6,5 @@ export type Card = {
   audio: string | null;
   module_id: number;
 };
+
+export type CardId = Card['id'];

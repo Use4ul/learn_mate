@@ -45,7 +45,7 @@ function Navbar(): JSX.Element {
                   <NavLink to={`/profile/${authUser.id}`}>Моя страница</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/profile_page">{authUser.name}</NavLink>
+                  {authUser.name}
                 </li>
                 <li>
                   <NavLink to="/">

@@ -11,6 +11,7 @@ import {
 import { ModuleId } from '../modulitem/types/types';
 import CardItem from '../carditem/CardItem';
 import { loadCategories } from '../mainpage/slices/categoriesSlice';
+import CardItemForProfilePage from './CardItemForProfilePage';
 
 function ModuleUpdateForm(): JSX.Element {
   const { moduleId } = useParams();
@@ -30,11 +31,6 @@ function ModuleUpdateForm(): JSX.Element {
   const [category, setCategory] = useState(
     `${module.length > 0 ? module[0].Category?.title : 'Все категории'}`,
   );
-
-  console.log(module);
-  console.log(module[0]);
-  console.log(title, category);
-  
 
   const [cardTerm, setCardTerm] = useState('');
   const [cardDefinition, setCardDefinition] = useState('');
@@ -106,7 +102,9 @@ function ModuleUpdateForm(): JSX.Element {
         />
         <button type="submit">Добавить карточку</button>
       </form>
-      <div>{module.length && module[0].Cards.map((card) => <CardItem card={card} />)}</div>
+      <div>
+        {module.length && module[0].Cards.map((card) => <CardItemForProfilePage card={card} />)}
+      </div>
     </>
   );
 }
