@@ -27,6 +27,7 @@ router.get('/:moduleId', async (req, res) => {
     res.json({ message });
   }
 });
+//gg
 
 //добавление карточки в профиле
 router.post('/', async (req, res) => {
