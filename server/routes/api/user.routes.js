@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const { Module, Category, Card } = require('../../db/models');
+const { Module, Category, Card,Group, GroupItems } = require('../../db/models');
 
 router.get('/:userId/modules', async (req, res) => {
   const { userId } = req.params;
@@ -36,29 +36,28 @@ router.get('/modules/:moduleId', async (req, res) => {
   }
 });
 
-/* router.put('/modules/:moduleId', async (req, res) => {
+router.delete('/:groupId', async (req, res) => {
   try {
-    const { moduleId } = req.params;
+    const { groupId } = req.params;
+    console.log(groupId);
 
-    const { title, description, img } = req.body;
+    const oneGroup = await Group.findOne({
+      where: { teacher_id: req.session.user_id, id: +groupId }, 
+    });
 
-    const post = await Post.findOne({ where: { id: postId } });
 
-    if(post.user_id === req.session.user_id){
-
-    const [result] = await Post.update(
-      { title, description, img },
-      { where: { id: postId, user_id: req.session.user_id } },
-    );
+    const result = await GroupItems.destroy({
+      where: { order_id: order.id, medicine_id: delId },
+    });
+    console.log(result);
     if (result > 0) {
       res.json({ message: 'success' });
       return;
     }
-  }
     res.json({ message: 'false' });
   } catch ({ message }) {
     res.json(message);
   }
-}); */
+});
 
 module.exports = router;
