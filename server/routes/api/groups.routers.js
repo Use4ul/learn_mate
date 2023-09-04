@@ -29,7 +29,7 @@ router.delete('/:groupId', async (req, res) => {
         where: { id: req.session.user_id },
       });
       const currentGroup = await Group.findOne({ where: { id: groupId } });
-      if (currentUser.Role.title === 'Учитель' && currentGroup.teacher_id === req.session.user_id) {
+      if (currentGroup.teacher_id === req.session.user_id) {
         const result = await Group.destroy({ where: { id: groupId } });
         if (result > 0) {
           res.status(200).json(+groupId);
@@ -61,6 +61,7 @@ router.post('/', async (req, res) => {
         teacher_id: req.session.user_id,
       });
       res.json(newGroup);
+      console.log(newGroup);
     } else {
       res.json({ message: 'Вы не учитель' });
       return;

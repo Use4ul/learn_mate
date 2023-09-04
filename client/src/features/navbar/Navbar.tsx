@@ -7,9 +7,8 @@ import './styles/style.scss';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../../redux/store';
-import { logOut } from '../auth/reg/authSlice';
+import { logOut, checkUser } from '../auth/reg/authSlice';
 import { fetchLogOut } from '../auth/log/api';
-import { checkUser } from '../auth/reg/authSlice';
 import useTheme from '../../hooks/useTheme';
 
 function Navbar(): JSX.Element {
@@ -43,7 +42,7 @@ function Navbar(): JSX.Element {
             {authUser ? (
               <>
                 <li>
-                  <NavLink to={`/profile/${authUser.id}/modules`}>Моя страница</NavLink>
+                  <NavLink to={`/profile/${authUser.id}`}>Моя страница</NavLink>
                 </li>
                 <li>
                   <NavLink to="/profile_page">{authUser.name}</NavLink>
@@ -55,7 +54,7 @@ function Navbar(): JSX.Element {
                         handleLogOut();
                       }}
                     >
-                    Выход
+                      Выход
                     </a>
                   </NavLink>
                 </li>

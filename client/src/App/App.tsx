@@ -13,7 +13,7 @@ import LoginPage from '../features/auth/log/LoginPage';
 import useTheme from '../hooks/useTheme';
 import GroupPage from '../features/grouppage/GroupPage';
 import ModuleUpdateForm from '../features/profilepage/ModuleUpdatePage';
-
+import GroupUpdatePage from '../features/grouppage/groupUpdatePage';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -25,13 +25,14 @@ function App(): JSX.Element {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Navbar />}>
-          <Route path="/profile/:userId/modules" element={<ProfilePage />} />
+          <Route path="/profile/:userId" element={<ProfilePage />} />
           <Route path="/" element={<MainPage />} />
           <Route path="/auth/register" element={<RegPage />} />
           <Route path="/auth/log" element={<LoginPage />} />
           <Route path="/modules/:moduleId" element={<CardsPage />} />
           <Route path="/newGrop" element={<GroupPage />} />
           <Route path="/profile/:userId/modules/:moduleId" element={<ModuleUpdateForm />} />
+          <Route path="/profile/:userId/:groupId" element={<GroupUpdatePage />} />
         </Route>
       </Routes>
     </BrowserRouter>
