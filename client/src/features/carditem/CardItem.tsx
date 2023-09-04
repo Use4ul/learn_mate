@@ -6,11 +6,14 @@ import './styles/style.scss';
 function CardItem({ card }: { card: Card }): JSX.Element {
   return (
     <div className="card__container">
-      <div>
-        <div>{card.term}</div>
-        <div>{card.definition}</div>
-      </div>
-      <div> Прогресс</div>
+      <label>
+        <input type="checkbox" />
+        <div className="card">
+          <div className="front">{card.term}</div>
+          <div className="back">{card.definition}</div>
+        </div>
+        <div> Прогресс</div>
+      </label>
     </div>
   );
 }
