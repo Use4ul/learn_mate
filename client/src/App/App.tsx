@@ -22,7 +22,7 @@ function App(): JSX.Element {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Navbar />}>
-          <Route path="/profile_page" element={<ProfilePage />} />
+          <Route path="/profile/:userId/modules" element={<ProfilePage />} />
           <Route path="/" element={<MainPage />} />
           <Route path="/auth/register" element={<RegPage />} />
           <Route path="/auth/log" element={<LoginPage />} />

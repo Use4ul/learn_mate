@@ -6,3 +6,5 @@ export type AuthUser = {
   password: string;
   role: number;
 };
+
+export type AuthUserId = AuthUser['id'];

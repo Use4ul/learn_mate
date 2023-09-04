@@ -5,14 +5,15 @@ import categoriesSlice from '../features/mainpage/slices/categoriesSlice';
 import authSlice from '../features/auth/reg/authSlice';
 import modulesSlice from '../features/modulitem/modulesSlice';
 import cardsSlice from '../features/cardsPage/cardsSlice';
+import profileSlice from '../features/profilepage/profileSlice';
 
 const store = configureStore({
   reducer: {
     auth: authSlice,
-    // games: gamesSlice,
     categories: categoriesSlice,
     modules: modulesSlice,
     cards: cardsSlice,
+    profile: profileSlice,
   },
 });
 
