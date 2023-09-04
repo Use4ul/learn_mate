@@ -48,4 +48,27 @@ router.delete('/:groupId', async (req, res) => {
   }
 });
 
+
+router.post('/', async (req, res) => {
+  try {
+    const { title } = req.body;
+    const currentUser = await User.findOne({
+      where: { id: req.session.user_id },
+      include: { model: Role },
+    });
+    if (currentUser && currentUser.Role.title === 'Учитель') {
+      const newGroup = await Group.create({
+        title,
+        teacher_id: req.session.user_id,
+      });
+      res.json(newGroup);
+    } else {
+      res.json({ message: 'Вы не учитель' });
+      return;
+    }
+  } catch ({ message }) {
+    res.json(message);
+  }
+});
+
 module.exports = router;
