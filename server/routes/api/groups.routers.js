@@ -8,8 +8,7 @@ router.get('/', async (req, res) => {
     include: { model: Role },
   });
   try {
-    if (currentUser.Role.title === 'Учитель') {
-      console.log('i am here');
+    if (currentUser && currentUser.Role.title === 'Учитель') {
       const groups = await Group.findAll({ where: { teacher_id: req.session.user_id } });
       res.json(groups);
       return;
@@ -19,6 +18,33 @@ router.get('/', async (req, res) => {
     }
   } catch ({ message }) {
     res.json({ message });
+  }
+});
+
+router.delete('/:groupId', async (req, res) => {
+  const { groupId } = req.params;
+  try {
+    if (req.session.user_id) {
+      const currentUser = await User.findOne({
+        where: { id: req.session.user_id },
+        include: { model: Role },
+      });
+      if (currentUser.id === groupId) {
+        const result = await Group.destroy({ where: { id: groupId } });
+        if (result > 0) {
+          res.status(200).json(+groupId);
+          return;
+        }
+      } else {
+        res.json({ message: 'Не твое, не трож!' });
+        return;
+      }
+    } else {
+      res.json({ message: 'Вы не зарегестрированы' });
+      return;
+    }
+  } catch ({ message }) {
+    res.status(400).json({ message: 'Postman не пройдет' });
   }
 });
 
