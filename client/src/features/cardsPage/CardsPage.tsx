@@ -24,6 +24,7 @@ function CardsPage(): JSX.Element {
   }
 
   const cards = useSelector((store: RootState) => store.cards.cards);
+  console.log(cards);
 
   const handeleForward = (): void => {
     setCardIndex((prev) => prev + 1);
