@@ -1,4 +1,4 @@
-import { Group, GroupId, NewGroup } from './types/types';
+import { Group, GroupId, NewGroup, User } from './types/types';
 
 export const fetchGroups = async (): Promise<Group[]> => {
   const res = await fetch('/api/groups');
@@ -36,8 +36,16 @@ export const fetchGroupUpdate = async (group: Group): Promise<Group> => {
   const res = await fetch(`/api/groups/${group.id}`, {
     method: 'PUT',
     headers: { 'Content-type': 'application/json' },
-    body: JSON.stringify(group.title),
+    body: JSON.stringify(group),
   });
+
+  console.log(res);
+
+  return res.json();
+};
+export const fetchUsersInGroup = async (group: Group): Promise<User[]> => {
+  const res = await fetch(`/api/groups/${group.id}`);
+  console.log(res);
 
   return res.json();
 };
