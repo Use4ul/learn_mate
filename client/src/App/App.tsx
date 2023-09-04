@@ -11,9 +11,11 @@ import { checkUser, stopPending } from '../features/auth/reg/authSlice';
 import RegPage from '../features/auth/reg/RegPage';
 import LoginPage from '../features/auth/log/LoginPage';
 import useTheme from '../hooks/useTheme';
+import GroupPage from '../features/grouppage/GroupPage';
 import ModuleUpdateForm from '../features/profilepage/ModuleUpdatePage';
 import { useSelector } from 'react-redux';
 import preloader from './preloader.gif';
+
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -40,10 +42,12 @@ function App(): JSX.Element {
             <Route path="/auth/register" element={<RegPage />} />
             <Route path="/auth/log" element={<LoginPage />} />
             <Route path="/modules/:moduleId" element={<CardsPage />} />
+            <Route path="/newGrop" element={<GroupPage />} />
             <Route path="/profile/:userId/modules/:moduleId" element={<ModuleUpdateForm />} />
           </Route>
         </Routes>
       )}
+
     </BrowserRouter>
   );
 }

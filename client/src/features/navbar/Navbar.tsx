@@ -35,7 +35,6 @@ function Navbar(): JSX.Element {
     <>
       <nav>
         <div>
-         
             <ul>
               <li>
                 <NavLink to="/">Главная</NavLink>
@@ -72,7 +71,7 @@ function Navbar(): JSX.Element {
                 </>
               )}
             </ul>
-         
+
         </div>
       </nav>
       <Outlet />

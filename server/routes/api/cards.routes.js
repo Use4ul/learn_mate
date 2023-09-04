@@ -13,13 +13,14 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    const { term, definition, img, audio, id } = req.body;
+    const { term, definition, img, audio, module_id } = req.body;
+    console.log('1', term, '2', definition, '3', img, '4', audio, '5', module_id);
     const newCard = await Card.create({
       term,
       definition,
       img,
       audio,
-      module_id: id,
+      module_id,
     });
 
     res.json(newCard);
