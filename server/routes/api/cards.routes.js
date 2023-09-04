@@ -10,12 +10,21 @@ router.get('/', async (req, res) => {
     res.json({ message });
   }
 });
-router.get('/:', async (req, res) => {
+
+router.post('/', async (req, res) => {
   try {
-    const cards = await Card.findAll();
-    res.json(cards);
+    const { term, definition, img, audio, id } = req.body;
+    const newCard = await Card.create({
+      term,
+      definition,
+      img,
+      audio,
+      module_id: id,
+    });
+
+    res.json(newCard);
   } catch ({ message }) {
-    res.json({ message });
+    res.json(message);
   }
 });
 module.exports = router;
