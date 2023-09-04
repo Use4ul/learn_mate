@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const { Card } = require('../../db/models');
+const { Card, Module } = require('../../db/models');
 
 router.get('/', async (req, res) => {
   try {
@@ -14,7 +14,6 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const { term, definition, img, audio, module_id } = req.body;
-    console.log('1', term, '2', definition, '3', img, '4', audio, '5', module_id);
     const newCard = await Card.create({
       term,
       definition,
@@ -28,4 +27,26 @@ router.post('/', async (req, res) => {
     res.json(message);
   }
 });
+
+// удаление карточки из модуля
+router.delete('/:cardId', async (req, res) => {
+  const { cardId } = req.params;
+  try {
+    const oneCard = await Card.findOne({ where: { id: +cardId }, include: {model: Module} });
+    if (oneCard.Module.user_id === req.session.user_id) {
+      const result = await Card.destroy({ where: { id: +cardId } });
+      if (result > 0) {
+        res.json(+cardId);
+        return;
+      }
+      res.json({ message: 'false' });
+    } else {
+      res.json({ message: 'Не отработал' });
+      return;
+    }
+  } catch ({ message }) {
+    res.json({ message });
+  }
+});
+
 module.exports = router;

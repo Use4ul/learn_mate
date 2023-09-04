@@ -5,6 +5,7 @@ import State from './types/State';
 import { AuthUserId } from '../auth/log/types/types';
 import { ModuleId } from '../modulitem/types/types';
 import { CardWithoutId, ModuleWithoutUser } from './types/type';
+import { CardId } from '../cardsPage/types/types';
 
 const initialState: State = {
   modules: [],
@@ -35,6 +36,14 @@ export const addCardToModule = createAsyncThunk(
 export const addModule = createAsyncThunk(
   'user/addModule',
   ({ title, category }: ModuleWithoutUser) => api.fetchModuleToAdd({ title, category }),
+);
+
+export const deleteModule = createAsyncThunk('user/deleteModule', (id: ModuleId) =>
+  api.fetchModuleDelete(id),
+);
+
+export const deleteCard = createAsyncThunk('user/deleteCard', (id: CardId) =>
+  api.fetchCardDelete(id),
 );
 
 const profileSlice = createSlice({
@@ -77,6 +86,18 @@ const profileSlice = createSlice({
         state.module = action.payload;
       })
       .addCase(addModule.rejected, (state, action) => {
+        state.error = action.error.message;
+      })
+      .addCase(deleteModule.fulfilled, (state, action) => {
+        state.modules = state.modules.filter((module) => module.id !== action.payload);
+      })
+      .addCase(deleteModule.rejected, (state, action) => {
+        state.error = action.error.message;
+      })
+      .addCase(deleteCard.fulfilled, (state, action) => {
+        state.module[0].Cards = state.module[0].Cards.filter((card) => card.id !== action.payload);
+      })
+      .addCase(deleteCard.rejected, (state, action) => {
         state.error = action.error.message;
       });
   },

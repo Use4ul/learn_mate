@@ -1,7 +1,7 @@
 import { Module, ModuleId } from '../modulitem/types/types';
 import { AuthUserId } from '../auth/log/types/types';
 import { CardWithoutId, ModuleWithCards, ModuleWithoutUser } from './types/type';
-import { Card } from '../cardsPage/types/types';
+import { Card, CardId } from '../cardsPage/types/types';
 
 export const fetchModulesForUser = async (id: AuthUserId): Promise<Module[]> => {
   const res = await fetch(`/api/user/${id}/modules/`);
@@ -67,6 +67,20 @@ export const fetchModuleToAdd = async ({
       title,
       category,
     }),
+  });
+  return res.json();
+};
+
+export const fetchModuleDelete = async (id: ModuleId): Promise<ModuleId> => {
+  const res = await fetch(`/api/modules/${id}`, {
+    method: 'DELETE',
+  });
+  return res.json();
+};
+
+export const fetchCardDelete = async (id: CardId): Promise<CardId> => {
+  const res = await fetch(`/api/cards/${id}`, {
+    method: 'DELETE',
   });
   return res.json();
 };

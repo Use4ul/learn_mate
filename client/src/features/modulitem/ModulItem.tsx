@@ -4,13 +4,20 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Module } from './types/types';
 import './styles/style.scss';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
+import { RootState, useAppDispatch } from '../../redux/store';
 import { Group } from '../grouppage/types/types';
+import { deleteModule } from '../profilepage/profileSlice';
 
 function ModulItem({ module }: { module: Module }): JSX.Element {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const user = useSelector((store: RootState) => store.auth.authUser);
+
+  const handleDeleteModule: React.MouseEventHandler<HTMLButtonElement> = async () => {
+    dispatch(deleteModule(module.id));
+    navigate('/');
+  };
 
   return (
     <div className="container_wrapper">
@@ -22,7 +29,10 @@ function ModulItem({ module }: { module: Module }): JSX.Element {
             <Link to={`/profile/${module.user_id}/modules/${module.id}`}>
               <button type="button"> изменить</button>
             </Link>
-            <button type="button"> удалить</button>
+            <button type="button" onClick={handleDeleteModule}>
+              {' '}
+              удалить
+            </button>
             <button type="button"> Назначить модуль группе</button>
           </>
         ) : (

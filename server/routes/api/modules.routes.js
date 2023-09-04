@@ -15,13 +15,11 @@ router.get('/', async (req, res) => {
 //отображение в профиле карточек по модулю
 router.get('/:moduleId', async (req, res) => {
   const { moduleId } = req.params;
-  console.log(moduleId);
   try {
     const cardsInModule = await Card.findAll(
       { where: { module_id: +moduleId } },
       { order: [['id', 'ASC']] },
     );
-    console.log(cardsInModule);
     res.json(cardsInModule);
   } catch ({ message }) {
     res.json({ message });
@@ -43,12 +41,12 @@ router.post('/', async (req, res) => {
       category_id: categoryId,
     });
 
-    const oneModule = await Module.findOne(
-      { where: { id: newModule.id } },
-      { include: { model: Card } },
-    );
-
-    res.json(oneModule);
+    const oneModule = await Module.findOne({
+      where: { id: newModule.id },
+      include: { model: Card },
+    });
+    console.log(oneModule);
+    res.json([oneModule]);
   } catch ({ message }) {
     res.json(message);
   }
@@ -58,7 +56,7 @@ router.post('/', async (req, res) => {
 router.put('/:moduleId', async (req, res) => {
   const { moduleId } = req.params;
   const { title, categ } = req.body;
-  console.log(title);
+
   try {
     const category = await Category.findOne({ where: { title: categ } });
     const categoryId = category.id;
@@ -69,6 +67,27 @@ router.put('/:moduleId', async (req, res) => {
       oneModule.save();
       res.json(oneModule);
       return;
+    } else {
+      res.json({ message: 'Не отработал' });
+      return;
+    }
+  } catch ({ message }) {
+    res.json({ message });
+  }
+});
+
+// удаление модуля
+router.delete('/:moduleId', async (req, res) => {
+  const { moduleId } = req.params;
+  try {
+    const oneModule = await Module.findOne({ where: { id: +moduleId } });
+    if (oneModule.user_id === req.session.user_id) {
+      const result = Module.destroy({ where: { id: +moduleId } });
+      if (result > 0) {
+        res.json(+moduleId);
+        return;
+      }
+      res.json({ message: 'false' });
     } else {
       res.json({ message: 'Не отработал' });
       return;
