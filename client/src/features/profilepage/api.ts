@@ -18,6 +18,8 @@ export const fetchModuleToUpdate = async ({
   category,
   id,
 }: ModuleWithoutUser): Promise<Module> => {
+  console.log(title);
+  
   const res = await fetch(`/api/modules/${id}`, {
     method: 'PUT',
     headers: {
@@ -25,7 +27,7 @@ export const fetchModuleToUpdate = async ({
     },
     body: JSON.stringify({
       title,
-      category,
+      categ: category,
     }),
   });
   return res.json();
@@ -38,6 +40,7 @@ export const fetchCardToAdd = async ({
   audio,
   module_id,
 }: CardWithoutId): Promise<Card> => {
+  console.log(term, definition, img, audio, module_id);
   const res = await fetch('/api/cards', {
     method: 'POST',
     headers: {

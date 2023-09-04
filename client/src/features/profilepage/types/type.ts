@@ -1,4 +1,5 @@
 import { Card } from '../../cardsPage/types/types';
+import { Category } from '../../mainpage/types/type';
 
 export type ModuleWithCards = {
   id: number;
@@ -6,6 +7,7 @@ export type ModuleWithCards = {
   user_id: number;
   category_id: number;
   Cards: Card[];
+  Category?: Category;
 };
 
 export type ModuleWithoutUser = {
