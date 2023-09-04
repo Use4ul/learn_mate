@@ -27,7 +27,6 @@ router.delete('/:groupId', async (req, res) => {
     if (req.session.user_id) {
       const currentUser = await User.findOne({
         where: { id: req.session.user_id },
-        include: { model: Role },
       });
       const currentGroup = await Group.findOne({ where: { id: groupId } });
       if (currentUser.Role.title === 'Учитель' && currentGroup.teacher_id === req.session.user_id) {

@@ -1,0 +1,32 @@
+a {
+  width: 100%;
+}
+
+a > h2 {
+  padding: 10px;
+}
+
+.container_wrapper {
+  width: 300px;
+  height: 200px;
+  border-radius: 10px;
+  margin: 20px;
+  position: relative;
+  border: 2px solid black;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  transition: 400ms;
+}
+
+.container_wrapper:hover {
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+  transition: 400ms;
+}
+
+.btn-rel {
+  position: absolute;
+  bottom: 0;
+}

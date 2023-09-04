@@ -5,6 +5,7 @@ import { Module } from './types/types';
 import './styles/style.scss';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
+import { Group } from '../grouppage/types/types';
 
 function ModulItem({ module }: { module: Module }): JSX.Element {
   const navigate = useNavigate();
