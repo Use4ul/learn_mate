@@ -84,6 +84,7 @@ router.post('/', async (req, res) => {
         teacher_id: req.session.user_id,
       });
       res.json(newGroup);
+      console.log(newGroup);
     } else {
       res.json({ message: 'Вы не учитель' });
       return;

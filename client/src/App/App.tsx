@@ -13,10 +13,10 @@ import LoginPage from '../features/auth/log/LoginPage';
 import useTheme from '../hooks/useTheme';
 import GroupPage from '../features/grouppage/GroupPage';
 import ModuleUpdateForm from '../features/profilepage/ModuleUpdatePage';
+import GroupUpdatePage from '../features/grouppage/groupUpdatePage';
 import ModuleAddPage from '../features/profilepage/ModuleAddPage';
 import { useSelector } from 'react-redux';
 import preloader from './preloader.gif';
-
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -33,7 +33,6 @@ function App(): JSX.Element {
 
   return (
     <BrowserRouter>
-
       {pending ? (
         <img src={preloader} alt="loader" />
       ) : (
@@ -47,6 +46,7 @@ function App(): JSX.Element {
             <Route path="/newGrop" element={<GroupPage />} />
             <Route path="/profile/:userId/modules/:moduleId" element={<ModuleUpdateForm />} />
             <Route path="/modules/add" element={<ModuleAddPage />} />
+            <Route path="/profile/:userId/:groupId" element={<GroupUpdatePage />} />
           </Route>
         </Routes>
       )}
