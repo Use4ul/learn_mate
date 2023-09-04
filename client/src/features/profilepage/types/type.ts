@@ -11,7 +11,7 @@ export type ModuleWithCards = {
 };
 
 export type ModuleWithoutUser = {
-  id: number;
+  id?: number;
   title: string;
   category: string;
 };

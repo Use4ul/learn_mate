@@ -20,12 +20,14 @@ router.get('/modules/:moduleId', async (req, res) => {
     res.json(cardsInModule); */
     const cardsInModule = await Module.findAll({
       where: { id: +moduleId },
-      include: {
-        model: Card,
-      },
-      // include: {
-      //   model: Category,
-      // },
+      include: [
+        {
+          model: Card,
+        },
+        {
+          model: Category,
+        },
+      ],
     });
 
     res.json(cardsInModule);

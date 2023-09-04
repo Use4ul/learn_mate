@@ -2,7 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../../redux/store';
-import { addCardToModule, loadModulesForUserToUpdate, sendModuleToUpdate } from './profileSlice';
+import {
+  addCardToModule,
+  clearModuleForUpdate,
+  loadModulesForUserToUpdate,
+  sendModuleToUpdate,
+} from './profileSlice';
 import { ModuleId } from '../modulitem/types/types';
 import CardItem from '../carditem/CardItem';
 import { loadCategories } from '../mainpage/slices/categoriesSlice';
@@ -21,8 +26,15 @@ function ModuleUpdateForm(): JSX.Element {
 
   const categories = useSelector((store: RootState) => store.categories.categories);
 
-  const [title, setTitle] = useState(`${module.length ? module[0].title : ''}`);
-  const [category, setCategory] = useState('Все категории');
+  const [title, setTitle] = useState(`${module.length > 0 ? module[0].title : ''}`);
+  const [category, setCategory] = useState(
+    `${module.length > 0 ? module[0].Category?.title : 'Все категории'}`,
+  );
+
+  console.log(module);
+  console.log(module[0]);
+  console.log(title, category);
+  
 
   const [cardTerm, setCardTerm] = useState('');
   const [cardDefinition, setCardDefinition] = useState('');
@@ -55,6 +67,9 @@ function ModuleUpdateForm(): JSX.Element {
   useEffect(() => {
     dispatch(loadModulesForUserToUpdate(id));
     dispatch(loadCategories());
+    return () => {
+      dispatch(clearModuleForUpdate());
+    };
   }, []);
   return (
     <>
