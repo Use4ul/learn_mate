@@ -33,7 +33,8 @@ router.get('/:groupId', async (req, res) => {
   });
   try {
     if (currentUser && currentUser.Role.title === 'Учитель') {
-      res.json(currentGroup[0].GroupItems.map((el) => el.User.name));
+      res.json(currentGroup[0].GroupItems.map((el) => el.User));
+
       return;
     } else {
       res.json({ message: 'Ты не учитель, куда лезешь!' });

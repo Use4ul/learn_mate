@@ -28,7 +28,7 @@ function GroupPage(): JSX.Element {
       <h5>добавить участников в группу</h5>
       <button type="button">Добавить</button>
       <div>
-        <div>имя студента</div>
+        <div />
         <button type="button"> удалить из группы</button>
       </div>
     </div>
