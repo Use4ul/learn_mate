@@ -27,6 +27,7 @@ router.get('/:moduleId', async (req, res) => {
     res.json({ message });
   }
 });
+//gg
 
 //добавление карточки в профиле
 router.post('/', async (req, res) => {
@@ -42,7 +43,12 @@ router.post('/', async (req, res) => {
       categoryId,
     });
 
-    res.json([newModule]);
+    const oneModule = await Module.findOne(
+      { where: { id: newModule.id } },
+      { include: { model: Card } },
+    );
+
+    res.json(oneModule);
   } catch ({ message }) {
     res.json(message);
   }
