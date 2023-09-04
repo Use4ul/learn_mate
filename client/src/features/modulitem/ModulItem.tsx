@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Module } from './types/types';
@@ -11,10 +12,10 @@ function ModulItem({ module }: { module: Module }): JSX.Element {
   const user = useSelector((store: RootState) => store.auth.authUser);
 
   return (
-    <Link to={`/modules/${module.id}`}>
-      <div className="module__container">
+    <div className="container_wrapper">
+      <Link to={`/modules/${module.id}`}>
+        <h2>{module.title}</h2>
         {/* onClick={() => navigate(`/modules/${module.id}`)}> */}
-        <h3>{module.title}</h3>
         {module.user_id === user?.id ? (
           <>
             <button type="button"> изменить</button>
@@ -22,12 +23,12 @@ function ModulItem({ module }: { module: Module }): JSX.Element {
             <button type="button"> Назначить модуль группе</button>
           </>
         ) : (
-          <button type="button">добавить к себе</button>
+          <button className="btn-rel" type="button">добавить к себе</button>
         )}
 
         {/* добавить ховер  */}
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 }
 

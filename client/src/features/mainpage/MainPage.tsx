@@ -21,12 +21,11 @@ function MainPage(): JSX.Element {
       ? modules.filter((module) => module.Category.title === category)
       : modules;
 
-  const user = useSelector((store: RootState) => store.auth.authUser);
+
 
   useEffect(() => {
     dispatch(loadCategories());
     dispatch(loadModules());
-    dispatch(checkUser());
   }, []);
 
   return (
@@ -44,7 +43,6 @@ function MainPage(): JSX.Element {
         </select>
       </div>
       <div className="modules_wrapper">
-        {' '}
         {filteredModules.map((module) => (
           <ModulItem key={module.id} module={module} />
         ))}

@@ -1,4 +1,4 @@
-import { AuthUser, UserSingIn } from './types/types';
+import { AuthUser } from './types/types';
 
 export const fetchSignUp = async (user: AuthUser): Promise<AuthUser> => {
   const res = await fetch('/api/auth/registration', {
@@ -11,7 +11,7 @@ export const fetchSignUp = async (user: AuthUser): Promise<AuthUser> => {
   return res.json();
 };
 
-export const fetchSignIn = async (user: UserSingIn): Promise<AuthUser> => {
+export const fetchSignIn = async (user: Partial<AuthUser>): Promise<AuthUser> => {
   const res = await fetch('/api/auth/authorization', {
     method: 'POST',
     headers: {
@@ -29,5 +29,31 @@ export const fetchCheckUser = async (): Promise<AuthUser> => {
 
 export const fetchLogOut = async (): Promise<{ message: string }> => {
   const res = await fetch('/api/auth/logout');
+  return res.json();
+};
+
+export const fetchCheckNick = async (nickname: string): Promise<{ message: string }> => {
+  const res = await fetch('/api/auth/checkNickname', {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify({
+      nickname,
+    }),
+  });
+  return res.json();
+};
+
+export const fetchCheckEmail = async (email: string): Promise<{ message: string }> => {
+  const res = await fetch('/api/auth/checkEmail', {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify({
+      email,
+    }),
+  });
   return res.json();
 };

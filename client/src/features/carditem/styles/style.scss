@@ -1,7 +1,20 @@
-.card {
+.card__container {
+  padding: 10px;
+  font-size: 60px;
+  width: 750px;
+  border: 2px solid black;
+  border-radius: 10px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.btn_and_card {
   display: flex;
-  &__container {
-    border: 1px solid black;
-    border-radius: 15px;
-  }
+  justify-content: center;
+}
+
+.actions_container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }

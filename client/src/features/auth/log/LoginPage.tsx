@@ -11,46 +11,41 @@ function LoginPage(): JSX.Element {
     useState(''); /** проверка на корректность по стейту с выводом в p тег */
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const user = useSelector((store: RootState) => store.auth.userSingIn);
+  const user = useSelector((store: RootState) => store.auth.authUser);
 
   const handleSubmitAuth: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     dispatch(signIn({ email, password }));
     navigate('/');
   };
-  
-
-  useEffect(() => {
-    if (user) {
-      navigate('/');
-    }
-  }, [user, navigate]);
 
   return (
-    <div>
-      <h1>Вход</h1>
-      <form onSubmit={handleSubmitAuth} className="login__form">
+    <div className="form_wrapper">
+      <form onSubmit={handleSubmitAuth}>
+        <h1>Вход</h1>
         {/** добавить обработчик на форму с учетом слайсера и редюсера */}
-        <label>
-          Введите email
-          <input
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            name="email"
-            type="text"
-            placeholder="Имя"
-          />
-        </label>
-        <label>
-          Пароль
-          <input
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            name="password"
-            type="text"
-            placeholder="Пароль"
-          />
-        </label>
+        <div>
+          <label>
+            <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              name="email"
+              type="text"
+              placeholder="Имя"
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            <input
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              name="password"
+              type="text"
+              placeholder="Пароль"
+            />
+          </label>
+        </div>
         <button className="btn login__btn" type="submit">
           Войти
         </button>

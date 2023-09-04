@@ -4,18 +4,18 @@ const { User } = require('../../db/models');
 
 router.post('/registration', async (req, res) => {
   try {
-    console.log(req.body);
     let user;
     const { name, nickname, email, password, role } = req.body;
-    console.log(name, nickname, email, password, role);
     if (name.trim() && nickname.trim() && email.trim() && password.trim()) {
       user = await User.findOne({ where: { email } });
+
       if (user) {
         res.json({ message: 'Такой пользователь уже существует' });
         return;
       } else {
         const hash = await bcrypt.hash(req.body.password, 10);
-        user = await User.create({ name, nickname, email, password: hash, role_id: 1 });
+        user = await User.create({ name, nickname, email, password: hash, role_id: role });
+
         req.session.user_id = user.id;
         res.json(user);
         return;
@@ -29,9 +29,40 @@ router.post('/registration', async (req, res) => {
   }
 });
 
+router.post('/checkNickname', async (req, res) => {
+  try {
+    const { nickname } = req.body;
+    const user = await User.findOne({ where: { nickname: nickname } });
+    if (user) {
+      res.json({ message: 'Такой пользователь уже существует' });
+      return;
+    } else {
+      res.json({ message: 'success' });
+      return;
+    }
+  } catch ({ message }) {
+    res.json({ message });
+  }
+});
+router.post('/checkEmail', async (req, res) => {
+  try {
+    const { email } = req.body;
+    const user = await User.findOne({ where: { email: email } });
+
+    if (user) {
+      res.json({ message: 'Такой пользователь уже существует' });
+      return;
+    } else {
+      res.json({ message: 'success' });
+      return;
+    }
+  } catch ({ message }) {
+    res.json({ message });
+  }
+});
+
 router.post('/authorization', async (req, res) => {
   try {
-    console.log(req.body);
     let user;
     const { email, password } = req.body;
     if (email.trim() && password.trim()) {

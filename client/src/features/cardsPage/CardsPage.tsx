@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -6,8 +7,9 @@ import CardItem from '../carditem/CardItem';
 
 import { loadCards } from './cardsSlice';
 import { ModuleId } from '../modulitem/types/types';
-import './styles/style.scss';
 import TypeAnswerItem from './TypeAnswerItem';
+import FourAnswerItem from './FourAnswerItem';
+import './styles/style.scss';
 
 function CardsPage(): JSX.Element {
   const { moduleId } = useParams();
@@ -40,47 +42,55 @@ function CardsPage(): JSX.Element {
   }, []);
 
   return (
-    <>
-      <h5>Название модуля</h5>
-      <div className="cards__container">
-        <div>{cards.length && <CardItem card={cards[cardIndex]} />}</div>
-      </div>
-
-      {Boolean(cardIndex) && (
-        <button type="button" onClick={handeleBack}>
-          {' '}
-          Назад
-        </button>
-      )}
-      {cards
-        ? Boolean(cards.length - cardIndex - 1) && (
-            <button type="button" onClick={handeleForward}>
-              {' '}
-              Вперед
+    <div style={{ textAlign: 'center' }}>
+      <h1>Название модуля</h1>
+      <div className="btn_and_card">
+        {cards.length && <CardItem card={cards[cardIndex]} />}
+        <div className="buttons_container">
+          {Boolean(cardIndex) && (
+            <button type="button" onClick={handeleBack}>
+              Назад
             </button>
-          )
-        : 'Упс'}
-      <div>
-        <button type="button">Заучивание</button>
-        <button type="button" onClick={() => handeleTypeTraining('SeveralAnswers')}>
-          Варианты ответа
-        </button>
-        <button type="button" onClick={() => handeleTypeTraining('WriteAnswers')}>
-          Напиши правильный ответ
-        </button>
+          )}
+          {cards
+            ? Boolean(cards.length - cardIndex - 1) && (
+                <button type="button" onClick={handeleForward}>
+                  Вперед
+                </button>
+              )
+            : 'Упс'}
+          <button type="button" onClick={() => handeleTypeTraining('')}>
+            Заучивание
+          </button>
+          <button type="button" onClick={() => handeleTypeTraining('SeveralAnswers')}>
+            Варианты ответа
+          </button>
+          <button type="button" onClick={() => handeleTypeTraining('WriteAnswers')}>
+            Напиши правильный ответ
+          </button>
+        </div>
       </div>
-      <div>
-        {trainingOptions === 'WriteAnswers' ? (
-          <TypeAnswerItem
-            card={cards[cardIndex]}
-            setCorrectAnswers={setCorrectAnswers}
-            correctAnswers={correctAnswers}
-          />
-        ) : (
-          <div />
-        )}
+      <div className="actions_container">
+        <div>
+          {trainingOptions === 'SeveralAnswers' ? (
+            <FourAnswerItem card={cards[cardIndex]} cards={cards} cardIndex={cardIndex} />
+          ) : (
+            <div />
+          )}
+        </div>
+        <div>
+          {trainingOptions === 'WriteAnswers' ? (
+            <TypeAnswerItem
+              card={cards[cardIndex]}
+              setCorrectAnswers={setCorrectAnswers}
+              correctAnswers={correctAnswers}
+            />
+          ) : (
+            <div />
+          )}
+        </div>
       </div>
-    </>
+    </div>
   );
 }
 
