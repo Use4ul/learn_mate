@@ -13,6 +13,7 @@ import LoginPage from '../features/auth/log/LoginPage';
 import useTheme from '../hooks/useTheme';
 import GroupPage from '../features/grouppage/GroupPage';
 import ModuleUpdateForm from '../features/profilepage/ModuleUpdatePage';
+import ModuleAddPage from '../features/profilepage/ModuleAddPage';
 
 
 function App(): JSX.Element {
@@ -32,6 +33,8 @@ function App(): JSX.Element {
           <Route path="/modules/:moduleId" element={<CardsPage />} />
           <Route path="/newGrop" element={<GroupPage />} />
           <Route path="/profile/:userId/modules/:moduleId" element={<ModuleUpdateForm />} />
+          <Route path="/modules/add" element={<ModuleAddPage />} />
+
         </Route>
       </Routes>
     </BrowserRouter>

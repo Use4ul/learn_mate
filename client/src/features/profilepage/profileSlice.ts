@@ -32,10 +32,19 @@ export const addCardToModule = createAsyncThunk(
     api.fetchCardToAdd({ term, definition, img, audio, module_id }),
 );
 
+export const addModule = createAsyncThunk(
+  'user/addModule',
+  ({ title, category }: ModuleWithoutUser) => api.fetchModuleToAdd({ title, category }),
+);
+
 const profileSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {},
+  reducers: {
+    clearModuleForUpdate: (state) => {
+      state.module = [];
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(loadModulesForUser.fulfilled, (state, action) => {
@@ -63,8 +72,15 @@ const profileSlice = createSlice({
       })
       .addCase(addCardToModule.rejected, (state, action) => {
         state.error = action.error.message;
+      })
+      .addCase(addModule.fulfilled, (state, action) => {
+        state.module = action.payload;
+      })
+      .addCase(addModule.rejected, (state, action) => {
+        state.error = action.error.message;
       });
   },
 });
 
+export const { clearModuleForUpdate } = profileSlice.actions;
 export default profileSlice.reducer;
