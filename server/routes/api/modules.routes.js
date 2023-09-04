@@ -40,7 +40,7 @@ router.post('/', async (req, res) => {
     const newModule = await Module.create({
       title,
       user_id: req.session.user_id,
-      categoryId,
+      category_id: categoryId,
     });
 
     const oneModule = await Module.findOne(
