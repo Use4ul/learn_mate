@@ -16,7 +16,8 @@ import ModuleUpdateForm from '../features/profilepage/ModuleUpdatePage';
 import GroupUpdatePage from '../features/grouppage/groupUpdatePage';
 import ModuleAddPage from '../features/profilepage/ModuleAddPage';
 import { useSelector } from 'react-redux';
-import preloader from './preloader.gif';
+import preloader from './Preloader1.gif';
+import './App.css';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -34,7 +35,11 @@ function App(): JSX.Element {
   return (
     <BrowserRouter>
       {pending ? (
-        <img src={preloader} alt="loader" />
+        <div className="preloader">
+          <div className="preloader__image">
+            <img className="loader" src={preloader} alt="loader" />
+          </div>
+        </div>
       ) : (
         <Routes>
           <Route path="/" element={<Navbar />}>
