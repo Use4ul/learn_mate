@@ -17,10 +17,11 @@ function ModuleUpdateForm(): JSX.Element {
 
   const dispatch = useAppDispatch();
 
-    const module = useSelector((store: RootState) => store.profile.module);
+  const module = useSelector((store: RootState) => store.profile.module);
+
   const categories = useSelector((store: RootState) => store.categories.categories);
 
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState(`${module.length ? module[0].title : ''}`);
   const [category, setCategory] = useState('Все категории');
 
   const [cardTerm, setCardTerm] = useState('');
@@ -31,6 +32,7 @@ function ModuleUpdateForm(): JSX.Element {
   const handleModuleUpdate: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     dispatch(sendModuleToUpdate({ title, category, id }));
+    setTitle('');
   };
 
   const handleCardAdd: React.FormEventHandler<HTMLFormElement> = async (e) => {
@@ -44,6 +46,10 @@ function ModuleUpdateForm(): JSX.Element {
         module_id: id,
       }),
     );
+    setCardTerm('');
+    setCardDefinition('');
+    setCardImg('');
+    setCardAudio('');
   };
 
   useEffect(() => {
@@ -85,11 +91,7 @@ function ModuleUpdateForm(): JSX.Element {
         />
         <button type="submit">Добавить карточку</button>
       </form>
-      <div>
-        {module[0].Cards.map((card) => (
-          <CardItem card={card} />
-        ))}
-      </div>
+      <div>{module.length && module[0].Cards.map((card) => <CardItem card={card} />)}</div>
     </>
   );
 }

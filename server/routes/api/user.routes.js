@@ -23,6 +23,9 @@ router.get('/modules/:moduleId', async (req, res) => {
       include: {
         model: Card,
       },
+      // include: {
+      //   model: Category,
+      // },
     });
 
     res.json(cardsInModule);

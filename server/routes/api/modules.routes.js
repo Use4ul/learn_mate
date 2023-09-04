@@ -35,13 +35,14 @@ router.get('/:moduleId', async (req, res) => {
 router.put('/:moduleId', async (req, res) => {
   const { moduleId } = req.params;
   const { title, categ } = req.body;
+  console.log(title);
   try {
     const category = await Category.findOne({ where: { title: categ } });
     const categoryId = category.id;
-    const oneModule = await Module.findOne({ where: { id: moduleId } });
+    const oneModule = await Module.findOne({ where: { id: +moduleId } });
     if (oneModule.user_id === req.session.user_id) {
       oneModule.title = title;
-      oneModule.category = categoryId;
+      oneModule.category_id = categoryId;
       oneModule.save();
       res.json(oneModule);
       return;

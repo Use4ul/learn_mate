@@ -10,6 +10,7 @@ function ProfilePage(): JSX.Element {
 
   const modules = useSelector((store: RootState) => store.profile.modules);
 
+  console.log(modules);
 
   const { userId } = useParams();
 
@@ -17,7 +18,6 @@ function ProfilePage(): JSX.Element {
 
   useEffect(() => {
     dispatch(loadModulesForUser(Number(userId)));
-
   }, []);
 
   return (
