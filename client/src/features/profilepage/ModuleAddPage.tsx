@@ -17,50 +17,8 @@ function ModuleUpdateForm(): JSX.Element {
 
   const dispatch = useAppDispatch();
 
-  //   const module = useSelector((store: RootState) => store.profile.module);
+    const module = useSelector((store: RootState) => store.profile.module);
   const categories = useSelector((store: RootState) => store.categories.categories);
-
-  const module = {
-    id: 3,
-    title: 'Примеры',
-    user_id: 3,
-    category_id: 2,
-
-    Cards: [
-      {
-        id: 8,
-        term: '2+2=',
-        definition: '4',
-        img: null,
-        audio: null,
-        module_id: 3,
-      },
-      {
-        id: 9,
-        term: '5+3=',
-        definition: '8',
-        img: null,
-        audio: null,
-        module_id: 3,
-      },
-      {
-        id: 10,
-        term: '7+4=',
-        definition: '11',
-        img: null,
-        audio: null,
-        module_id: 3,
-      },
-      {
-        id: 11,
-        term: '12+1=',
-        definition: '13',
-        img: null,
-        audio: null,
-        module_id: 3,
-      },
-    ],
-  };
 
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('Все категории');
@@ -128,7 +86,7 @@ function ModuleUpdateForm(): JSX.Element {
         <button type="submit">Добавить карточку</button>
       </form>
       <div>
-        {module.Cards.map((card) => (
+        {module[0].Cards.map((card) => (
           <CardItem card={card} />
         ))}
       </div>

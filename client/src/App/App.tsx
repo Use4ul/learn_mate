@@ -11,7 +11,7 @@ import { checkUser } from '../features/auth/reg/authSlice';
 import RegPage from '../features/auth/reg/RegPage';
 import LoginPage from '../features/auth/log/LoginPage';
 import useTheme from '../hooks/useTheme';
-import ModuleUpdateForm from '../features/profilepage/ModuleUpdateForm';
+import ModuleUpdateForm from '../features/profilepage/ModuleUpdatePage';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
