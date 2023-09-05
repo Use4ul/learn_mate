@@ -37,7 +37,7 @@ function ProfilePage(): React.JSX.Element {
           <label>
             Поиск по своим модулям
             <br />
-            <input value={search} placeholder="введите название модуля" />
+            <input placeholder="введите название модуля" />
           </label>
         </div>
 
