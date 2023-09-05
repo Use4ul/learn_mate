@@ -13,7 +13,7 @@ import CardItem from '../carditem/CardItem';
 import { loadCategories } from '../mainpage/slices/categoriesSlice';
 import CardItemForProfilePage from './CardItemForProfilePage';
 
-function ModuleUpdateForm(): JSX.Element {
+function ModuleUpdateForm(): React.JSX.Element {
   const { moduleId } = useParams();
 
   let id: ModuleId;
