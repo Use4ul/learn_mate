@@ -1,4 +1,4 @@
-import { Group, GroupId, NewGroup, User } from './types/types';
+import { Group, GroupId, GroupItem, GroupItemID, NewGroup } from './types/types';
 
 export const fetchGroups = async (): Promise<Group[]> => {
   const res = await fetch('/api/groups');
@@ -43,9 +43,20 @@ export const fetchGroupUpdate = async (group: Group): Promise<Group> => {
 
   return res.json();
 };
-export const fetchUsersInGroup = async (group: Group): Promise<User[]> => {
+export const fetchUsersInGroup = async (group: Group): Promise<GroupItem[]> => {
   const res = await fetch(`/api/groups/${group.id}`);
   console.log(res);
 
+  return res.json();
+};
+
+export const fetchGroupItemDelete = async ({
+  groupIt,
+  deleteGroup,
+}: {
+  groupIt: GroupItem;
+  deleteGroup: Group;
+}): Promise<GroupItemID> => {
+  const res = await fetch(`/api/groups/${groupIt.id}/${deleteGroup.id}`, { method: 'DELETE' });
   return res.json();
 };

@@ -20,21 +20,21 @@
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
 
-label {
-  -webkit-perspective: 1000px;
-  perspective: 1000px;
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-  display: block;
-  width: 700px;
-  height: 250px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-100%, -100%);
-  transform: translate(-73%, -90%);
-  cursor: pointer;
-}
+// label {
+//   -webkit-perspective: 1000px;
+//   perspective: 1000px;
+//   -webkit-transform-style: preserve-3d;
+//   transform-style: preserve-3d;
+//   display: block;
+//   width: 700px;
+//   height: 250px;
+//   position: absolute;
+//   left: 50%;
+//   top: 50%;
+//   -webkit-transform: translate(-100%, -100%);
+//   transform: translate(-73%, -90%);
+//   cursor: pointer;
+// }
 
 .card {
   position: relative;

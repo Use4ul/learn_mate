@@ -33,7 +33,7 @@ router.get('/:groupId', async (req, res) => {
   });
   try {
     if (currentUser && currentUser.Role.title === 'Учитель') {
-      res.json(currentGroup[0].GroupItems.map((el) => el.User));
+      res.json(currentGroup[0].GroupItems);
 
       return;
     } else {
@@ -84,6 +84,9 @@ router.post('/', async (req, res) => {
         title,
         teacher_id: req.session.user_id,
       });
+      // const oneGroup = await Group.findOne({
+      //   where: { id: newGroup.id },
+      // });
       res.json(newGroup);
       console.log(newGroup);
     } else {
@@ -114,8 +117,27 @@ router.put('/:groupId', async (req, res) => {
   }
 });
 
+router.delete('/:groupItemId/:groupId', async (req, res) => {
+  const { groupItemId, groupId } = req.params;
 
-
-
+  console.log(groupItemId);
+  // const { id } = req.body;
+  try {
+    const groupItem = await GroupItem.findOne({ where: { id: +groupItemId } });
+    console.log(groupItem);
+    // if (groupItem.student_id === id) {
+    const result = await GroupItem.destroy({ where: { id: groupItemId } });
+    if (result > 0) {
+      res.status(200).json(+groupItemId);
+      return;
+    }
+    // } else {
+    //   res.json({ message: 'Не твое, не трож!' });
+    //   return;
+    // }
+  } catch ({ message }) {
+    res.status(400).json({ message: 'Postman не пройдет' });
+  }
+});
 
 module.exports = router;
