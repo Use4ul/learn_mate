@@ -12,7 +12,7 @@ function CardItem({ card }: { card: Card }): JSX.Element {
   const [rightAnswer, setRightAnswer] = useState('');
   const [def, setDef] = useState('#222');
 
-  const func = () => {
+  const func = (): void => {
     setInput((prev) => !prev);
     setDef('#fff');
   };

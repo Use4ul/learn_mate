@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import * as api from './api';
+import fetchProgress, * as api from './api';
 import State from './types/State';
 import { Answer, CardId } from '../cardsPage/types/types';
 
@@ -9,7 +9,7 @@ const initialState: State = {
 };
 
 export const loadCardProgress = createAsyncThunk('card/loadProgress', (id: CardId) =>
-  api.fetchProgress(id),
+  fetchProgress(id),
 );
 
 export const sendAnswer = createAsyncThunk(
