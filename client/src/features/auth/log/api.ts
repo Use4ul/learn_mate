@@ -8,6 +8,10 @@ export const fetchSignUp = async (user: AuthUserWithoutId): Promise<AuthUser> =>
     },
     body: JSON.stringify(user),
   });
+  if (!res.ok) {
+    const data = await res.json();
+    throw new Error(data.message);
+  }
   return res.json();
 };
 
@@ -19,6 +23,10 @@ export const fetchSignIn = async (user: Partial<AuthUser>): Promise<AuthUser> =>
     },
     body: JSON.stringify(user),
   });
+  if (!res.ok) {
+    const data = await res.json();
+    throw new Error(data.message);
+  }
   return res.json();
 };
 

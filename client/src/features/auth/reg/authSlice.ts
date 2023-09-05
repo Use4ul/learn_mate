@@ -28,6 +28,9 @@ const authSlice = createSlice({
     stopPending: (state) => {
       state.pending = false;
     },
+    clearError: (state) => {
+      state.error = undefined;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -50,9 +53,9 @@ const authSlice = createSlice({
       .addCase(checkUser.fulfilled, (state, action) => {
         state.authUser = action.payload;
       })
-      .addCase(checkUser.rejected, (state, action) => {
+      /* .addCase(checkUser.rejected, (state, action) => {
         state.error = action.error.message;
-      })
+      }) */
       .addCase(logOut.fulfilled, (state) => {
         state.authUser = undefined;
       })
@@ -62,5 +65,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { stopPending } = authSlice.actions;
+export const { stopPending, clearError } = authSlice.actions;
 export default authSlice.reducer;

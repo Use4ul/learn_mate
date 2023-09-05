@@ -10,22 +10,22 @@ router.post('/registration', async (req, res) => {
       user = await User.findOne({ where: { email } });
 
       if (user) {
-        res.json({ message: 'Такой пользователь уже существует' });
+        res.status(400).json({ message: 'Такой пользователь уже существует' });
         return;
       } else {
         const hash = await bcrypt.hash(req.body.password, 10);
         user = await User.create({ name, nickname, email, password: hash, role_id: role });
 
         req.session.user_id = user.id;
-        res.json(user);
+        res.status(200).json(user);
         return;
       }
     } else {
-      res.json({ message: 'Заполните все поля!' });
+      res.status(400).json({ message: 'Заполните все поля!' });
       return;
     }
   } catch ({ message }) {
-    res.json(message);
+    res.status(500).json(message);
   }
 });
 
@@ -69,18 +69,18 @@ router.post('/authorization', async (req, res) => {
       user = await User.findOne({ where: { email } });
       if (user && (await bcrypt.compare(password, user.password))) {
         req.session.user_id = user.id;
-        res.json(user);
+        res.status(200).json(user);
         return;
       } else {
-        res.json({ message: 'Неверный пароль или такого юзера нет' });
+        res.status(400).json({ message: 'Неверный пароль или такого юзера нет' });
         return;
       }
     } else {
-      res.json({ message: 'Заполните все поля!' });
+      res.status(400).json({ message: 'Заполните все поля!' });
       return;
     }
   } catch ({ message }) {
-    res.json({ message });
+    res.status(500).json({ message });
   }
 });
 
