@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../../redux/store';
-import { signUp } from './authSlice';
-import { fetchCheckEmail, fetchCheckNick } from '../log/api';
+import { useSelector } from 'react-redux';
+import { RootState, useAppDispatch } from '../../../redux/store';
+import { clearError, signUp } from './authSlice';
+import { fetchCheckNick } from '../log/api';
 
 function RegPage(): JSX.Element {
+  const { error, authUser } = useSelector((store: RootState) => store.auth);
   const [name, setName] = useState('');
   const [nickname, setNickName] =
     useState(
@@ -13,7 +15,6 @@ function RegPage(): JSX.Element {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [nickNameCheck, setNickNameCheck] = useState(false);
-  const [regCheck, setRegCheck] = useState(false);
 
   const [role, setRole] = useState(2);
 
@@ -23,17 +24,6 @@ function RegPage(): JSX.Element {
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     dispatch(signUp({ name, nickname, email, password, role }));
-
-    navigate('/');
-  };
-
-  const checkEmail = async (): Promise<void> => {
-    const data = await fetchCheckEmail(email);
-    if (data.message === 'Такой пользователь уже существует') {
-      setRegCheck(false);
-    } else {
-      setRegCheck(true);
-    }
   };
 
   const nickCheck = async (): Promise<void> => {
@@ -45,13 +35,20 @@ function RegPage(): JSX.Element {
     }
   };
 
+  const handleChangeEmail: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    setEmail(e.target.value);
+    dispatch(clearError());
+  };
+
   useEffect(() => {
     nickCheck();
   }, [nickname]);
 
   useEffect(() => {
-    checkEmail();
-  }, [email]);
+    if (authUser) {
+      navigate('/');
+    }
+  }, [authUser, navigate]);
 
   return (
     <div className="form_wrapper">
@@ -87,7 +84,7 @@ function RegPage(): JSX.Element {
           <label>
             <input
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={handleChangeEmail}
               name="email"
               type="text"
               placeholder="Email"
@@ -117,8 +114,8 @@ function RegPage(): JSX.Element {
         <button className="btn login__btn" type="submit">
           Зарегистрироваться
         </button>
+        {error && <span> {error} </span>}
       </form>
-      {!regCheck && <p> Уже зарегистрирован, войдите</p>}
     </div>
   );
 }
