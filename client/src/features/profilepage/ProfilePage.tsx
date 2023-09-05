@@ -41,7 +41,6 @@ function ProfilePage(): React.JSX.Element {
           </label>
         </div>
 
-
         <div className="profile__module">
           <div>
             <Link to="/modules/add">
