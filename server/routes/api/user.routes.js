@@ -1,6 +1,26 @@
 const router = require('express').Router();
 
-const { Module, Category, Card,Group, GroupItems } = require('../../db/models');
+const { Module, Category, Card, Group, GroupItem, User } = require('../../db/models');
+
+router.get('/', async (req, res) => {
+  try {
+    const users = await User.findAll();
+    res.json(users);
+  } catch ({ message }) {
+    res.json({ message });
+  }
+});
+router.post('/', async (req, res) => {
+  try {
+    const { student_id, group_id } = req.body;
+    console.log(student_id, group_id);
+    const user = await GroupItem.create({ student_id, group_id });
+    console.log(user);
+    res.json(user);
+  } catch ({ message }) {
+    res.json({ message });
+  }
+});
 
 router.get('/:userId/modules', async (req, res) => {
   const { userId } = req.params;
@@ -41,9 +61,8 @@ router.delete('/:groupId', async (req, res) => {
     console.log(groupId);
 
     const oneGroup = await Group.findOne({
-      where: { teacher_id: req.session.user_id, id: +groupId }, 
+      where: { teacher_id: req.session.user_id, id: +groupId },
     });
-
 
     const result = await GroupItems.destroy({
       where: { order_id: order.id, medicine_id: delId },
