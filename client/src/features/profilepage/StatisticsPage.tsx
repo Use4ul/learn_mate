@@ -7,10 +7,8 @@ import { loadCardStat, loadModulesForUserStat } from './profileSlice';
 function StatisticsPage(): React.JSX.Element {
   const { userId } = useParams();
   const modules = useSelector((store: RootState) => store.profile.modulesForStat);
-  const cardsProgress = useSelector((store: RootState) => store.profile.cardsProgress)
+  const cardsProgress = useSelector((store: RootState) => store.profile.cardsProgress);
   console.log(cardsProgress);
-  
-
   const dispatch = useAppDispatch();
 
   useEffect(() => {
