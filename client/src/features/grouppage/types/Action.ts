@@ -7,4 +7,5 @@ export type Action =
   | { type: 'group/update'; payload: Group }
   | { type: 'group/User'; payload: GroupItem[] }
   | { type: 'user/delete'; payload: GroupItemID }
-  | { type: 'user/lod'; payload: User[] };
+  | { type: 'user/lod'; payload: User[] }
+  | { type: 'user/add'; payload: GroupItem };

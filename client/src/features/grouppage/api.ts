@@ -56,3 +56,18 @@ export const fetchUsers = async (): Promise<User[]> => {
   const res = await fetch('/api/user');
   return res.json();
 };
+
+export const featchAddUser = async ({
+  student_id,
+  group_id,
+}: {
+  student_id: number;
+  group_id: number;
+}): Promise<GroupItem> => {
+  const res = await fetch('/api/user', {
+    method: 'POST',
+    headers: { 'Content-type': 'application/json' },
+    body: JSON.stringify({ student_id, group_id }),
+  });
+  return res.json();
+};
