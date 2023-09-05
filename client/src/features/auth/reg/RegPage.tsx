@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../../redux/store';
 import { signUp } from './authSlice';
-import { fetchCheckEmail, fetchCheckNick, fetchSignUp } from '../log/api';
+import { fetchCheckEmail, fetchCheckNick } from '../log/api';
 
 function RegPage(): JSX.Element {
   const [name, setName] = useState('');
