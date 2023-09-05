@@ -1,5 +1,5 @@
 export type AuthUser = {
-  id?: number;
+  id: number;
   name: string;
   nickname: string;
   email: string;
@@ -8,3 +8,11 @@ export type AuthUser = {
 };
 
 export type AuthUserId = AuthUser['id'];
+
+export type AuthUserWithoutId = {
+  name: string;
+  nickname: string;
+  email: string;
+  password: string;
+  role: number;
+};

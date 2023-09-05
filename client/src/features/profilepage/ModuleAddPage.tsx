@@ -10,7 +10,7 @@ import CardItem from '../carditem/CardItem';
 import { loadCategories } from '../mainpage/slices/categoriesSlice';
 import CardItemForProfilePage from './CardItemForProfilePage';
 
-function ModuleAddPage(): JSX.Element {
+function ModuleAddPage(): React.JSX.Element {
   const dispatch = useAppDispatch();
 
   const module = useSelector((store: RootState) => store.profile.module);
@@ -64,7 +64,7 @@ function ModuleAddPage(): JSX.Element {
         <button type="submit">Добавить модуль</button>
       </form>
 
-      {module.length && (
+      {Boolean(module.length) && (
         <>
           <form onSubmit={handleCardAdd}>
             <input
@@ -90,7 +90,7 @@ function ModuleAddPage(): JSX.Element {
             <button type="submit">Добавить карточку</button>
           </form>
           <div>
-            {module[0].Cards.length &&
+            {Boolean(module[0].Cards.length) &&
               module[0].Cards.map((card) => <CardItemForProfilePage card={card} />)}
           </div>
         </>
