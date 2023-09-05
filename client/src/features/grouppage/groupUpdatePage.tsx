@@ -3,24 +3,28 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { RootState, useAppDispatch } from '../../redux/store';
 import { Group, GroupId } from './types/types';
-import { updateTitleGroup, userInGroup } from './slices/groupsSlice';
+import { updateTitleGroup, userGroupItemDelete, userInGroup } from './slices/groupsSlice';
 
 function GroupUpdatePage(): JSX.Element {
   const { groupId } = useParams();
 
   const dispatch = useAppDispatch();
   const group = useSelector((store: RootState) => store.groups.groups);
+
+  const oneGroupIt = useSelector((store: RootState) => store.groups.groupItem);
+  console.log(oneGroupIt);
+
   const users = useSelector((store: RootState) => store.groups.users);
-  console.log(group);
-  console.log(users);
-  
+
 
   let id: GroupId;
   if (groupId) {
     id = +groupId;
   }
   const groupItem = group.filter((el) => el.id === id);
-  console.log(groupItem);
+
+  const deleteGroup: Group = groupItem[0];
+  console.log(deleteGroup);
 
   const [title, setNewTitle] = useState(groupItem[0].title);
   const groupToSend = { ...groupItem[0], title };
@@ -51,9 +55,16 @@ function GroupUpdatePage(): JSX.Element {
       <button type="button">Добавить</button>
       <div>
         <div>
-          {users.map((user) => (
+          {oneGroupIt.map((groupIt) => (
             <div>
-              {user.nickname} <button type="button"> удалить из группы</button>
+              {groupIt.User.nickname}{' '}
+              <button
+                type="button"
+                onClick={() => dispatch(userGroupItemDelete({ groupIt, deleteGroup }))}
+              >
+                {' '}
+                удалить из группы
+              </button>
             </div>
           ))}
         </div>

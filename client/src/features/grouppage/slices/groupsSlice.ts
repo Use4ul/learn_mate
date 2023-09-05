@@ -2,10 +2,11 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 import * as api from '../api';
 import { State } from '../types/State';
-import { Group, GroupId, NewGroup } from '../types/types';
+import { Group, GroupId, GroupItem, NewGroup } from '../types/types';
 
 const initialState: State = {
   groups: [],
+  groupItem: [],
   users: [],
   error: undefined,
 };
@@ -22,6 +23,11 @@ export const updateTitleGroup = createAsyncThunk('group/update', (group: Group) 
 );
 export const userInGroup = createAsyncThunk('group/User', (group: Group) =>
   api.fetchUsersInGroup(group),
+);
+export const userGroupItemDelete = createAsyncThunk(
+  'user/delete',
+  ({ groupIt, deleteGroup }: { groupIt: GroupItem; deleteGroup: Group }) =>
+    api.fetchGroupItemDelete({ groupIt, deleteGroup }),
 );
 
 const groupsSlice = createSlice({
@@ -51,9 +57,15 @@ const groupsSlice = createSlice({
         );
       })
       .addCase(userInGroup.fulfilled, (state, action) => {
-        state.users = action.payload;
+        state.groupItem = action.payload;
       })
       .addCase(userInGroup.rejected, (state, action) => {
+        state.error = action.error.message;
+      })
+      .addCase(userGroupItemDelete.fulfilled, (state, action) => {
+        state.groupItem = state.groupItem.filter((groupIt) => groupIt.id !== action.payload);
+      })
+      .addCase(userGroupItemDelete.rejected, (state, action) => {
         state.error = action.error.message;
       });
   },

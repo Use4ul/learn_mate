@@ -3,10 +3,11 @@ import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../../redux/store';
 import { addGroup } from './slices/groupsSlice';
 
-function GroupPage(): JSX.Element {
+function GroupPage(): React.JSX.Element {
   const [title, setNewTitle] = useState('');
+
   const dispatch = useAppDispatch();
-  const handeleAggGroup = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+  const handeleAddGroup = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     dispatch(addGroup({ title }));
     setNewTitle('');
@@ -15,7 +16,7 @@ function GroupPage(): JSX.Element {
   return (
     <div className="group__container">
       <div>
-        <form onSubmit={handeleAggGroup}>
+        <form onSubmit={handeleAddGroup}>
           <input
             placeholder="введите название группы"
             value={title}
