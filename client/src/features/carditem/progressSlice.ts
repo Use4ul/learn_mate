@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from './api';
 import State from './types/State';
-import { CardId } from '../cardsPage/types/types';
+import { Answer, CardId } from '../cardsPage/types/types';
 
 const initialState: State = {
   progress: 0,
@@ -10,6 +10,11 @@ const initialState: State = {
 
 export const loadCardProgress = createAsyncThunk('card/loadProgress', (id: CardId) =>
   api.fetchProgress(id),
+);
+
+export const sendAnswer = createAsyncThunk(
+  'cards/sendAnswer',
+  ({ user_id, card_id, isCorrect }: Answer) => api.fetchAnswer({ user_id, card_id, isCorrect }),
 );
 
 const progressSlice = createSlice({
@@ -22,6 +27,12 @@ const progressSlice = createSlice({
         state.progress = action.payload;
       })
       .addCase(loadCardProgress.rejected, (state, action) => {
+        state.error = action.error.message;
+      })
+      .addCase(sendAnswer.fulfilled, (state, action) => {
+        state.progress = action.payload;
+      })
+      .addCase(sendAnswer.rejected, (state, action) => {
         state.error = action.error.message;
       });
   },

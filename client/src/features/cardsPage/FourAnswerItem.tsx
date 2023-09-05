@@ -6,28 +6,29 @@ function FourAnswerItem({
   cards,
   cardIndex,
   card,
+  setCorrectAnswers,
 }: {
   cards: Card[];
   cardIndex: number;
   card: Card;
+  setCorrectAnswers: React.Dispatch<React.SetStateAction<string>>;
 }): JSX.Element {
   const [answer, setAnswer] = useState('');
   const arrAnswers = useMemo(() => getFourAnswers(cards, cardIndex), []);
 
-  // const handeleAnswer: React.MouseEventHandler<HTMLFormElement> = (): void => {
-  // if (answer === card.definition) {
-  //   setCorrectAnswers('Правильно');
-  //   console.log(answer);
-  // } else {
-  //   setCorrectAnswers(`Неверно. Ответ: ${card.definition}`);
-  // }
-  // };
+  const handeleAnswer: React.MouseEventHandler<HTMLFormElement> = (): void => {
+  if (answer === card.definition) {
+    setCorrectAnswers('Правильно');
+    console.log(answer);
+  } else {
+    setCorrectAnswers(`Неверно. Ответ: ${card.definition}`);
+  }
+  };
 
 
   return (
     <>
-      <div>{card.term}</div>
-      <form>
+      <form onSubmit={handeleAnswer}>
         <div>
           {arrAnswers.map((el) => (
             <button type="button" onClick={() => setAnswer(el)}>

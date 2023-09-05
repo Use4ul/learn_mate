@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Card } from './types/types';
 import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../../redux/store';
-import { sendAnswer } from './cardsSlice';
+import { loadCardProgress, sendAnswer } from '../carditem/progressSlice';
 
 function TypeAnswerItem({
   card,
@@ -20,7 +20,7 @@ function TypeAnswerItem({
 
   const handaleAnswer: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
-    if (answer.toLocaleLowerCase() === card.definition) {
+    if (answer.toLowerCase() === card.definition.toLowerCase()) {
       setCorrectAnswers('Правильно');
       setAnswer('');
       if (authUser) {
