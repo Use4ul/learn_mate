@@ -21,6 +21,7 @@ function Navbar(): JSX.Element {
   };
 
   const { theme, setTheme } = useTheme();
+  theme;
   const [themeName, setThemeName] = useState('Темная тема');
   const themeFunc = () => {
     localStorage.userTheme === 'Темная тема' ? setTheme('Светлая тема') : setTheme('Темная тема');
