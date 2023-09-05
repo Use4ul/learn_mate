@@ -10,6 +10,7 @@ import { CardId } from '../cardsPage/types/types';
 const initialState: State = {
   modules: [],
   module: [],
+  modulesForStat: [],
   error: undefined,
 };
 
@@ -44,6 +45,11 @@ export const deleteModule = createAsyncThunk('user/deleteModule', (id: ModuleId)
 
 export const deleteCard = createAsyncThunk('user/deleteCard', (id: CardId) =>
   api.fetchCardDelete(id),
+);
+
+export const loadModulesForUserStat = createAsyncThunk(
+  'user/loadModulesForStat',
+  (id: AuthUserId) => api.fetchModulesForUserStat(id),
 );
 
 const profileSlice = createSlice({
@@ -98,6 +104,12 @@ const profileSlice = createSlice({
         state.module[0].Cards = state.module[0].Cards.filter((card) => card.id !== action.payload);
       })
       .addCase(deleteCard.rejected, (state, action) => {
+        state.error = action.error.message;
+      })
+      .addCase(loadModulesForUserStat.fulfilled, (state, action) => {
+        state.modulesForStat = action.payload;
+      })
+      .addCase(loadModulesForUserStat.rejected, (state, action) => {
         state.error = action.error.message;
       });
   },

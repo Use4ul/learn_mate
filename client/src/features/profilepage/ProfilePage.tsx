@@ -27,7 +27,20 @@ function ProfilePage(): React.JSX.Element {
   return (
     <div className="profile__container">
       <div>
-        <input placeholder="введите название модуля" />
+
+        <div>
+          <Link to={`/profile/${userId}/statistics`}>
+            <button type="button">Статистика</button>
+          </Link>
+        </div>
+        <div>
+          <label>
+            Поиск по своим модулям
+            <br />
+            <input value={search} placeholder="введите название модуля" />
+          </label>
+        </div>
+
 
         <div className="profile__module">
           <div>

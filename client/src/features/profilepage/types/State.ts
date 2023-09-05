@@ -4,6 +4,7 @@ import { ModuleWithCards } from './type';
 type State = {
   modules: Module[];
   module: ModuleWithCards[];
+  modulesForStat: ModuleWithCards[]
 
   error: undefined | string;
 };

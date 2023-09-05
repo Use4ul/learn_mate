@@ -8,6 +8,11 @@ export const fetchModulesForUser = async (id: AuthUserId): Promise<Module[]> => 
   return res.json();
 };
 
+export const fetchModulesForUserStat = async (id: AuthUserId): Promise<ModuleWithCards[]> => {
+  const res = await fetch(`/api/user/${id}/modules/stat`);
+  return res.json();
+};
+
 export const fetchModuleForUserToUpdate = async (id: ModuleId): Promise<ModuleWithCards[]> => {
   const res = await fetch(`/api/user/modules/${id}`);
   return res.json();

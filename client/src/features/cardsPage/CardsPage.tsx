@@ -48,18 +48,21 @@ function CardsPage(): JSX.Element {
       <div className="btn_and_card">
         {cards.length && <CardItem card={cards[cardIndex]} />}
         <div className="buttons_container">
-          {Boolean(cardIndex) && (
-            <button type="button" onClick={handeleBack}>
-              Назад
+          <button type="button" disabled={!cardIndex} onClick={handeleBack}>
+            Назад
+          </button>
+
+          {cards ? (
+            <button
+              type="button"
+              disabled={!(cards.length - cardIndex - 1)}
+              onClick={handeleForward}
+            >
+              Вперед
             </button>
+          ) : (
+            'Упс'
           )}
-          {cards
-            ? Boolean(cards.length - cardIndex - 1) && (
-                <button type="button" onClick={handeleForward}>
-                  Вперед
-                </button>
-              )
-            : 'Упс'}
           <button type="button" onClick={() => handeleTypeTraining('')}>
             Заучивание
           </button>
