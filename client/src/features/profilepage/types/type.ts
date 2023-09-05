@@ -1,4 +1,4 @@
-import { Card } from '../../cardsPage/types/types';
+import { Card, CardId } from '../../cardsPage/types/types';
 import { Category } from '../../mainpage/types/type';
 
 export type ModuleWithCards = {
@@ -23,3 +23,8 @@ export type CardWithoutId = {
   audio: string | null;
   module_id: number;
 };
+
+export type CardProgress = {
+  card_id: CardId,
+  progress: number
+}
