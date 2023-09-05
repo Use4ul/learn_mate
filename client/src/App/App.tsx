@@ -18,6 +18,7 @@ import ModuleAddPage from '../features/profilepage/ModuleAddPage';
 import { useSelector } from 'react-redux';
 import preloader from './Preloader1.gif';
 import './App.css';
+import StatisticsPage from '../features/profilepage/StatisticsPage';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -52,6 +53,7 @@ function App(): JSX.Element {
             <Route path="/profile/:userId/modules/:moduleId" element={<ModuleUpdateForm />} />
             <Route path="/modules/add" element={<ModuleAddPage />} />
             <Route path="/profile/:userId/:groupId" element={<GroupUpdatePage />} />
+            <Route path="/profile/:userId/statistics" element={<StatisticsPage />} />
           </Route>
         </Routes>
       )}

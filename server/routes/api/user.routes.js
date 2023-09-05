@@ -12,6 +12,16 @@ router.get('/:userId/modules', async (req, res) => {
   }
 });
 
+router.get('/:userId/modules/stat', async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const modulesForUser = await Module.findAll({ where: { user_id: +userId }, include: {model: Card} });
+    res.json(modulesForUser);
+  } catch ({ message }) {
+    res.json({ message });
+  }
+});
+
 router.get('/modules/:moduleId', async (req, res) => {
   const { moduleId } = req.params;
   try {

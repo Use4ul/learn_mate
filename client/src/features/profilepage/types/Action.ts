@@ -9,6 +9,7 @@ type Action =
   | { type: 'user/addCardToModule'; payload: Card }
   | { type: 'user/addModule'; payload: ModuleWithCards[] }
   | { type: 'user/deleteModule'; payload: ModuleId }
-  | { type: 'user/deleteCard'; payload: CardId };
+  | { type: 'user/deleteCard'; payload: CardId }
+  | { type: 'user/loadModulesForStat'; payload: ModuleWithCards[] };
 
 export default Action;
