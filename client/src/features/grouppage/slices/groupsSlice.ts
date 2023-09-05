@@ -29,6 +29,7 @@ export const userGroupItemDelete = createAsyncThunk(
   ({ groupIt, deleteGroup }: { groupIt: GroupItem; deleteGroup: Group }) =>
     api.fetchGroupItemDelete({ groupIt, deleteGroup }),
 );
+export const loadUsers = createAsyncThunk('user/lod', () => api.fetchUsers());
 
 const groupsSlice = createSlice({
   name: 'groups',
@@ -66,6 +67,12 @@ const groupsSlice = createSlice({
         state.groupItem = state.groupItem.filter((groupIt) => groupIt.id !== action.payload);
       })
       .addCase(userGroupItemDelete.rejected, (state, action) => {
+        state.error = action.error.message;
+      })
+      .addCase(loadUsers.fulfilled, (state, action) => {
+        state.users = action.payload;
+      })
+      .addCase(loadUsers.rejected, (state, action) => {
         state.error = action.error.message;
       });
   },

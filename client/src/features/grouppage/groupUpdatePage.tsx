@@ -3,19 +3,21 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { RootState, useAppDispatch } from '../../redux/store';
 import { Group, GroupId } from './types/types';
-import { updateTitleGroup, userGroupItemDelete, userInGroup } from './slices/groupsSlice';
+import {
+  loadUsers,
+  updateTitleGroup,
+  userGroupItemDelete,
+  userInGroup,
+} from './slices/groupsSlice';
 
 function GroupUpdatePage(): JSX.Element {
   const { groupId } = useParams();
 
   const dispatch = useAppDispatch();
   const group = useSelector((store: RootState) => store.groups.groups);
-
   const oneGroupIt = useSelector((store: RootState) => store.groups.groupItem);
-  console.log(oneGroupIt);
-
   const users = useSelector((store: RootState) => store.groups.users);
-
+  console.log(oneGroupIt);
 
   let id: GroupId;
   if (groupId) {
@@ -36,6 +38,7 @@ function GroupUpdatePage(): JSX.Element {
   };
   useEffect(() => {
     dispatch(userInGroup(groupItem[0]));
+    dispatch(loadUsers());
   }, []);
 
   return (
@@ -51,7 +54,18 @@ function GroupUpdatePage(): JSX.Element {
           <button type="submit">Изменить название группы</button>
         </form>
       </div>
-      <h5>добавить участников в группу</h5>
+      <div>
+        <form>
+          <input type="text" className="search" placeholder="введите никнейм " />
+          <ul className="list">
+            {users.map((user) => (
+              <li>
+                {user.nickname} <button type="button">Добавить</button>{' '}
+              </li>
+            ))}
+          </ul>
+        </form>
+      </div>
       <button type="button">Добавить</button>
       <div>
         <div>
