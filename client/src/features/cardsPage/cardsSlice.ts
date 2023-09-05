@@ -1,20 +1,19 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import * as api from './api';
+import fetchCards from './api';
 import State from './types/State';
 import { ModuleId } from '../modulitem/types/types';
-import { Answer } from './types/types';
 
 const initialState: State = {
   cards: [],
   error: undefined,
 };
 
-export const loadCards = createAsyncThunk('cards/load', (id: ModuleId) => api.fetchCards(id));
+export const loadCards = createAsyncThunk('cards/load', (id: ModuleId) => fetchCards(id));
 
-export const sendAnswer = createAsyncThunk(
-  'cards/sendAnswer',
-  ({ user_id, card_id, isCorrect }: Answer) => api.fetchAnswer({ user_id, card_id, isCorrect }),
-);
+// export const sendAnswer = createAsyncThunk(
+//   'cards/sendAnswer',
+//   ({ user_id, card_id, isCorrect }: Answer) => api.fetchAnswer({ user_id, card_id, isCorrect }),
+// );
 
 const cardsSlice = createSlice({
   name: 'cards',
@@ -27,13 +26,13 @@ const cardsSlice = createSlice({
       })
       .addCase(loadCards.rejected, (state, action) => {
         state.error = action.error.message;
-      })
-      .addCase(sendAnswer.fulfilled, (state, action) => {
-        state.cards = action.payload; // chto tut budet reshit
-      })
-      .addCase(sendAnswer.rejected, (state, action) => {
-        state.error = action.error.message;
       });
+    // .addCase(sendAnswer.fulfilled, (state, action) => {
+    //   state.cards = action.payload; // chto tut budet reshit
+    // })
+    // .addCase(sendAnswer.rejected, (state, action) => {
+    //   state.error = action.error.message;
+    // });
   },
 });
 

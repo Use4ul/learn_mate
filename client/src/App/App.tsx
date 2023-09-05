@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Navbar from '../features/navbar/Navbar';
 import ProfilePage from '../features/profilepage/ProfilePage';
 import MainPage from '../features/mainpage/MainPage';
@@ -10,12 +11,10 @@ import { RootState, useAppDispatch } from '../redux/store';
 import { checkUser, stopPending } from '../features/auth/reg/authSlice';
 import RegPage from '../features/auth/reg/RegPage';
 import LoginPage from '../features/auth/log/LoginPage';
-import useTheme from '../hooks/useTheme';
 import GroupPage from '../features/grouppage/GroupPage';
 import ModuleUpdateForm from '../features/profilepage/ModuleUpdatePage';
 import GroupUpdatePage from '../features/grouppage/groupUpdatePage';
 import ModuleAddPage from '../features/profilepage/ModuleAddPage';
-import { useSelector } from 'react-redux';
 import preloader from './Preloader1.gif';
 import './App.css';
 

@@ -8,12 +8,11 @@ import { RootState, useAppDispatch } from '../../redux/store';
 import { loadCardProgress } from './progressSlice';
 
 function CardItem({ card }: { card: Card }): JSX.Element {
-
   const [input, setInput] = useState(false);
   const [rightAnswer, setRightAnswer] = useState('');
   const [def, setDef] = useState('#222');
 
-  const func = () => {
+  const func = (): void => {
     setInput((prev) => !prev);
     setDef('#fff');
   };
@@ -30,6 +29,9 @@ function CardItem({ card }: { card: Card }): JSX.Element {
 
   dispatch(loadCardProgress(card.id));
 
+  useEffect(() => {
+    dispatch(loadCardProgress(card.id));
+  }, [progress]);
 
   return (
     <div className="card__container">
@@ -48,7 +50,7 @@ function CardItem({ card }: { card: Card }): JSX.Element {
             {rightAnswer}
           </div>
         </div>
-        <div>{`Прогресс: ${progress}%`}</div>
+        <div>{`Правильных ответов по карточке: ${progress}%`}</div>
       </label>
     </div>
   );

@@ -74,7 +74,12 @@ function CardsPage(): JSX.Element {
       <div className="actions_container">
         <div>
           {trainingOptions === 'SeveralAnswers' ? (
-            <FourAnswerItem card={cards[cardIndex]} cards={cards} cardIndex={cardIndex} />
+            <FourAnswerItem
+              card={cards[cardIndex]}
+              cards={cards}
+              cardIndex={cardIndex}
+              setCorrectAnswers={setCorrectAnswers}
+            />
           ) : (
             <div />
           )}

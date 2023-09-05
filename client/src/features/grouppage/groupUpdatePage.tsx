@@ -20,8 +20,6 @@ function GroupUpdatePage(): JSX.Element {
   const dispatch = useAppDispatch();
   const group = useSelector((store: RootState) => store.groups.groups);
   const oneGroupIt = useSelector((store: RootState) => store.groups.groupItem);
-  const users = useSelector((store: RootState) => store.groups.users);
-  console.log(oneGroupIt);
 
   let id: GroupId;
   if (groupId) {
@@ -41,7 +39,8 @@ function GroupUpdatePage(): JSX.Element {
     }
   };
 
-  const filterNikname = users.filter((user) => user.nickname.toLowerCase().includes(searchName));
+  const filterNikname = 
+    .filter((user) => user.nickname.toLowerCase().includes(searchName));
   const handeleSearch: React.ChangeEventHandler<HTMLInputElement> = (e): void => {
     setSearchName(e.target.value);
     setVisibility(true);

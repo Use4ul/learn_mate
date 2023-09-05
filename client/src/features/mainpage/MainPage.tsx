@@ -4,8 +4,7 @@ import { RootState, useAppDispatch } from '../../redux/store';
 import { loadCategories } from './slices/categoriesSlice';
 import ModulItem from '../modulitem/ModulItem';
 import { loadModules } from '../modulitem/modulesSlice';
-import { loadCards } from '../cardsPage/cardsSlice';
-import { checkUser } from '../auth/reg/authSlice';
+
 import './styles/style.scss';
 
 function MainPage(): JSX.Element {
@@ -20,8 +19,6 @@ function MainPage(): JSX.Element {
     category !== 'Все категории'
       ? modules.filter((module) => module.Category.title === category)
       : modules;
-
-
 
   useEffect(() => {
     dispatch(loadCategories());

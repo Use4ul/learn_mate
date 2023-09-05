@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { group } from 'console';
 import { RootState, useAppDispatch } from '../../redux/store';
 import { loadModulesForUser } from './profileSlice';
 import ModulItem from '../modulitem/ModulItem';
@@ -9,7 +8,7 @@ import { loadGroups } from '../grouppage/slices/groupsSlice';
 import GroupItem from '../groupItem/GroupItem';
 
 function ProfilePage(): React.JSX.Element {
-  const [search, setSearch] = useState('');
+  /* const [search, setSearch] = useState(''); */
   const navigate = useNavigate();
 
   const modules = useSelector((store: RootState) => store.profile.modules);
@@ -28,7 +27,7 @@ function ProfilePage(): React.JSX.Element {
   return (
     <div className="profile__container">
       <div>
-        <input value={search} placeholder="введите название модуля" />
+        <input placeholder="введите название модуля" />
 
         <div className="profile__module">
           <div>

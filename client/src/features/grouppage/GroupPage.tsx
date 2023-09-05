@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState, useAppDispatch } from '../../redux/store';
+
+import { useAppDispatch } from '../../redux/store';
 import { addGroup } from './slices/groupsSlice';
 
 function GroupPage(): React.JSX.Element {
