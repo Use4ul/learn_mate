@@ -21,6 +21,7 @@ function GroupUpdatePage(): JSX.Element {
   const group = useSelector((store: RootState) => store.groups.groups);
   const users = useSelector((store: RootState) => store.groups.users);
   const oneGroupIt = useSelector((store: RootState) => store.groups.groupItem);
+  console.log(oneGroupIt);
 
   let id: GroupId;
   if (groupId) {

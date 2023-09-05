@@ -1,5 +1,6 @@
 const router = require('express').Router();
 
+const { where } = require('sequelize');
 const { Module, Category, Card, Group, GroupItem, User } = require('../../db/models');
 
 router.get('/', async (req, res) => {
@@ -15,8 +16,10 @@ router.post('/', async (req, res) => {
     const { student_id, group_id } = req.body;
     console.log(student_id, group_id);
     const user = await GroupItem.create({ student_id, group_id });
+    const newUser = await GroupItem.findOne({ where: { student_id }, include: { model: User } });
+
     console.log(user);
-    res.json(user);
+    res.json(newUser);
   } catch ({ message }) {
     res.json({ message });
   }
@@ -35,7 +38,10 @@ router.get('/:userId/modules', async (req, res) => {
 router.get('/:userId/modules/stat', async (req, res) => {
   const { userId } = req.params;
   try {
-    const modulesForUser = await Module.findAll({ where: { user_id: +userId }, include: {model: Card} });
+    const modulesForUser = await Module.findAll({
+      where: { user_id: +userId },
+      include: { model: Card },
+    });
     res.json(modulesForUser);
   } catch ({ message }) {
     res.json({ message });
