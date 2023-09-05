@@ -1,4 +1,4 @@
-import { Group, GroupId, GroupItem, GroupItemID, NewGroup } from './types/types';
+import { Group, GroupId, GroupItem, GroupItemID, NewGroup, User } from './types/types';
 
 export const fetchGroups = async (): Promise<Group[]> => {
   const res = await fetch('/api/groups');
@@ -22,15 +22,6 @@ export const fetchGroupAdd = async (group: NewGroup): Promise<Group> => {
 
   return res.json();
 };
-// export const fetchUserInGroup = async (: NewGroup): Promise<Group> => {
-//   const res = await fetch('/api/groups', {
-//     method: 'POST',
-//     headers: { 'Content-type': 'application/json' },
-//     body: JSON.stringify(group),
-//   });
-
-//   return res.json();
-// };
 
 export const fetchGroupUpdate = async (group: Group): Promise<Group> => {
   const res = await fetch(`/api/groups/${group.id}`, {
@@ -58,5 +49,25 @@ export const fetchGroupItemDelete = async ({
   deleteGroup: Group;
 }): Promise<GroupItemID> => {
   const res = await fetch(`/api/groups/${groupIt.id}/${deleteGroup.id}`, { method: 'DELETE' });
+  return res.json();
+};
+
+export const fetchUsers = async (): Promise<User[]> => {
+  const res = await fetch('/api/user');
+  return res.json();
+};
+
+export const featchAddUser = async ({
+  student_id,
+  group_id,
+}: {
+  student_id: number;
+  group_id: number;
+}): Promise<GroupItem> => {
+  const res = await fetch('/api/user', {
+    method: 'POST',
+    headers: { 'Content-type': 'application/json' },
+    body: JSON.stringify({ student_id, group_id }),
+  });
   return res.json();
 };

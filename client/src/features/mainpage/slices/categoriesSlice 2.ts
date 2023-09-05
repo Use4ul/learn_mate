@@ -1,13 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import State from '../types/State';
-import * as api from '../api';
+import fetchCategories from '../api';
 
 const initialState: State = {
   categories: [],
   error: undefined,
 };
 
-export const loadCategories = createAsyncThunk('categories/load', () => api.fetchCategories());
+export const loadCategories = createAsyncThunk('categories/load', () => fetchCategories());
 
 const categoriesSlice = createSlice({
   name: 'categories',

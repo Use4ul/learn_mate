@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-import * as api from './api';
+import fetchModules from './api';
 import State from './types/State';
 
 const initialState: State = {
@@ -8,7 +8,7 @@ const initialState: State = {
   error: undefined,
 };
 
-export const loadModules = createAsyncThunk('modules/load', () => api.fetchModules());
+export const loadModules = createAsyncThunk('modules/load', () => fetchModules());
 
 const modulesSlice = createSlice({
   name: 'modules',

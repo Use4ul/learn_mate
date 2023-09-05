@@ -21,6 +21,7 @@ function serverConfig(app) {
   app.use(session(sessionConfig));
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
+  app.use(express.static(path.join(__dirname, '../../client/build')));
 }
 
 module.exports = serverConfig;

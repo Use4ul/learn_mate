@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { RootState, useAppDispatch } from '../../../redux/store';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../../redux/store';
 import { signIn } from '../reg/authSlice';
-import { useSelector } from 'react-redux';
 
 function LoginPage(): JSX.Element {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loginCheck, setLoginCheck] =
-    useState(''); /** проверка на корректность по стейту с выводом в p тег */
+  /* const [loginCheck, setLoginCheck] =
+    useState('');  *//** проверка на корректность по стейту с выводом в p тег */
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const user = useSelector((store: RootState) => store.auth.authUser);
+  /* const user = useSelector((store: RootState) => store.auth.authUser); */
 
   const handleSubmitAuth: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
@@ -49,9 +48,9 @@ function LoginPage(): JSX.Element {
         <button className="btn login__btn" type="submit">
           Войти
         </button>
-        <p className={loginCheck ? 'log__error' : 'log__error error-true'}>
+       {/*  <p className={loginCheck ? 'log__error' : 'log__error error-true'}>
           Неверный email или пароль
-        </p>
+        </p> */}
       </form>
     </div>
   );

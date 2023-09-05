@@ -7,8 +7,7 @@ import './styles/style.scss';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../../redux/store';
-import { logOut, checkUser, stopPending } from '../auth/reg/authSlice';
-import { fetchLogOut } from '../auth/log/api';
+import { logOut } from '../auth/reg/authSlice';
 import useTheme from '../../hooks/useTheme';
 
 function Navbar(): JSX.Element {
@@ -22,6 +21,7 @@ function Navbar(): JSX.Element {
   };
 
   const { theme, setTheme } = useTheme();
+  theme;
   const [themeName, setThemeName] = useState('Темная тема');
   const themeFunc = () => {
     localStorage.userTheme === 'Темная тема' ? setTheme('Светлая тема') : setTheme('Темная тема');
@@ -44,9 +44,7 @@ function Navbar(): JSX.Element {
                 <li>
                   <NavLink to={`/profile/${authUser.id}`}>Моя страница</NavLink>
                 </li>
-                <li>
-                  {authUser.name}
-                </li>
+                <li>{authUser.name}</li>
                 <li>
                   <NavLink to="/">
                     <a

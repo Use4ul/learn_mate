@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+
 import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../../redux/store';
-import {
-  addCardToModule,
-  addModule,
-} from './profileSlice';
-import CardItem from '../carditem/CardItem';
+import { addCardToModule, addModule } from './profileSlice';
 import { loadCategories } from '../mainpage/slices/categoriesSlice';
 import CardItemForProfilePage from './CardItemForProfilePage';
 

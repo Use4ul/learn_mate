@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Card } from './types/types';
 import { useSelector } from 'react-redux';
+import { Card } from './types/types';
 import { RootState, useAppDispatch } from '../../redux/store';
-import { loadCardProgress, sendAnswer } from '../carditem/progressSlice';
+import { sendAnswer } from '../carditem/progressSlice';
 
 function TypeAnswerItem({
   card,

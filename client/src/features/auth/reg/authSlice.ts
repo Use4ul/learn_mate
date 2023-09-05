@@ -9,7 +9,9 @@ const initialState: State = {
   pending: false,
 };
 
-export const signUp = createAsyncThunk('auth/sign-up', (user: AuthUserWithoutId) => api.fetchSignUp(user));
+export const signUp = createAsyncThunk('auth/sign-up', (user: AuthUserWithoutId) =>
+  api.fetchSignUp(user),
+);
 
 export const logOut = createAsyncThunk('auth/logout', () => api.fetchLogOut());
 
@@ -42,7 +44,7 @@ const authSlice = createSlice({
         state.error = action.error.message;
       })
 
-      .addCase(checkUser.pending, (state, action) => {
+      .addCase(checkUser.pending, (state) => {
         state.pending = true;
       })
       .addCase(checkUser.fulfilled, (state, action) => {
@@ -51,7 +53,7 @@ const authSlice = createSlice({
       .addCase(checkUser.rejected, (state, action) => {
         state.error = action.error.message;
       })
-      .addCase(logOut.fulfilled, (state, action) => {
+      .addCase(logOut.fulfilled, (state) => {
         state.authUser = undefined;
       })
       .addCase(logOut.rejected, (state, action) => {

@@ -17,14 +17,13 @@ function FourAnswerItem({
   const arrAnswers = useMemo(() => getFourAnswers(cards, cardIndex), []);
 
   const handeleAnswer: React.MouseEventHandler<HTMLFormElement> = (): void => {
-  if (answer === card.definition) {
-    setCorrectAnswers('Правильно');
-    console.log(answer);
-  } else {
-    setCorrectAnswers(`Неверно. Ответ: ${card.definition}`);
-  }
+    if (answer === card.definition) {
+      setCorrectAnswers('Правильно');
+      console.log(answer);
+    } else {
+      setCorrectAnswers(`Неверно. Ответ: ${card.definition}`);
+    }
   };
-
 
   return (
     <>
