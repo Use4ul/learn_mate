@@ -16,7 +16,6 @@ function GroupUpdatePage(): JSX.Element {
 
   const users = useSelector((store: RootState) => store.groups.users);
 
-
   let id: GroupId;
   if (groupId) {
     id = +groupId;

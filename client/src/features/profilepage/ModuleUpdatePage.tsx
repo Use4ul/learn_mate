@@ -9,7 +9,6 @@ import {
   sendModuleToUpdate,
 } from './profileSlice';
 import { ModuleId } from '../modulitem/types/types';
-import CardItem from '../carditem/CardItem';
 import { loadCategories } from '../mainpage/slices/categoriesSlice';
 import CardItemForProfilePage from './CardItemForProfilePage';
 

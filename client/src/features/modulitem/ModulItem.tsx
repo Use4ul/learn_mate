@@ -1,11 +1,10 @@
 /* eslint-disable no-undef */
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { Module } from './types/types';
 import './styles/style.scss';
-import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../../redux/store';
-import { Group } from '../grouppage/types/types';
 import { deleteModule } from '../profilepage/profileSlice';
 
 function ModulItem({ module }: { module: Module }): JSX.Element {
