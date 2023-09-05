@@ -11,6 +11,7 @@ const initialState: State = {
   modules: [],
   module: [],
   modulesForStat: [],
+  cardsProgress: [],
   error: undefined,
 };
 
@@ -50,6 +51,11 @@ export const deleteCard = createAsyncThunk('user/deleteCard', (id: CardId) =>
 export const loadModulesForUserStat = createAsyncThunk(
   'user/loadModulesForStat',
   (id: AuthUserId) => api.fetchModulesForUserStat(id),
+);
+
+export const loadCardStat = createAsyncThunk(
+  'user/loadCardStat',
+  (id: AuthUserId) => api.fetchCardStat(id),
 );
 
 const profileSlice = createSlice({
@@ -110,6 +116,12 @@ const profileSlice = createSlice({
         state.modulesForStat = action.payload;
       })
       .addCase(loadModulesForUserStat.rejected, (state, action) => {
+        state.error = action.error.message;
+      })
+      .addCase(loadCardStat.fulfilled, (state, action) => {
+        state.cardsProgress = action.payload;
+      })
+      .addCase(loadCardStat.rejected, (state, action) => {
         state.error = action.error.message;
       });
   },

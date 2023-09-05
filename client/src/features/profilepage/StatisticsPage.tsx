@@ -2,17 +2,20 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { RootState, useAppDispatch } from '../../redux/store';
-import { loadModulesForUserStat } from './profileSlice';
+import { loadCardStat, loadModulesForUserStat } from './profileSlice';
 
 function StatisticsPage(): React.JSX.Element {
   const { userId } = useParams();
   const modules = useSelector((store: RootState) => store.profile.modulesForStat);
-  console.log(modules);
+  const cardsProgress = useSelector((store: RootState) => store.profile.cardsProgress)
+  console.log(cardsProgress);
+  
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(loadModulesForUserStat(Number(userId)));
+    dispatch(loadCardStat(Number(userId)));
   }, []);
 
   return (
@@ -25,7 +28,7 @@ function StatisticsPage(): React.JSX.Element {
               <div className="card__container">
                 <div>{card.term}</div>
                 <div>{card.definition}</div>
-                {/* <div>{`Правильных ответов по карточке: ${progress}%`}</div> */}
+                <div>{`Правильных ответов по карточке: ${(cardsProgress.filter((el) => el.card_id === card.id))[0].progress}%`}</div>
               </div>
             ))}
           </>
