@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { State } from '../log/types/State';
 import * as api from '../log/api';
-import { AuthUser } from '../log/types/types';
+import { AuthUser, AuthUserWithoutId } from '../log/types/types';
 
 const initialState: State = {
   authUser: undefined,
@@ -9,7 +9,7 @@ const initialState: State = {
   pending: false,
 };
 
-export const signUp = createAsyncThunk('auth/sign-up', (user: AuthUser) => api.fetchSignUp(user));
+export const signUp = createAsyncThunk('auth/sign-up', (user: AuthUserWithoutId) => api.fetchSignUp(user));
 
 export const logOut = createAsyncThunk('auth/logout', () => api.fetchLogOut());
 

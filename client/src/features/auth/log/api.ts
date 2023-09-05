@@ -1,6 +1,6 @@
-import { AuthUser } from './types/types';
+import { AuthUser, AuthUserWithoutId } from './types/types';
 
-export const fetchSignUp = async (user: AuthUser): Promise<AuthUser> => {
+export const fetchSignUp = async (user: AuthUserWithoutId): Promise<AuthUser> => {
   const res = await fetch('/api/auth/registration', {
     method: 'POST',
     headers: {

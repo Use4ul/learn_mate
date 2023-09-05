@@ -1,9 +1,14 @@
 /* eslint-disable no-undef */
+
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Card } from '../cardsPage/types/types';
 import './styles/style.scss';
+import { RootState, useAppDispatch } from '../../redux/store';
+import { loadCardProgress } from './progressSlice';
 
 function CardItem({ card }: { card: Card }): JSX.Element {
+
   const [input, setInput] = useState(false);
   const [rightAnswer, setRightAnswer] = useState('');
   const [def, setDef] = useState('#222');
@@ -18,6 +23,13 @@ function CardItem({ card }: { card: Card }): JSX.Element {
     setDef('#222');
     setRightAnswer(card.definition);
   }, [card]);
+
+  const dispatch = useAppDispatch();
+
+  const progress = useSelector((store: RootState) => store.progress.progress);
+
+  dispatch(loadCardProgress(card.id));
+
 
   return (
     <div className="card__container">
@@ -36,7 +48,7 @@ function CardItem({ card }: { card: Card }): JSX.Element {
             {rightAnswer}
           </div>
         </div>
-        <div> Прогресс</div>
+        <div>{`Прогресс: ${progress}%`}</div>
       </label>
     </div>
   );

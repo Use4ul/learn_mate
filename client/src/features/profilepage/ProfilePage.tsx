@@ -8,7 +8,7 @@ import ModulItem from '../modulitem/ModulItem';
 import { loadGroups } from '../grouppage/slices/groupsSlice';
 import GroupItem from '../groupItem/GroupItem';
 
-function ProfilePage(): JSX.Element {
+function ProfilePage(): React.JSX.Element {
   const [search, setSearch] = useState('');
   const navigate = useNavigate();
 
@@ -52,9 +52,7 @@ function ProfilePage(): JSX.Element {
         <div className="profil__grups">
           <div>
             <div>
-              {grops.map((elGroup) => (
-                <GroupItem elGroup={elGroup} />
-              ))}
+              {Boolean(grops.length) && grops.map((elGroup) => <GroupItem elGroup={elGroup} />)}
             </div>
           </div>
         </div>
