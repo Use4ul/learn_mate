@@ -10,8 +10,12 @@ function GroupUpdatePage(): JSX.Element {
 
   const dispatch = useAppDispatch();
   const group = useSelector((store: RootState) => store.groups.groups);
+
   const oneGroupIt = useSelector((store: RootState) => store.groups.groupItem);
   console.log(oneGroupIt);
+
+  const users = useSelector((store: RootState) => store.groups.users);
+
 
   let id: GroupId;
   if (groupId) {

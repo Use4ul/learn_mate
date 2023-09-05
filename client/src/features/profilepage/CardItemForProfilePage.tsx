@@ -5,7 +5,7 @@ import './styles/style.scss';
 import { useAppDispatch } from '../../redux/store';
 import { deleteCard } from './profileSlice';
 
-function CardItemForProfilePage({ card }: { card: Card }): JSX.Element {
+function CardItemForProfilePage({ card }: { card: Card }): React.JSX.Element {
   const dispatch = useAppDispatch();
 
   const handleCardDelete: React.MouseEventHandler<HTMLButtonElement> = async () => {

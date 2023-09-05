@@ -8,3 +8,10 @@ export type Card = {
 };
 
 export type CardId = Card['id'];
+
+export type Answer = {
+  id?: number;
+  user_id: number;
+  card_id: number;
+  isCorrect: boolean;
+};
