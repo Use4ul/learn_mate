@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const { Answer, Module, Card } = require('../../db/models');
+const { Answer, Module, Card, Group, GroupItem, User } = require('../../db/models');
 
 router.get('/:cardId/progress', async (req, res) => {
   const { cardId } = req.params;
@@ -37,11 +37,45 @@ router.get('/:userId/stat', async (req, res) => {
 
           return { card_id: id, progress: result };
         } else {
-          return { card_id: id, progress: 0};
+          return { card_id: id, progress: 0 };
         }
       }),
     ).then((val) => res.json(val));
+  } catch ({ message }) {
+    res.json({ message });
+  }
+});
 
+router.get('/:userId/group', async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const groups = await Group.findAll({
+      where: { teacher_id: +userId },
+      include: {
+        model: GroupItem,
+        include: {
+          model: User,
+          include: {
+            model: Answer,
+          },
+        },
+      },
+    });
+    const resultToSend = groups.map((group) => {
+      return {
+        title: group.title,
+        result: group.GroupItems.map((item) => {
+          if (item.User.Answers.length) {
+            const correctAnswers = item.User.Answers.filter((el) => el.isCorrect === true);
+            const result = Math.round((correctAnswers.length / item.User.Answers.length) * 100);
+            return { nickname: item.User.nickname, progress: result };
+          } else {
+            return { nickname: item.User.nickname, progress: 0 };
+          }
+        }),
+      };
+    });
+    res.json(resultToSend);
   } catch ({ message }) {
     res.json({ message });
   }
@@ -61,7 +95,7 @@ router.post('/', async (req, res) => {
       res.json(result);
     } else {
       const newAnswer = await Answer.create({ user_id, card_id, isCorrect });
-      const correctAnswers = answers.filter((el) => el.isCorrect === true);
+      const correctAnswers = newAnswer.filter((el) => el.isCorrect === true);
       const result = Math.round((correctAnswers.length / answers.length) * 100);
       res.json(result);
     }

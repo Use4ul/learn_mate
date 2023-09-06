@@ -14,12 +14,15 @@ function ModuleAddPage(): React.JSX.Element {
   const categories = useSelector((store: RootState) => store.categories.categories);
 
   const [title, setTitle] = useState('');
-  const [category, setCategory] = useState('Все категории');
+  const [category, setCategory] = useState('Языки');
 
   const [cardTerm, setCardTerm] = useState('');
   const [cardDefinition, setCardDefinition] = useState('');
   const [cardImg, setCardImg] = useState('');
   const [cardAudio, setCardAudio] = useState('');
+
+  console.log(category);
+  
 
   const handleModuleAdd: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
@@ -49,9 +52,14 @@ function ModuleAddPage(): React.JSX.Element {
   return (
     <>
       <form onSubmit={handleModuleAdd}>
-        <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
-        <select value={category} onChange={(e) => setCategory(e.target.value)}>
-          <option disabled>Все категории</option>{' '}
+        <input
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          required
+        />
+        <select value={category} onChange={(e) => setCategory(e.target.value)} required>
+          {/* <option disabled>Все категории</option>{' '} */}
           {categories.map((el) => (
             <option key={el.id}>{el.title}</option>
           ))}
