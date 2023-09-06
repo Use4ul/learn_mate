@@ -93,6 +93,23 @@
   margin-left: 180px;
 }
 
+.stat_bar {
+  padding: 5px 0;
+  position: relative;
+  top: -21px;
+  height: max-content;
+  background: var(--nav-background-color);
+  border-radius: 4px;
+  z-index: -1;
+}
+
+.stat_wrapper {
+  width: 100%;
+  border: 2px solid black;
+  border-radius: 6px;
+  height: 31px;
+}
+
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
 
 // label {
