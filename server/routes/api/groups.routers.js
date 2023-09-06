@@ -79,22 +79,28 @@ router.post('/', async (req, res) => {
       where: { id: req.session.user_id },
       include: { model: Role },
     });
-    if (currentUser && currentUser.Role.title === 'Учитель') {
-      const newGroup = await Group.create({
-        title,
-        teacher_id: req.session.user_id,
-      });
-      const oneGroup = await Group.findOne({
-        where: { id: newGroup.id },
-      });
-      res.json([oneGroup]);
-      console.log(oneGroup);
+
+    if (title.trim()) {
+      if (currentUser && currentUser.Role.title === 'Учитель') {
+        const newGroup = await Group.create({
+          title,
+          teacher_id: req.session.user_id,
+        });
+        const oneGroup = await Group.findOne({
+          where: { id: newGroup.id },
+        });
+        res.status(200).json([oneGroup]);
+        console.log(oneGroup);
+      } else {
+        res.status(400).json({ message: 'Вы не учитель' });
+        return;
+      }
     } else {
-      res.json({ message: 'Вы не учитель' });
+      res.status(400).json({ message: 'Заполните все поля!' });
       return;
     }
   } catch ({ message }) {
-    res.json(message);
+    res.status(500).json(message);
   }
 });
 
