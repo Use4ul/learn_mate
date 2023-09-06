@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { useSelector } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
 import { RootState, useAppDispatch } from '../../redux/store';
 import {
   addGroup,
@@ -12,6 +13,7 @@ import {
 import { Group, GroupId } from './types/types';
 
 function GroupPage(): React.JSX.Element {
+  const { userId } = useParams();
   const [title, setNewTitle] = useState('');
   const [newGroup, setNewGroup] = useState(false);
   const [searchName, setSearchName] = useState('');
@@ -23,7 +25,6 @@ function GroupPage(): React.JSX.Element {
 
   const groupDelete = groups.filter((el) => el.id === group[0].id);
   const deleteItemGroup: Group = groupDelete[0];
-  console.log(deleteItemGroup, '_________');
 
   const dispatch = useAppDispatch();
   const handeleAddGroup = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
@@ -108,6 +109,9 @@ function GroupPage(): React.JSX.Element {
           </div>
         ))}
       </div>
+      <Link to={`/profile/${userId}`}>
+        <button type="button">Вернуться в личный кабинет</button>
+      </Link>
     </div>
   );
 }

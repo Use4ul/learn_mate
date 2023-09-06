@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { RootState, useAppDispatch } from '../../redux/store';
 import { Group, GroupId } from './types/types';
 import './styles/style.scss';
@@ -14,6 +14,7 @@ import {
 } from './slices/groupsSlice';
 
 function GroupUpdatePage(): JSX.Element {
+  const { userId } = useParams();
   const { groupId } = useParams();
   const [searchName, setSearchName] = useState('');
   const [visibility, setVisibility] = useState(false);
@@ -126,6 +127,9 @@ function GroupUpdatePage(): JSX.Element {
           ))}
         </div>
       </div>
+      <Link to={`/profile/${userId}`}>
+        <button type="button">Вернуться в личный кабинет</button>
+      </Link>
     </div>
   );
 }
