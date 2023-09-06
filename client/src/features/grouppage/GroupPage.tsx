@@ -1,27 +1,44 @@
 import React, { useEffect, useState } from 'react';
 
 import { useSelector } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
 import { RootState, useAppDispatch } from '../../redux/store';
-import { addGroup, loadUsers, userAdd } from './slices/groupsSlice';
+import {
+  addGroup,
+  loadGroups,
+  loadUsers,
+  userAdd,
+  userGroupItemDelete,
+} from './slices/groupsSlice';
+import { Group, GroupId } from './types/types';
 
 function GroupPage(): React.JSX.Element {
+  const { userId } = useParams();
   const [title, setNewTitle] = useState('');
+  const [newGroup, setNewGroup] = useState(false);
   const [searchName, setSearchName] = useState('');
   const [visibility, setVisibility] = useState(false);
   const users = useSelector((store: RootState) => store.groups.users);
   const group = useSelector((store: RootState) => store.groups.group);
-  console.log(group);
+  const groups = useSelector((store: RootState) => store.groups.group);
+  const oneGroupIt = useSelector((store: RootState) => store.groups.groupItem);
+
+  const groupDelete = groups.filter((el) => el.id === group[0].id);
+  const deleteItemGroup: Group = groupDelete[0];
 
   const dispatch = useAppDispatch();
   const handeleAddGroup = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     dispatch(addGroup({ title }));
   };
-  const filterNikname = users.filter((user) => user.nickname.toLowerCase().includes(searchName));
+  const filterNikname = users.filter((user) =>
+    user.nickname.toLowerCase().includes(searchName.toLowerCase()),
+  );
   const handeleSearch: React.ChangeEventHandler<HTMLInputElement> = (e): void => {
     setSearchName(e.target.value);
     setVisibility(true);
   };
+
   const handeleNewUser = async ({
     student_id,
     group_id,
@@ -33,6 +50,7 @@ function GroupPage(): React.JSX.Element {
   };
   useEffect(() => {
     dispatch(loadUsers());
+    dispatch(loadGroups());
   }, []);
   return (
     <div className="group__container">
@@ -44,8 +62,10 @@ function GroupPage(): React.JSX.Element {
             type="text"
             onChange={(e) => setNewTitle(e.target.value)}
           />
-          <button type="submit"> Cоздать группу</button>
-          <div> Название: {title}</div>
+          <button type="submit" onClick={() => setNewGroup(true)}>
+            Cоздать группу
+          </button>
+          {newGroup === true && <div> Вы создали группу: {title}</div>}
         </form>
       </div>
       <div>
@@ -74,6 +94,24 @@ function GroupPage(): React.JSX.Element {
           )}
         </form>
       </div>
+      <div>
+        {oneGroupIt.map((groupIt) => (
+          <div>
+            {groupIt.User.nickname}
+            <button
+              type="button"
+              onClick={() =>
+                dispatch(userGroupItemDelete({ groupIt, deleteGroup: deleteItemGroup }))
+              }
+            >
+              Удалить из группы
+            </button>
+          </div>
+        ))}
+      </div>
+      <Link to={`/profile/${userId}`}>
+        <button type="button">Вернуться в личный кабинет</button>
+      </Link>
     </div>
   );
 }

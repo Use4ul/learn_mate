@@ -8,6 +8,7 @@ import cardsSlice from '../features/cardsPage/cardsSlice';
 import profileSlice from '../features/profilepage/profileSlice';
 import groupsSlice from '../features/grouppage/slices/groupsSlice';
 import progressSlice from '../features/carditem/progressSlice';
+import tasksSlice from '../features/taskPage/taskSlice';
 
 const store = configureStore({
   reducer: {
@@ -17,7 +18,8 @@ const store = configureStore({
     cards: cardsSlice,
     profile: profileSlice,
     groups: groupsSlice,
-    progress: progressSlice
+    progress: progressSlice,
+    tasks: tasksSlice,
   },
 });
 

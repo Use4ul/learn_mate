@@ -7,19 +7,30 @@ import './styles/style.scss';
 import { RootState, useAppDispatch } from '../../redux/store';
 import { loadCardProgress } from './progressSlice';
 
-function CardItem({ card }: { card: Card }): JSX.Element {
-  const [input, setInput] = useState(false);
+function CardItem({
+  card,
+  input,
+  setInput,
+  colorWords,
+  setColorWords,
+}: {
+  card: Card;
+  input: Boolean;
+  setInput: React.Dispatch<React.SetStateAction<boolean>>;
+  colorWords: string;
+  setColorWords: React.Dispatch<React.SetStateAction<string>>;
+}): JSX.Element {
   const [rightAnswer, setRightAnswer] = useState('');
-  const [def, setDef] = useState('#222');
+  // const [colorWords, setColorWords] = useState('#222');
 
   const func = (): void => {
     setInput((prev) => !prev);
-    setDef('#fff');
+    setColorWords('#fff');
   };
 
   useEffect(() => {
-    setInput(false);
-    setDef('#222');
+    setInput(true);
+    setColorWords('#222');
     setRightAnswer(card.definition);
   }, [card]);
 
@@ -35,18 +46,19 @@ function CardItem({ card }: { card: Card }): JSX.Element {
 
   return (
     <div className="card__container">
-      <label>
+      <label className="card__label">
         <input
-          checked={input}
+          className="card__check-input"
+          checked={!input}
           /*  onChange={() => {
             setInput((prev) => !prev), ;
           }} */
           onChange={func}
           type="checkbox"
         />
-        <div className="card">
-          <div className="front">{card.term}</div>
-          <div className="back" style={{ color: def }}>
+        <div className="card__card">
+          <div className="card__front card__div">{card.term}</div>
+          <div className="card__back card__div" style={{ color: colorWords }}>
             {rightAnswer}
           </div>
         </div>

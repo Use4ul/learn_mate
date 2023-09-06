@@ -25,7 +25,7 @@ function RegPage(): JSX.Element {
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
-    dispatch(signUp({ name, nickname, email, password, role }));
+    dispatch(signUp({ name, nickname, email, password, role_id: role }));
   };
 
   const nickCheck = async (): Promise<void> => {

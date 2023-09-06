@@ -6,16 +6,19 @@ import { Module } from './types/types';
 import './styles/style.scss';
 import { RootState, useAppDispatch } from '../../redux/store';
 import { deleteModule } from '../profilepage/profileSlice';
+import { ModuleWithCards } from '../profilepage/types/type';
 
-function ModulItem({ module }: { module: Module }): JSX.Element {
+function ModulItem({ module }: { module: Module | ModuleWithCards }): JSX.Element {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const user = useSelector((store: RootState) => store.auth.authUser);
+  console.log(user);
 
-  const handleDeleteModule: React.MouseEventHandler<HTMLButtonElement> = async () => {
-    dispatch(deleteModule(module.id));
-    navigate('/');
+  const handleDeleteModule: React.MouseEventHandler<HTMLButtonElement> = async (e) => {
+    e.nativeEvent.stopPropagation();
+    console.log(e);
+    // dispatch(deleteModule(module.id));
   };
 
   return (
@@ -23,24 +26,31 @@ function ModulItem({ module }: { module: Module }): JSX.Element {
       <Link to={`/modules/${module.id}`}>
         <h2>{module.title}</h2>
         {/* onClick={() => navigate(`/modules/${module.id}`)}> */}
+
         {module.user_id === user?.id ? (
           <>
             <Link to={`/profile/${module.user_id}/modules/${module.id}`}>
-              <button type="button"> изменить</button>
+              <button type="button">
+                {' '}
+                изменить
+                {/* <a href={`/profile/${module.user_id}/modules/${module.id}`}>изменить</a> */}
+              </button>
             </Link>
             <button type="button" onClick={handleDeleteModule}>
               {' '}
               удалить
             </button>
-            <button type="button"> Назначить модуль группе</button>
+            {user && user.role_id === 1 ? (
+              <button type="button"> Назначить модуль группе</button>
+            ) : (
+              <div />
+            )}
           </>
         ) : (
           <button className="btn-rel" type="button">
             добавить к себе
           </button>
         )}
-
-        {/* добавить ховер  */}
       </Link>
     </div>
   );
