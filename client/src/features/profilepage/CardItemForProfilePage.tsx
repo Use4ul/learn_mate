@@ -11,6 +11,7 @@ function CardItemForProfilePage({ card }: { card: Card }): React.JSX.Element {
   const handleCardDelete: React.MouseEventHandler<HTMLButtonElement> = async () => {
     dispatch(deleteCard(card.id));
   };
+  console.log(card.img);
 
   return (
     <div className="card__container">
