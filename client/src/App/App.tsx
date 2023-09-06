@@ -18,6 +18,7 @@ import ModuleAddPage from '../features/profilepage/ModuleAddPage';
 import preloader from './Preloader1.gif';
 import './App.css';
 import StatisticsPage from '../features/profilepage/StatisticsPage';
+import TaskPage from '../features/taskPage/TaskPage';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -53,6 +54,7 @@ function App(): JSX.Element {
             <Route path="/modules/add" element={<ModuleAddPage />} />
             <Route path="/profile/:userId/:groupId" element={<GroupUpdatePage />} />
             <Route path="/profile/:userId/statistics" element={<StatisticsPage />} />
+            <Route path="/profile/:userId/modules" element={<TaskPage />} />
           </Route>
         </Routes>
       )}

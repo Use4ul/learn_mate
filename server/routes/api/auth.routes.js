@@ -5,7 +5,7 @@ const { User } = require('../../db/models');
 router.post('/registration', async (req, res) => {
   try {
     let user;
-    const { name, nickname, email, password, role } = req.body;
+    const { name, nickname, email, password, role_id } = req.body;
     if (name.trim() && nickname.trim() && email.trim() && password.trim()) {
       user = await User.findOne({ where: { email } });
 
@@ -14,7 +14,7 @@ router.post('/registration', async (req, res) => {
         return;
       } else {
         const hash = await bcrypt.hash(req.body.password, 10);
-        user = await User.create({ name, nickname, email, password: hash, role_id: role });
+        user = await User.create({ name, nickname, email, password: hash, role_id });
 
         req.session.user_id = user.id;
         res.status(200).json(user);

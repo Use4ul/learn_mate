@@ -1,3 +1,5 @@
+import { Task } from '../../taskPage/types/type';
+
 export type Group = {
   id: number;
   teacher_id: number;
@@ -23,3 +25,17 @@ export type User = {
 };
 export type GroupId = Group['id'];
 export type GroupItemID = GroupItem['id'];
+
+export type GroupWithTasks = {
+  id: number;
+  teacher_id: number;
+  title: string;
+  Tasks: Task[];
+};
+
+export type GroupItemWithGroup = {
+  id: number;
+  student_id: number;
+  group_id: number;
+  Group: GroupWithTasks;
+};
