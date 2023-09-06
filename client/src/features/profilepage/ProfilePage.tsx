@@ -16,7 +16,6 @@ function ProfilePage(): React.JSX.Element {
   const user = useSelector((store: RootState) => store.auth.authUser);
 
   console.log(modules);
-  
 
   const { userId } = useParams();
 
@@ -36,7 +35,7 @@ function ProfilePage(): React.JSX.Element {
       <div>
         <div>
           {/* <Link to={`/profile/${userId}/statistics`}> */}
-          <button type="button">
+          <button type="button" className="button">
             <a href={`/profile/${userId}/statistics`}>Статистика</a>
             {/* <Link to={`/profile/${userId}/statistics`} />  */}
           </button>

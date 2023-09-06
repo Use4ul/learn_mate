@@ -47,7 +47,7 @@ function ModuleUpdateForm(): React.JSX.Element {
     setTitle('');
   };
 
- /*  const handleCardAdd: React.FormEventHandler<HTMLFormElement> = async (e) => {
+  /*  const handleCardAdd: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     dispatch(
       addCardToModule({
@@ -84,34 +84,52 @@ function ModuleUpdateForm(): React.JSX.Element {
       <form onSubmit={handleModuleUpdate}>
         <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
         <select value={category} onChange={(e) => setCategory(e.target.value)}>
-          <option disabled>Все категории</option>{' '}
+          <option disabled>Все категории</option>
           {categories.map((el) => (
             <option key={el.id}>{el.title}</option>
           ))}
         </select>
-        <button type="submit">обновить данные модуля</button>
+        <button type="submit" className="button">
+          Обновить модуль
+        </button>
       </form>
-      <form /* onSubmit={handleCardAdd} */>
-        <input
-          value={cardTerm}
-          onChange={(e) => setCardTerm(e.target.value)}
-          placeholder="термин"
-        />
-        <input
-          value={cardDefinition}
-          onChange={(e) => setCardDefinition(e.target.value)}
-          placeholder="определение"
-        />
-        <input
-          value={cardImg}
-          onChange={(e) => setCardImg(e.target.value)}
-          placeholder="изображение"
-        />
-        <input
-          value={cardAudio}
-          onChange={(e) => setCardAudio(e.target.value)}
-          placeholder="аудио"
-        />
+      <form className="form" /* onSubmit={handleCardAdd} */>
+        <div className="input-group">
+          <input
+            className="input"
+            value={cardTerm}
+            onChange={(e) => setCardTerm(e.target.value)}
+            placeholder=" "
+          />
+          <label className="placeholder">Термин</label>
+        </div>
+        <div className="input-group">
+          <input
+            className="input"
+            value={cardDefinition}
+            onChange={(e) => setCardDefinition(e.target.value)}
+            placeholder=" "
+          />
+          <label className="placeholder">Определение</label>
+        </div>
+        <div className="input-group">
+          <input
+            className="input"
+            value={cardImg}
+            onChange={(e) => setCardImg(e.target.value)}
+            placeholder=" "
+          />
+          <label className="placeholder">Изображение</label>
+        </div>
+        <div className="input-group">
+          <input
+            className="input"
+            value={cardAudio}
+            onChange={(e) => setCardAudio(e.target.value)}
+            placeholder=" "
+          />
+          <label className="placeholder">Аудио</label>
+        </div>
         <button type="submit">Добавить карточку</button>
       </form>
       <div>
