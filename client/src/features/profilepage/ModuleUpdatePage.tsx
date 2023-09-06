@@ -31,11 +31,6 @@ function ModuleUpdateForm(): React.JSX.Element {
     `${module.length > 0 ? module[0].Category?.title : 'Все категории'}`,
   );
 
-  console.log(module);
-
-  console.log(title);
-  console.log(category);
-
   const [cardTerm, setCardTerm] = useState('');
   const [cardDefinition, setCardDefinition] = useState('');
   const [cardImg, setCardImg] = useState('');

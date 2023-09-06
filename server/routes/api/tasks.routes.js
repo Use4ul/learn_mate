@@ -2,6 +2,7 @@ const router = require('express').Router();
 
 const { Card, Module, Group, Task, GroupItem } = require('../../db/models');
 
+//получить модули назначенные группе, в которой состоит юзер
 router.get('/:userId', async (req, res) => {
   const { userId } = req.params;
   try {
@@ -11,12 +12,26 @@ router.get('/:userId', async (req, res) => {
     });
     if (groupItem.length) {
       const groupToSend = groupItem.map((item) => item.Group)
-    //   const correctAnswers = answers.filter((el) => el.isCorrect === true);
-    //   const result = Math.round((correctAnswers.length / answers.length) * 100);
       res.json(groupToSend);
     } else {
       res.json(0);
     }
+  } catch ({ message }) {
+    res.json({ message });
+  }
+});
+
+
+router.post('/group', async (req, res) => {
+  const { groups, id } = req.body;
+  try {
+
+    groups.map(async (group) => {
+        const newTask = await Task.create({group_id: group.id, module_id: id})
+    })
+
+    res.json({message: 'success'})
+
   } catch ({ message }) {
     res.json({ message });
   }

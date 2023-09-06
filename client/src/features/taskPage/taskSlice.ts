@@ -3,6 +3,9 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from './api';
 import State from './types/State';
 import { AuthUserId } from '../auth/log/types/types';
+import { Group } from '../grouppage/types/types';
+import { ModuleId } from '../modulitem/types/types';
+import { TaskToSend } from './types/type';
 
 const initialState: State = {
   groups: [],
@@ -11,6 +14,10 @@ const initialState: State = {
 
 export const loadGroupForTasks = createAsyncThunk('user/loadTasks', (id: AuthUserId) =>
   api.fetchGroupForTasks(id),
+);
+
+export const taskGroup = createAsyncThunk('group/task', ({ groups, id }: TaskToSend) =>
+  api.fetchGroupsToTasks({ groups, id }),
 );
 
 const tasksSlice = createSlice({
@@ -23,6 +30,10 @@ const tasksSlice = createSlice({
         state.groups = action.payload;
       })
       .addCase(loadGroupForTasks.rejected, (state, action) => {
+        state.error = action.error.message;
+      })
+      .addCase(taskGroup.fulfilled, (state, action) => {})
+      .addCase(taskGroup.rejected, (state, action) => {
         state.error = action.error.message;
       });
   },
