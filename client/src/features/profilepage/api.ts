@@ -36,25 +36,10 @@ export const fetchModuleToUpdate = async ({
   return res.json();
 };
 
-export const fetchCardToAdd = async ({
-  term,
-  definition,
-  img,
-  audio,
-  module_id,
-}: CardWithoutId): Promise<Card> => {
+export const fetchCardToAdd = async (formData: FormData): Promise<Card> => {
   const res = await fetch('/api/cards', {
     method: 'POST',
-    headers: {
-      'Content-type': 'application/json',
-    },
-    body: JSON.stringify({
-      term,
-      definition,
-      img,
-      audio,
-      module_id,
-    }),
+    body: formData,
   });
   return res.json();
 };

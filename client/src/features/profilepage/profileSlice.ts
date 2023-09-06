@@ -29,11 +29,9 @@ export const sendModuleToUpdate = createAsyncThunk(
   ({ title, category, id }: ModuleWithoutUser) => api.fetchModuleToUpdate({ title, category, id }),
 );
 
-export const addCardToModule = createAsyncThunk(
-  'user/addCardToModule',
-  ({ term, definition, img, audio, module_id }: CardWithoutId) =>
-    api.fetchCardToAdd({ term, definition, img, audio, module_id }),
-);
+export const addCardToModule = createAsyncThunk('user/addCardToModule', (formData: FormData) =>
+  api.fetchCardToAdd(formData),
+); ///Тута
 
 export const addModule = createAsyncThunk(
   'user/addModule',
@@ -53,9 +51,8 @@ export const loadModulesForUserStat = createAsyncThunk(
   (id: AuthUserId) => api.fetchModulesForUserStat(id),
 );
 
-export const loadCardStat = createAsyncThunk(
-  'user/loadCardStat',
-  (id: AuthUserId) => api.fetchCardStat(id),
+export const loadCardStat = createAsyncThunk('user/loadCardStat', (id: AuthUserId) =>
+  api.fetchCardStat(id),
 );
 
 const profileSlice = createSlice({
