@@ -3,11 +3,13 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { RootState, useAppDispatch } from '../../../redux/store';
 import { clearError, signIn } from '../reg/authSlice';
+import './styles/style.scss';
 
 function LoginPage(): JSX.Element {
   const { error, authUser } = useSelector((store: RootState) => store.auth);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordShown, setPasswordShown] = useState(false);
   /* const [loginCheck, setLoginCheck] =
     useState('');  */ /** проверка на корректность по стейту с выводом в p тег */
   const navigate = useNavigate();
@@ -26,7 +28,12 @@ function LoginPage(): JSX.Element {
   };
   const changePassword: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     setPassword(e.target.value);
+
     dispatch(clearError());
+  };
+
+  const togglePassword = (): void => {
+    setPasswordShown(!passwordShown);
   };
 
   useEffect(() => {
@@ -57,9 +64,10 @@ function LoginPage(): JSX.Element {
               value={password}
               onChange={changePassword}
               name="password"
-              type="text"
+              type={passwordShown ? 'text' : 'password'}
               placeholder="Пароль"
             />
+            <i className="password-control" onClick={togglePassword} />
           </label>
         </div>
         <button className="btn login__btn" type="submit">

@@ -19,7 +19,7 @@ export type ModuleWithoutUser = {
 export type CardWithoutId = {
   term: string | null;
   definition: string;
-  img: string | null;
+  img: string | null ;
   audio: string | null;
   module_id: number;
 };
@@ -28,6 +28,7 @@ export type CardProgress = {
   card_id: CardId;
   progress: number;
 };
+
 
 export type UserProgress = {
   nickname: string;
@@ -38,3 +39,4 @@ export type GroupProgress = {
   title: string;
   result: UserProgress[];
 };
+

@@ -9,6 +9,9 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 
 const indexRouter = require('./routes/index.routes');
+const fileUpload = require('express-fileupload');
+
+app.use(fileUpload());
 
 config(app);
 

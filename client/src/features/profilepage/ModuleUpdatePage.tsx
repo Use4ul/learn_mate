@@ -47,7 +47,7 @@ function ModuleUpdateForm(): React.JSX.Element {
     setTitle('');
   };
 
-  const handleCardAdd: React.FormEventHandler<HTMLFormElement> = async (e) => {
+ /*  const handleCardAdd: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     dispatch(
       addCardToModule({
@@ -62,7 +62,7 @@ function ModuleUpdateForm(): React.JSX.Element {
     setCardDefinition('');
     setCardImg('');
     setCardAudio('');
-  };
+  }; */
 
   useEffect(() => {
     dispatch(loadModulesForUserToUpdate(id));
@@ -91,7 +91,7 @@ function ModuleUpdateForm(): React.JSX.Element {
         </select>
         <button type="submit">обновить данные модуля</button>
       </form>
-      <form onSubmit={handleCardAdd}>
+      <form /* onSubmit={handleCardAdd} */>
         <input
           value={cardTerm}
           onChange={(e) => setCardTerm(e.target.value)}

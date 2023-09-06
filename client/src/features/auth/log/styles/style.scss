@@ -1,9 +1,29 @@
 .log {
-    &__error {
-      display: none;
-    }
-  
-    &__error.error-true {
-      display: block;
-    }
+  &__error {
+    display: none;
   }
+
+  &__error.error-true {
+    display: block;
+  }
+}
+
+label {
+  position: relative;
+}
+
+.password-control {
+  position: absolute;
+  top: 11px;
+  right: 6px;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url(./view-icon.svg) 0 0 no-repeat;
+}
+
+.password-control:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
