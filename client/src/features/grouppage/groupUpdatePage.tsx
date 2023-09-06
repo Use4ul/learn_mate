@@ -5,6 +5,7 @@ import { RootState, useAppDispatch } from '../../redux/store';
 import { Group, GroupId } from './types/types';
 import './styles/style.scss';
 import {
+  loadGroups,
   loadUsers,
   updateTitleGroup,
   userAdd,
@@ -59,6 +60,7 @@ function GroupUpdatePage(): JSX.Element {
   useEffect(() => {
     dispatch(userInGroup(groupItem[0]));
     dispatch(loadUsers());
+    dispatch(loadGroups());
   }, []);
 
   return (

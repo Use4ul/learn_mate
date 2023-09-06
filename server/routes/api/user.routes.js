@@ -14,12 +14,14 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const { student_id, group_id } = req.body;
-    console.log(student_id, group_id);
-    const user = await GroupItem.create({ student_id, group_id });
-    const newUser = await GroupItem.findOne({ where: { student_id }, include: { model: User } });
-
-    console.log(user);
-    res.json(newUser);
+    const usersInGroupItem = await GroupItem.findOne({ where: { student_id, group_id } });
+    if (!usersInGroupItem) {
+      console.log(student_id, group_id);
+      const user = await GroupItem.create({ student_id, group_id });
+      console.log(user);
+      const newUser = await GroupItem.findOne({ where: { student_id }, include: { model: User } });
+      res.json(newUser);
+    }
   } catch ({ message }) {
     res.json({ message });
   }
