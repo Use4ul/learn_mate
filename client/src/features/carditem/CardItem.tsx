@@ -62,7 +62,9 @@ function CardItem({
             {rightAnswer}
           </div>
         </div>
-        <div>{`Правильных ответов по карточке: ${progress}%`}</div>
+        <div>
+          <p className="card__progress">{`Правильных ответов по карточке: ${progress}%`}</p>
+        </div>
       </label>
     </div>
   );

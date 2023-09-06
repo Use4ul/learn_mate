@@ -52,8 +52,8 @@ function TypeAnswerItem({
   }, [card]);
 
   return (
-    <div>
-      <form onSubmit={handaleAnswer}>
+    <div className="cards__inputAnswer">
+      <form className="cards__inputInput" onSubmit={handaleAnswer}>
         <input
           type="text"
           placeholder="Ввести ответ"

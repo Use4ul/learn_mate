@@ -60,24 +60,25 @@ a:visited {
 
 form {
   border-radius: 10px;
-  border: 2px solid #d9ed92;
+  border: 2px solid #81a4cd;
   font-size: 24px;
-  padding: 40px;
+  padding: 15px;
 }
 
 input,
 select {
   padding-left: 10px;
-  max-width: max-content;
+
   max-height: max-content;
   font-size: 24px;
   border: 2px solid #000000;
   border-radius: 6px;
   margin-bottom: 10px;
+  width: 97%;
 }
 
 select {
-  background-color: #4f6306;
+  background-color: #81a4cd;
 }
 
 .form_wrapper {
