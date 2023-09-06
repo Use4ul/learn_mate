@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../../redux/store';
@@ -30,6 +30,11 @@ function ModuleUpdateForm(): React.JSX.Element {
   const [category, setCategory] = useState(
     `${module.length > 0 ? module[0].Category?.title : 'Все категории'}`,
   );
+
+  console.log(module);
+
+  console.log(title);
+  console.log(category);
 
   const [cardTerm, setCardTerm] = useState('');
   const [cardDefinition, setCardDefinition] = useState('');
@@ -66,6 +71,14 @@ function ModuleUpdateForm(): React.JSX.Element {
       dispatch(clearModuleForUpdate());
     };
   }, []);
+
+  useEffect(() => {
+    if (module.length) {
+      setTitle(module[0].title);
+      setCategory(module[0].Category.title);
+    }
+  }, [module]);
+
   return (
     <>
       <form onSubmit={handleModuleUpdate}>

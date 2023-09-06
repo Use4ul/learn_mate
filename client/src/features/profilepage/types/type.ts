@@ -7,7 +7,7 @@ export type ModuleWithCards = {
   user_id: number;
   category_id: number;
   Cards: Card[];
-  Category?: Category;
+  Category: Category;
 };
 
 export type ModuleWithoutUser = {
@@ -25,6 +25,16 @@ export type CardWithoutId = {
 };
 
 export type CardProgress = {
-  card_id: CardId,
-  progress: number
-}
+  card_id: CardId;
+  progress: number;
+};
+
+export type UserProgress = {
+  nickname: string;
+  progress: number;
+};
+
+export type GroupProgress = {
+  title: string;
+  result: UserProgress[];
+};

@@ -1,6 +1,6 @@
 import { Card, CardId } from '../../cardsPage/types/types';
 import { Module, ModuleId } from '../../modulitem/types/types';
-import { ModuleWithCards } from './type';
+import { GroupProgress, ModuleWithCards } from './type';
 
 type Action =
   | { type: 'user/loadModules'; payload: Module[] }
@@ -10,6 +10,7 @@ type Action =
   | { type: 'user/addModule'; payload: ModuleWithCards[] }
   | { type: 'user/deleteModule'; payload: ModuleId }
   | { type: 'user/deleteCard'; payload: CardId }
-  | { type: 'user/loadModulesForStat'; payload: ModuleWithCards[] };
+  | { type: 'user/loadModulesForStat'; payload: ModuleWithCards[] }
+  | { type: 'user/loadGroupStat'; payload: GroupProgress[] };
 
 export default Action;
