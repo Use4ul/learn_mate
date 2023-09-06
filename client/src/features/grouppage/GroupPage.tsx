@@ -70,7 +70,7 @@ function GroupPage(): React.JSX.Element {
       <div>
         <form onSubmit={handeleAddGroup}>
           <input
-            placeholder="введите название группы"
+            placeholder="Введите название группы"
             value={title}
             type="text"
             onChange={newGroupAdd}

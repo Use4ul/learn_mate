@@ -31,17 +31,15 @@ function ModulItem({ module }: { module: Module | ModuleWithCards }): JSX.Elemen
           <>
             <Link to={`/profile/${module.user_id}/modules/${module.id}`}>
               <button type="button">
-                {' '}
-                изменить
+                Изменить
                 {/* <a href={`/profile/${module.user_id}/modules/${module.id}`}>изменить</a> */}
               </button>
             </Link>
             <button type="button" onClick={handleDeleteModule}>
-              {' '}
-              удалить
+              Удалить
             </button>
             {user && user.role_id === 1 ? (
-              <button type="button"> Назначить модуль группе</button>
+              <button type="button"> Назначить группе</button>
             ) : (
               <div />
             )}
