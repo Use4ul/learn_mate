@@ -39,7 +39,7 @@ function MainPage(): JSX.Element {
           <option>Category2</option> */}
         </select>
       </div>
-      <div className="modules_wrapper">
+      <div className="main__wrapper">
         {filteredModules.map((module) => (
           <ModulItem key={module.id} module={module} />
         ))}

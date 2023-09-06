@@ -27,7 +27,7 @@ function ModulItem({ module }: { module: Module | ModuleWithCards }): JSX.Elemen
         <h2>{module.title}</h2>
         {/* onClick={() => navigate(`/modules/${module.id}`)}> */}
 
-        {module.user_id === user?.id ? (
+        {module.user_id === user?.id && (
           <>
             <Link to={`/profile/${module.user_id}/modules/${module.id}`}>
               <button type="button">
@@ -46,10 +46,6 @@ function ModulItem({ module }: { module: Module | ModuleWithCards }): JSX.Elemen
               <div />
             )}
           </>
-        ) : (
-          <button className="btn-rel" type="button">
-            добавить к себе
-          </button>
         )}
       </Link>
     </div>

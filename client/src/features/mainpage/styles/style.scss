@@ -1,6 +1,14 @@
-.modules_wrapper {
-  margin: 10px;
-  display: flex;
+.main {
   justify-content: center;
+  display: flex;
+
+  flex-direction: row;
+  align-content: space-around;
   flex-wrap: wrap;
+  &__wrapper {
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 }
