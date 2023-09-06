@@ -11,11 +11,28 @@ form {
   width: 600px;
   display: block;
   justify-content: center;
-  border: 1px solid black;
+  align-items: center;
 }
 
 input {
   font-size: 24px;
   width: 60%;
   margin: 10px 0;
+}
+
+.reg {
+  &__input {
+    margin: 15px 0;
+    position: relative;
+    background-color: aliceblue;
+    width: 60%;
+  }
+
+  &__button {
+    margin: 0 auto;
+  }
+
+  &__form {
+    border: none;
+  }
 }

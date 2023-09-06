@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../../../redux/store';
 import { clearError, signUp } from './authSlice';
 import { fetchCheckNick } from '../log/api';
+import './styles/style.scss';
 
 function RegPage(): JSX.Element {
   const { error, authUser } = useSelector((store: RootState) => store.auth);
@@ -15,6 +16,7 @@ function RegPage(): JSX.Element {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [nickNameCheck, setNickNameCheck] = useState(false);
+  const [passwordShown, setPasswordShown] = useState(false);
 
   const [role, setRole] = useState(2);
 
@@ -39,6 +41,9 @@ function RegPage(): JSX.Element {
     setEmail(e.target.value);
     dispatch(clearError());
   };
+  const togglePassword = (): void => {
+    setPasswordShown(!passwordShown);
+  };
 
   useEffect(() => {
     nickCheck();
@@ -58,6 +63,7 @@ function RegPage(): JSX.Element {
         <div>
           <label>
             <input
+              className="reg__input"
               value={name}
               onChange={(e) => setName(e.target.value)}
               name="name"
@@ -67,8 +73,22 @@ function RegPage(): JSX.Element {
           </label>
         </div>
         <div>
+          {!nickNameCheck && (
+            <p
+              style={{
+                margin: '-8px',
+                position: 'absolute',
+                fontSize: '15px',
+                left: '430px',
+                color: 'red',
+              }}
+            >
+              Никнейм занят
+            </p>
+          )}
           <label>
             <input
+              className="reg__input"
               value={nickname}
               onChange={(e) => {
                 setNickName(e.target.value);
@@ -79,10 +99,11 @@ function RegPage(): JSX.Element {
             />
           </label>
         </div>
-        {!nickNameCheck && <p> Такой никнейм уже зарегистрирован</p>}
+
         <div>
           <label>
             <input
+              className="reg__input"
               value={email}
               onChange={handleChangeEmail}
               name="email"
@@ -94,27 +115,35 @@ function RegPage(): JSX.Element {
         <div>
           <label>
             <input
+              className="reg__input"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               name="password"
-              type="text"
+              type={passwordShown ? 'text' : 'password'}
               placeholder="Ваш пароль здесь"
             />
+            <i className="password-control" onClick={togglePassword} />
           </label>
         </div>
         <div>
           <label>
-            <select value={role} onChange={(e) => setRole(+e.target.value)}>
+            <select className="reg__input" value={role} onChange={(e) => setRole(+e.target.value)}>
               <option disabled>Выберите:</option> <option value="2">Обычный пользователь</option>
               <option value="1">Учитель</option>
             </select>
           </label>
         </div>
 
-        <button className="btn login__btn" type="submit">
+        <button className="btn login__btn reg__button" type="submit">
           Зарегистрироваться
         </button>
-        {error && <span> {error} </span>}
+        <div>
+          {error && (
+            <span style={{ position: 'absolute', fontSize: '15px', margin: '15px', color: 'red' }}>
+              {error}
+            </span>
+          )}
+        </div>
       </form>
     </div>
   );
