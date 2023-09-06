@@ -27,7 +27,7 @@ function MainPage(): JSX.Element {
 
   return (
     <div className="main__container">
-      <div>
+      <div className="main__select">
         <select value={category} onChange={(e) => setCategory(e.target.value)}>
           <option>Все категории</option>{' '}
           {categories.map((el) => (

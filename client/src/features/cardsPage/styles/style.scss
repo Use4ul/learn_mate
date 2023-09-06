@@ -4,8 +4,22 @@
     border: 1px solid black;
     border-radius: 15px;
   }
+  &__answers {
+    display: flex;
+    justify-content: center;
+  }
+  &__inputAnswer {
+    display: flex;
+    width: 525px;
+    justify-content: center;
+  }
+  &__inputInput {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+  }
 }
 
 .btn_and_card {
- 
 }

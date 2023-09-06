@@ -1,14 +1,22 @@
 .main {
-  justify-content: center;
-  display: flex;
+  &__container {
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    align-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+  }
 
-  flex-direction: row;
-  align-content: space-around;
-  flex-wrap: wrap;
   &__wrapper {
     margin: 10px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+  }
+  &__select {
+    width: 300px;
+    justify-content: center;
+    display: flex;
   }
 }
