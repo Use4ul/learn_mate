@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Card } from './types/types';
 import { RootState, useAppDispatch } from '../../redux/store';
@@ -8,12 +8,21 @@ function TypeAnswerItem({
   card,
   correctAnswers,
   setCorrectAnswers,
+  input,
+  setInput,
+
+  setColorWords,
 }: {
   card: Card;
   correctAnswers: string;
   setCorrectAnswers: React.Dispatch<React.SetStateAction<string>>;
+  input: Boolean;
+  setInput: React.Dispatch<React.SetStateAction<boolean>>;
+
+  setColorWords: React.Dispatch<React.SetStateAction<string>>;
 }): JSX.Element {
   const [answer, setAnswer] = useState('');
+
   const authUser = useSelector((store: RootState) => store.auth.authUser);
 
   const dispatch = useAppDispatch();
@@ -21,18 +30,26 @@ function TypeAnswerItem({
   const handaleAnswer: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     if (answer.toLowerCase() === card.definition.toLowerCase()) {
-      setCorrectAnswers('Правильно');
+      // setCorrectAnswers('Правильно');
       setAnswer('');
       if (authUser) {
         dispatch(sendAnswer({ user_id: authUser.id, card_id: card.id, isCorrect: true }));
       }
-    } else {
-      setCorrectAnswers(`Неверно. Ответ: ${card.definition}`);
-      if (authUser) {
-        dispatch(sendAnswer({ user_id: authUser.id, card_id: card.id, isCorrect: false }));
-      }
+    }
+    // setCorrectAnswers(`Неверно. Ответ: ${card.definition}`);
+    if (authUser) {
+      dispatch(sendAnswer({ user_id: authUser.id, card_id: card.id, isCorrect: false }));
+      setAnswer('');
     }
   };
+  const changeCard = (): void => {
+    setInput((prev) => !prev);
+    setColorWords('#fff');
+  };
+  useEffect(() => {
+    setInput(true);
+    setColorWords('#222');
+  }, [card]);
 
   return (
     <div>
@@ -43,9 +60,11 @@ function TypeAnswerItem({
           value={answer}
           onChange={(e) => setAnswer(e.target.value)}
         />
-        <button type="submit">Проверить</button>
+        <button type="submit" onClick={() => changeCard()}>
+          Проверить
+        </button>
       </form>
-      <div>{correctAnswers}</div>
+      <input className="card__check-input" checked={!input} onChange={changeCard} type="checkbox" />
     </div>
   );
 }

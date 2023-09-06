@@ -16,6 +16,8 @@ function CardsPage(): JSX.Element {
   const [cardIndex, setCardIndex] = useState(0);
   const [trainingOptions, setrainingOptions] = useState('');
   const [correctAnswers, setCorrectAnswers] = useState('');
+  const [input, setInput] = useState(false);
+  const [colorWords, setColorWords] = useState('#222');
 
   const dispatch = useAppDispatch();
   let id: ModuleId;
@@ -46,7 +48,15 @@ function CardsPage(): JSX.Element {
     <div style={{ textAlign: 'center' }}>
       <h1>Название модуля</h1>
       <div className="btn_and_card">
-        {cards.length && <CardItem card={cards[cardIndex]} />}
+        {cards.length && (
+          <CardItem
+            card={cards[cardIndex]}
+            input={input}
+            setInput={setInput}
+            colorWords={colorWords}
+            setColorWords={setColorWords}
+          />
+        )}
         <div className="buttons_container">
           <button type="button" disabled={!cardIndex} onClick={handeleBack}>
             Назад
@@ -82,6 +92,9 @@ function CardsPage(): JSX.Element {
               cards={cards}
               cardIndex={cardIndex}
               setCorrectAnswers={setCorrectAnswers}
+              input={input}
+              setInput={setInput}
+              setColorWords={setColorWords}
             />
           ) : (
             <div />
@@ -93,6 +106,9 @@ function CardsPage(): JSX.Element {
               card={cards[cardIndex]}
               setCorrectAnswers={setCorrectAnswers}
               correctAnswers={correctAnswers}
+              input={input}
+              setInput={setInput}
+              setColorWords={setColorWords}
             />
           ) : (
             <div />
