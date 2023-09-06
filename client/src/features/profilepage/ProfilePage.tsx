@@ -16,7 +16,6 @@ function ProfilePage(): React.JSX.Element {
   const user = useSelector((store: RootState) => store.auth.authUser);
 
   console.log(modules);
-  
 
   const { userId } = useParams();
 
@@ -34,7 +33,7 @@ function ProfilePage(): React.JSX.Element {
   return (
     <div className="profile__container">
       <div>
-        <div>
+        <div className="profile__buttons">
           {/* <Link to={`/profile/${userId}/statistics`}> */}
           <button type="button">
             <a href={`/profile/${userId}/statistics`}>Статистика</a>
@@ -48,9 +47,7 @@ function ProfilePage(): React.JSX.Element {
             {/* <Link to={`/profile/${userId}/statistics`} />  */}
           </button>
           {/* </Link> */}
-        </div>
 
-        <div className="profile__module">
           <div>
             {/* <Link to="/modules/add"> */}
             <button type="button">
@@ -58,31 +55,31 @@ function ProfilePage(): React.JSX.Element {
             </button>
             {/* </Link> */}
           </div>
-
-          <div>
-            <label>
-              Поиск по своим модулям
-              <br />
-              <input
-                value={search}
-                placeholder="введите название модуля"
-                onChange={(e) => {
-                  setSearch(e.target.value);
-                }}
-              />
-            </label>
-          </div>
-
-          {filteredModules.length ? (
-            filteredModules.map((module) => (
-              <div>
-                <ModulItem key={module.id} module={module} />
-              </div>
-            ))
-          ) : (
-            <div>Ничего не найдено</div>
-          )}
         </div>
+
+        <div className="profile__input">
+          <label>
+            Поиск по своим модулям
+            <br />
+            <input
+              value={search}
+              placeholder="Введите название модуля"
+              onChange={(e) => {
+                setSearch(e.target.value);
+              }}
+            />
+          </label>
+        </div>
+
+        {filteredModules.length ? (
+          filteredModules.map((module) => (
+            <div>
+              <ModulItem key={module.id} module={module} />
+            </div>
+          ))
+        ) : (
+          <div>Ничего не найдено</div>
+        )}
       </div>
       {user?.role_id === 1 && (
         <div>
