@@ -6,6 +6,7 @@ const apiCardRouter = require('./api/cards.routes');
 const apiUserRouter = require('./api/user.routes');
 const apiGroupsRouter = require('./api/groups.routers');
 const apiAnswersRouter = require('./api/answers.routes')
+const apiTasksRouter = require('./api/tasks.routes')
 
 const apiAuthRouter = require('./api/auth.routes');
 router.use('/api/auth', apiAuthRouter);
@@ -16,5 +17,6 @@ router.use('/api/cards', apiCardRouter);
 router.use('/api/user', apiUserRouter);
 router.use('/api/groups', apiGroupsRouter);
 router.use('/api/answers', apiAnswersRouter);
+router.use('/api/tasks', apiTasksRouter);
 
 module.exports = router;

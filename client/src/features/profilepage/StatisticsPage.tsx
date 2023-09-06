@@ -8,7 +8,7 @@ function StatisticsPage(): React.JSX.Element {
   const { userId } = useParams();
   const modules = useSelector((store: RootState) => store.profile.modulesForStat);
   const cardsProgress = useSelector((store: RootState) => store.profile.cardsProgress);
-  console.log(cardsProgress);
+
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -26,7 +26,12 @@ function StatisticsPage(): React.JSX.Element {
               <div className="card__container">
                 <div>{card.term}</div>
                 <div>{card.definition}</div>
-                <div>{`Правильных ответов по карточке: ${(cardsProgress.filter((el) => el.card_id === card.id))[0].progress}%`}</div>
+                {Boolean(cardsProgress.length) && (
+                  <div>{`Правильных ответов по карточке: ${
+                    cardsProgress.filter((el) => el.card_id === card.id)[0].progress
+                  }%`}
+                  </div>
+                )}
               </div>
             ))}
           </>

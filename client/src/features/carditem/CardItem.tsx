@@ -35,8 +35,9 @@ function CardItem({ card }: { card: Card }): JSX.Element {
 
   return (
     <div className="card__container">
-      <label>
+      <label className="card__label">
         <input
+          className="card__check-input"
           checked={input}
           /*  onChange={() => {
             setInput((prev) => !prev), ;
@@ -44,9 +45,9 @@ function CardItem({ card }: { card: Card }): JSX.Element {
           onChange={func}
           type="checkbox"
         />
-        <div className="card">
-          <div className="front">{card.term}</div>
-          <div className="back" style={{ color: def }}>
+        <div className="card__card">
+          <div className="card__front card__div">{card.term}</div>
+          <div className="card__back card__div" style={{ color: def }}>
             {rightAnswer}
           </div>
         </div>

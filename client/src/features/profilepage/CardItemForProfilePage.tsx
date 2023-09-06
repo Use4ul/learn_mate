@@ -18,7 +18,6 @@ function CardItemForProfilePage({ card }: { card: Card }): React.JSX.Element {
         <div>{card.term}</div>
         <div>{card.definition}</div>
       </div>
-      <div> Прогресс</div>
       <button type="button" onClick={handleCardDelete}>
         Удалить карточку
       </button>

@@ -4,7 +4,7 @@ export type AuthUser = {
   nickname: string;
   email: string;
   password: string;
-  role: number;
+  role_id: number;
 };
 
 export type AuthUserId = AuthUser['id'];
@@ -14,5 +14,5 @@ export type AuthUserWithoutId = {
   nickname: string;
   email: string;
   password: string;
-  role: number;
+  role_id: number;
 };
