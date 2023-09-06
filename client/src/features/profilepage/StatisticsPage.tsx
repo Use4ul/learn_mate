@@ -8,7 +8,6 @@ function StatisticsPage(): React.JSX.Element {
   const { userId } = useParams();
   const modules = useSelector((store: RootState) => store.profile.modulesForStat);
   const cardsProgress = useSelector((store: RootState) => store.profile.cardsProgress);
-  console.log(userId);
 
   const dispatch = useAppDispatch();
 

@@ -8,6 +8,7 @@ const initialState: State = {
   groups: [],
   groupItem: [],
   users: [],
+  group: [],
   error: undefined,
 };
 
@@ -52,7 +53,7 @@ const groupsSlice = createSlice({
         state.groups = state.groups.filter((group) => group.id !== action.payload);
       })
       .addCase(addGroup.fulfilled, (state, action) => {
-        state.groups.push(action.payload);
+        state.group = action.payload;
       })
       .addCase(addGroup.rejected, (state, action) => {
         state.error = action.error.message;

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { RootState, useAppDispatch } from '../../redux/store';
 import { Group, GroupId } from './types/types';
 import './styles/style.scss';
 import {
+  loadGroups,
   loadUsers,
   updateTitleGroup,
   userAdd,
@@ -13,9 +14,11 @@ import {
 } from './slices/groupsSlice';
 
 function GroupUpdatePage(): JSX.Element {
+  const { userId } = useParams();
   const { groupId } = useParams();
   const [searchName, setSearchName] = useState('');
   const [visibility, setVisibility] = useState(false);
+  const [changeTitle, setchangeTitle] = useState(false);
 
   const dispatch = useAppDispatch();
   const group = useSelector((store: RootState) => store.groups.groups);
@@ -41,7 +44,9 @@ function GroupUpdatePage(): JSX.Element {
     }
   };
 
-  const filterNikname = users.filter((user) => user.nickname.toLowerCase().includes(searchName));
+  const filterNikname = users.filter((user) =>
+    user.nickname.toLowerCase().includes(searchName.toLowerCase()),
+  );
   const handeleSearch: React.ChangeEventHandler<HTMLInputElement> = (e): void => {
     setSearchName(e.target.value);
     setVisibility(true);
@@ -59,6 +64,7 @@ function GroupUpdatePage(): JSX.Element {
   useEffect(() => {
     dispatch(userInGroup(groupItem[0]));
     dispatch(loadUsers());
+    dispatch(loadGroups());
   }, []);
 
   return (
@@ -71,8 +77,10 @@ function GroupUpdatePage(): JSX.Element {
             type="text"
             onChange={(e) => setNewTitle(e.target.value)}
           />
-          <button type="submit">Изменить название группы</button>
-          <div>Новое название: {title}</div>
+          <button type="submit" onClick={() => setchangeTitle(true)}>
+            Изменить название группы
+          </button>
+          {changeTitle === true && <div>Новое название: {title}</div>}
         </form>
       </div>
       <div>
@@ -113,12 +121,15 @@ function GroupUpdatePage(): JSX.Element {
                 type="button"
                 onClick={() => dispatch(userGroupItemDelete({ groupIt, deleteGroup }))}
               >
-                удалить из группы
+                Удалить из группы
               </button>
             </div>
           ))}
         </div>
       </div>
+      <Link to={`/profile/${userId}`}>
+        <button type="button">Вернуться в личный кабинет</button>
+      </Link>
     </div>
   );
 }

@@ -10,7 +10,6 @@ function ModuleAddPage(): React.JSX.Element {
   const dispatch = useAppDispatch();
 
   const module = useSelector((store: RootState) => store.profile.module);
-  console.log(module);
 
   const categories = useSelector((store: RootState) => store.categories.categories);
 
