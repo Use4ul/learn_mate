@@ -17,6 +17,7 @@ function GroupUpdatePage(): JSX.Element {
   const { groupId } = useParams();
   const [searchName, setSearchName] = useState('');
   const [visibility, setVisibility] = useState(false);
+  const [changeTitle, setchangeTitle] = useState(false);
 
   const dispatch = useAppDispatch();
   const group = useSelector((store: RootState) => store.groups.groups);
@@ -42,7 +43,9 @@ function GroupUpdatePage(): JSX.Element {
     }
   };
 
-  const filterNikname = users.filter((user) => user.nickname.toLowerCase().includes(searchName));
+  const filterNikname = users.filter((user) =>
+    user.nickname.toLowerCase().includes(searchName.toLowerCase()),
+  );
   const handeleSearch: React.ChangeEventHandler<HTMLInputElement> = (e): void => {
     setSearchName(e.target.value);
     setVisibility(true);
@@ -73,8 +76,10 @@ function GroupUpdatePage(): JSX.Element {
             type="text"
             onChange={(e) => setNewTitle(e.target.value)}
           />
-          <button type="submit">Изменить название группы</button>
-          <div>Новое название: {title}</div>
+          <button type="submit" onClick={() => setchangeTitle(true)}>
+            Изменить название группы
+          </button>
+          {changeTitle === true && <div>Новое название: {title}</div>}
         </form>
       </div>
       <div>
@@ -94,7 +99,8 @@ function GroupUpdatePage(): JSX.Element {
                   <button
                     type="button"
                     onClick={() =>
-                      handeleNewUser({ student_id: user.id, group_id: groupToSend.id })}
+                      handeleNewUser({ student_id: user.id, group_id: groupToSend.id })
+                    }
                   >
                     Добавить
                   </button>
@@ -114,7 +120,7 @@ function GroupUpdatePage(): JSX.Element {
                 type="button"
                 onClick={() => dispatch(userGroupItemDelete({ groupIt, deleteGroup }))}
               >
-                удалить из группы
+                Удалить из группы
               </button>
             </div>
           ))}
