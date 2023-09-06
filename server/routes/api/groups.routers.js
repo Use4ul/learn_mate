@@ -84,11 +84,11 @@ router.post('/', async (req, res) => {
         title,
         teacher_id: req.session.user_id,
       });
-      // const oneGroup = await Group.findOne({
-      //   where: { id: newGroup.id },
-      // });
-      res.json(newGroup);
-      console.log(newGroup);
+      const oneGroup = await Group.findOne({
+        where: { id: newGroup.id },
+      });
+      res.json([oneGroup]);
+      console.log(oneGroup);
     } else {
       res.json({ message: 'Вы не учитель' });
       return;

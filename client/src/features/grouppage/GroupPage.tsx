@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../../redux/store';
-import { addGroup, userAdd } from './slices/groupsSlice';
+import { addGroup, loadUsers, userAdd } from './slices/groupsSlice';
 
 function GroupPage(): React.JSX.Element {
   const [title, setNewTitle] = useState('');
   const [searchName, setSearchName] = useState('');
   const [visibility, setVisibility] = useState(false);
   const users = useSelector((store: RootState) => store.groups.users);
+  const group = useSelector((store: RootState) => store.groups.group);
+  console.log(group);
 
   const dispatch = useAppDispatch();
   const handeleAddGroup = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
@@ -29,6 +31,9 @@ function GroupPage(): React.JSX.Element {
   }): Promise<void> => {
     dispatch(userAdd({ student_id, group_id }));
   };
+  useEffect(() => {
+    dispatch(loadUsers());
+  }, []);
   return (
     <div className="group__container">
       <div>
@@ -59,7 +64,7 @@ function GroupPage(): React.JSX.Element {
                   {user.nickname}
                   <button
                     type="button"
-                    onClick={() => handeleNewUser({ student_id: user.id, group_id: 1 })}
+                    onClick={() => handeleNewUser({ student_id: user.id, group_id: group[0].id })}
                   >
                     Добавить
                   </button>

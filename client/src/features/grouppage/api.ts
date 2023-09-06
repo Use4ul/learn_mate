@@ -13,13 +13,14 @@ export const fetchGroupsDelete = async (id: GroupId): Promise<GroupId> => {
   return data;
 };
 
-export const fetchGroupAdd = async (group: NewGroup): Promise<Group> => {
+export const fetchGroupAdd = async (group: NewGroup): Promise<Group[]> => {
   const res = await fetch('/api/groups', {
     method: 'POST',
     headers: { 'Content-type': 'application/json' },
     body: JSON.stringify(group),
   });
 
+  console.log(res);
   return res.json();
 };
 
