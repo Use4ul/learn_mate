@@ -48,7 +48,7 @@ function CardsPage(): JSX.Element {
 
   return (
     <div style={{ textAlign: 'center' }}>
-      {Boolean(moduleId) && <h1>{modules.filter((el) => el.id === Number(moduleId))[0].title}</h1>}
+{/*       {Boolean(moduleId) && <h1>{modules.filter((el) => el.id === Number(moduleId))[0].title}</h1>} */}
       <div className="btn_and_card">
         {cards.length && (
           <CardItem
