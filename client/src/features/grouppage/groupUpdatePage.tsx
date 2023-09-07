@@ -82,6 +82,7 @@ function GroupUpdatePage(): JSX.Element {
         <div>
           <form onSubmit={handeleNewTitleGroup}>
             <input
+              className="group__fomName"
               placeholder="введите новое название группы"
               value={title}
               type="text"
@@ -93,11 +94,11 @@ function GroupUpdatePage(): JSX.Element {
             {changeTitle === true && <div>Новое название: {title}</div>}
           </form>
         </div>
-        <div>
+        <div className="group__formSearch">
           <form>
             <input
+              className="group__formSearchInput"
               type="text"
-              className="search"
               placeholder="Введите никнейм "
               value={searchName}
               onChange={(e) => handeleSearch(e)}
@@ -106,15 +107,17 @@ function GroupUpdatePage(): JSX.Element {
               <ul className="list">
                 {filterNikname.map((user) => (
                   <li className="list">
-                    {user.nickname}
-                    <button
-                      type="button"
-                      onClick={() =>
-                        handeleNewUser({ student_id: user.id, group_id: groupToSend.id })
-                      }
-                    >
-                      Добавить
-                    </button>
+                    <div className="group__listOne">
+                      {user.nickname}
+                      <button
+                        type="button"
+                        onClick={() =>
+                          handeleNewUser({ student_id: user.id, group_id: groupToSend.id })
+                        }
+                      >
+                        Добавить
+                      </button>
+                    </div>
                   </li>
                 ))}
               </ul>
@@ -123,11 +126,12 @@ function GroupUpdatePage(): JSX.Element {
         </div>
 
         <div>
-          <div>
+          <div className="group__userInGroup">
             {oneGroupIt.map((groupIt) => (
-              <div>
+              <div className="group__oneUserInGroup">
                 {groupIt.User.nickname}
                 <button
+                  className="group__userButton"
                   type="button"
                   onClick={() => dispatch(userGroupItemDelete({ groupIt, deleteGroup }))}
                 >
@@ -138,16 +142,20 @@ function GroupUpdatePage(): JSX.Element {
           </div>
         </div>
       </div>
-      <div>
-        <h1>Модули, назначенные группе:</h1>
+      <div className="group__modulesTitle">Модули, назначенные группе:</div>
+      <div className="group__modules">
         {Boolean(tasks.length) &&
           tasks.map((task) => (
-            <>
+            <div className="group__modulesOne">
               <ModulItem module={task.Module} />
-              <button type="button" onClick={() => handleDeleteTask(task.id)}>
+              <button
+                className="group__modulesOneButton"
+                type="button"
+                onClick={() => handleDeleteTask(task.id)}
+              >
                 удалить назначение модуля {task.Module.title} группе {title}
               </button>
-            </>
+            </div>
           ))}
       </div>
       <Link to={`/profile/${userId}`}>

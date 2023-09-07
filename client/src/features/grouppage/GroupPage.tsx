@@ -70,36 +70,39 @@ function GroupPage(): React.JSX.Element {
       <div>
         <form onSubmit={handeleAddGroup}>
           <input
+            className="group__fomName"
             placeholder="Введите название группы"
             value={title}
             type="text"
             onChange={newGroupAdd}
           />
-          <button type="submit" /* onClick={() => setNewGroup(true)} */>Cоздать группу</button>
+          <button type="submit">Cоздать группу</button>
           {error && <span> {error} </span>}
           {!error && newGroup === true && <div> Вы создали группу: {title}</div>}
         </form>
       </div>
-      <div>
+      <div className="group__formSearch">
         <form>
           <input
             type="text"
-            className="search"
+            className="group__formSearchInput"
             placeholder="Введите никнейм "
             value={searchName}
             onChange={(e) => handeleSearch(e)}
           />
           {visibility === true && (
-            <ul className="list">
+            <ul className="group__list">
               {filterNikname.map((user) => (
                 <li className="list">
-                  {user.nickname}
-                  <button
-                    type="button"
-                    onClick={() => handeleNewUser({ student_id: user.id, group_id: group[0].id })}
-                  >
-                    Добавить
-                  </button>
+                  <div className="group__listOne">
+                    {user.nickname}
+                    <button
+                      type="button"
+                      onClick={() => handeleNewUser({ student_id: user.id, group_id: group[0].id })}
+                    >
+                      Добавить
+                    </button>
+                  </div>
                 </li>
               ))}
             </ul>
