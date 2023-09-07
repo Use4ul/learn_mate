@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { RootState, useAppDispatch } from '../../redux/store';
 import { loadCardStat, loadModulesForUserStat, loadgroupStat } from './profileSlice';
+import './styles/style.scss';
 
 function StatisticsPage(): React.JSX.Element {
   const { userId } = useParams();
@@ -22,56 +23,61 @@ function StatisticsPage(): React.JSX.Element {
   }, []);
 
   return (
-    <div>
-      <button type="button" onClick={() => setPage('common')}>
-        Общая статистика
-      </button>
-      {user?.role_id === 1 && (
-        <button type="button" onClick={() => setPage('group')}>
-          Статистика по классам
+    <div className="stasistics__container">
+      <div className="stasistics__button">
+        <button type="button" onClick={() => setPage('common')}>
+          Общая статистика
         </button>
-      )}
-
-      {page === 'common' ? (
-        <div>
-          {Boolean(modules.length) &&
-            modules.map((module) => (
-              <>
-                <div>{`Модуль - ${module.title}`}</div>
-                {module.Cards.map((card) => (
-                  <div className="card__container">
-                    <div>{card.term}</div>
-                    <div>{card.definition}</div>
-                    {Boolean(cardsProgress.length) && (
-                      <div>
-                        {`Правильных ответов по карточке: ${
-                          cardsProgress.filter((el) => el.card_id === card.id)[0].progress
-                        }%`}
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </>
-            ))}
-        </div>
-      ) : (
-        <>
-          <div>Статистика по группам</div>
+        {user?.role_id === 1 && (
+          <button type="button" onClick={() => setPage('group')}>
+            Статистика по классам
+          </button>
+        )}
+      </div>
+      <div className="stasistics__modules">
+        {page === 'common' ? (
           <div>
-            {Boolean(groupProgress.length) &&
-              groupProgress.map((group) => (
-                <>
-                  <div>{group.title}</div>
-                  <div>
-                    {group.result.length ? group.result.map((el) => (
-                      <div>{`${el.nickname} - ${el.progress}%`}</div>
-                    )) : <div>{`Отсутствуют результаты в группе ${group.title}`}</div>}
-                  </div>
-                </>
+            {Boolean(modules.length) &&
+              modules.map((module) => (
+                <div className="stasistics__moduleOne">
+                  <div className="stasistics__moduleTitle">{`Модуль - ${module.title}`}</div>
+                  {module.Cards.map((card) => (
+                    <div className="stasistics__cards">
+                      <div>{card.term}</div>
+                      <div>{card.definition}</div>
+                      {Boolean(cardsProgress.length) && (
+                        <div>
+                          {`Правильных ответов по карточке: ${
+                            cardsProgress.filter((el) => el.card_id === card.id)[0].progress
+                          }%`}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
               ))}
           </div>
-        </>
-      )}
+        ) : (
+          <div className="stasistics__groups">
+            <div className="stasistics__groupsH2">Статистика по группам</div>
+            <div className="stasistics__groups">
+              {Boolean(groupProgress.length) &&
+                groupProgress.map((group) => (
+                  <div className="stasistics__groupsOne">
+                    <div>{group.title}</div>
+                    <div>
+                      {group.result.length ? (
+                        group.result.map((el) => <div>{`${el.nickname} - ${el.progress}%`}</div>)
+                      ) : (
+                        <div className="stasistics__groupsOneNo">{`Отсутствуют результаты в группе ${group.title}`}</div>
+                      )}
+                    </div>
+                  </div>
+                ))}
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

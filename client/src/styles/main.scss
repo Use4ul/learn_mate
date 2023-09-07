@@ -1,8 +1,13 @@
 @import url('../styles/variables.scss');
 
+* {
+  font-family: Comic Sans MS, Comic Sans, cursive;
+}
 body {
-  font-family: 'Bentham';
-  color: var(--a-font-color);
+
+  // font-family: fantasy;
+  color: var(--main-text-color);
+
   background-color: var(--background-color);
   transition: background-color 500ms linear;
 }
@@ -32,7 +37,7 @@ button {
   text-decoration: none;
   text-align: center;
   text-transform: uppercase;
-  font-family: 'Montserrat', sans-serif;
+  // font-family: 'Montserrat', sans-serif;
   font-weight: 700;
 
   &:hover,
@@ -63,6 +68,9 @@ a:visited {
 a:hover {
   color: var(--a-hover-font-color);
 }
+h2 {
+  color: aliceblue;
+}
 
 form {
   border-radius: 10px;
@@ -75,10 +83,8 @@ form {
 input,
 select {
   padding-left: 10px;
-  font-size: 24px;
-  height: 34px;
-  width: 60%;
-  margin: 24px 0;
+
+
   max-height: max-content;
   font-size: 24px;
   border: 2px solid #000000;

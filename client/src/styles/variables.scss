@@ -26,6 +26,7 @@ html[data-theme='Темная тема'] {
   --input-placeholder-color: #ffffff;
 
   --background-color: #1b263b;
+  // --a-background-color:#415a77
 }
 
 html[data-theme='Светлая тема'] {
@@ -42,8 +43,9 @@ html[data-theme='Светлая тема'] {
   --box-shadow-color: rgba(34, 60, 80, 0.58);
 
   --button-text-color: #000000;
-  --button-hover-font-color: #ffffff;
-  --button-background-color: #81a4cd;
+
+  --button-background-color: #415a77;
+
   --button-border-color: #81a4cd;
 
   --input-text-color: #ffffff;
