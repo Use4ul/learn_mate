@@ -6,16 +6,16 @@ import { sendAnswer, setFlagForUpdate } from '../carditem/progressSlice';
 
 function TypeAnswerItem({
   card,
-  correctAnswers,
-  setCorrectAnswers,
+  /* correctAnswers,
+  setCorrectAnswers, */
   input,
   setInput,
 
   setColorWords,
 }: {
   card: Card;
-  correctAnswers: string;
-  setCorrectAnswers: React.Dispatch<React.SetStateAction<string>>;
+  /* correctAnswers: string;
+  setCorrectAnswers: React.Dispatch<React.SetStateAction<string>>; */
   input: Boolean;
   setInput: React.Dispatch<React.SetStateAction<boolean>>;
 
@@ -29,20 +29,17 @@ function TypeAnswerItem({
 
   const handaleAnswer: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
-    if (answer.toLowerCase() === card.definition.toLowerCase()) {
+    if (authUser) {
       // setCorrectAnswers('Правильно');
-      if (authUser) {
+      if (answer.toLowerCase() === card.definition.toLowerCase()) {
         dispatch(sendAnswer({ user_id: authUser.id, card_id: card.id, isCorrect: true }));
         dispatch(setFlagForUpdate());
-      }
-      setAnswer('');
-    } else {
-      // setCorrectAnswers(`Неверно. Ответ: ${card.definition}`);
-      if (authUser) {
+      } else {
         dispatch(sendAnswer({ user_id: authUser.id, card_id: card.id, isCorrect: false }));
         dispatch(setFlagForUpdate());
-        setAnswer('');
       }
+      // setCorrectAnswers(`Неверно. Ответ: ${card.definition}`);
+      setAnswer('');
     }
   };
 

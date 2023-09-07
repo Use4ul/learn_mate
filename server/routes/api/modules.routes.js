@@ -84,8 +84,10 @@ router.delete('/:moduleId', async (req, res) => {
   try {
     const oneModule = await Module.findOne({ where: { id: +moduleId } });
     if (oneModule.user_id === req.session.user_id) {
-      const result = Module.destroy({ where: { id: +moduleId } });
+      const result = await Module.destroy({ where: { id: +moduleId } });
+      console.log(result);
       if (result > 0) {
+        console.log('deletion');
         res.json(+moduleId);
         return;
       }

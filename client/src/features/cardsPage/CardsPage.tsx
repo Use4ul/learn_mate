@@ -25,10 +25,11 @@ function CardsPage(): JSX.Element {
   if (moduleId) {
     id = +moduleId;
   }
-  console.log(Number(moduleId));
 
-  const modules = useSelector((store: RootState) => store.modules.modules);
+  /*  const modules = useSelector((store: RootState) => store.modules.modules); */
   const cards = useSelector((store: RootState) => store.cards.cards);
+
+  console.log(cards);
 
   const handeleForward = (): void => {
     setCardIndex((prev) => prev + 1);
@@ -78,12 +79,17 @@ function CardsPage(): JSX.Element {
           <button type="button" onClick={() => handeleTypeTraining('')}>
             Заучивание
           </button>
-          <button type="button" onClick={() => handeleTypeTraining('SeveralAnswers')}>
-            Варианты ответа
-          </button>
-          <button type="button" onClick={() => handeleTypeTraining('WriteAnswers')}>
-            Напиши правильный ответ
-          </button>
+
+          {cards.length > 3 && (
+            <>
+              <button type="button" onClick={() => handeleTypeTraining('SeveralAnswers')}>
+                Варианты ответа
+              </button>
+              <button type="button" onClick={() => handeleTypeTraining('WriteAnswers')}>
+                Напиши правильный ответ
+              </button>
+            </>
+          )}
         </div>
       </div>
       <div className="actions_container">
@@ -93,7 +99,7 @@ function CardsPage(): JSX.Element {
               card={cards[cardIndex]}
               cards={cards}
               cardIndex={cardIndex}
-              setCorrectAnswers={setCorrectAnswers}
+              /* setCorrectAnswers={setCorrectAnswers} */
               input={input}
               setInput={setInput}
               setColorWords={setColorWords}
@@ -106,8 +112,8 @@ function CardsPage(): JSX.Element {
           {trainingOptions === 'WriteAnswers' ? (
             <TypeAnswerItem
               card={cards[cardIndex]}
-              setCorrectAnswers={setCorrectAnswers}
-              correctAnswers={correctAnswers}
+              /*  setCorrectAnswers={setCorrectAnswers} */
+              /* correctAnswers={correctAnswers} */
               input={input}
               setInput={setInput}
               setColorWords={setColorWords}
