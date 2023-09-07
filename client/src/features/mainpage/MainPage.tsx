@@ -15,8 +15,7 @@ function MainPage(): JSX.Element {
   const categories = useSelector((store: RootState) => store.categories.categories);
   const modules = useSelector((store: RootState) => store.modules.modules);
 
-  const modulesUser = useSelector((store: RootState) => store.profile.modules)
-  
+  const modulesUser = useSelector((store: RootState) => store.profile.modules);
 
   const filteredModules =
     category !== 'Все категории'
@@ -40,10 +39,6 @@ function MainPage(): JSX.Element {
           {categories.map((el) => (
             <option key={el.id}>{el.title}</option>
           ))}
-          {/** добавить onchange на выбор опции */}
-          {/** мапнем категории подтянутые с бэка */}
-          {/* <option>Category1</option>
-          <option>Category2</option> */}
         </select>
       </div>
       <div className="main__wrapper">
