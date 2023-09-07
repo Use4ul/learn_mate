@@ -22,12 +22,10 @@ function Navbar(): JSX.Element {
 
   const { theme, setTheme } = useTheme();
   theme;
-  const [themeName, setThemeName] = useState('Темная тема');
+  const [themeName, setThemeName] = useState('🌚');
   const themeFunc = () => {
     localStorage.userTheme === 'Темная тема' ? setTheme('Светлая тема') : setTheme('Темная тема');
-    localStorage.userTheme === 'Темная тема'
-      ? setThemeName('Темная тема')
-      : setThemeName('Светлая тема');
+    localStorage.userTheme === 'Темная тема' ? setThemeName('🌚') : setThemeName('🔆');
   };
 
   return (
@@ -38,7 +36,7 @@ function Navbar(): JSX.Element {
             <li>
               <NavLink to="/">Главная</NavLink>
             </li>
-            <li onClick={themeFunc}>{themeName}</li>
+
             {authUser ? (
               <>
                 <li>
@@ -67,6 +65,10 @@ function Navbar(): JSX.Element {
                 </li>
               </>
             )}
+
+            <button className="themeBtn" onClick={themeFunc}>
+              {themeName}
+            </button>
           </ul>
         </div>
       </nav>
