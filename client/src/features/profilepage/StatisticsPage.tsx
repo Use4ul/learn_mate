@@ -30,7 +30,7 @@ function StatisticsPage(): React.JSX.Element {
         </button>
         {user?.role_id === 1 && (
           <button type="button" onClick={() => setPage('group')}>
-            Статистика по классам
+            Статистика по группам
           </button>
         )}
       </div>
