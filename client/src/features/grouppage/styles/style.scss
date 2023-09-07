@@ -1,6 +1,69 @@
 .group {
   &__container {
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
   }
-}
-.list {
+  &__fomName {
+    margin-left: -255px;
+  }
+  &__list {
+    list-style: none;
+    display: flex;
+    flex-direction: row-reverse;
+
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  &__formSearchInput {
+    margin-left: -255px;
+  }
+  &__listOne {
+    border: 2px solid rgb(118, 114, 114);
+    margin: 10px;
+    width: 170px;
+    border-radius: 10px;
+    align-items: center;
+
+    display: flex;
+    flex-direction: column;
+  }
+  &__userInGroup {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  &__oneUserInGroup {
+    border: 2px solid rgb(118, 114, 114);
+    margin: 10px;
+    border-radius: 10px;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 10px;
+  }
+  &__userButton {
+    width: 160px;
+  }
+  &__modules {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+  &__modulesOneButton {
+    width: 260px;
+    border-radius: 10px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+  }
+  &__modulesTitle {
+    font-size: larger;
+    margin-left: -20px;
+  }
 }
