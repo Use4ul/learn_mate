@@ -17,7 +17,7 @@ function ModulItem({ module }: { module: Module | ModuleWithCards }): JSX.Elemen
   const handleDeleteModule: React.MouseEventHandler<HTMLButtonElement> = async (e) => {
     e.nativeEvent.stopPropagation();
     console.log(e);
-    // dispatch(deleteModule(module.id));
+    dispatch(deleteModule(module.id));
   };
 
   return (

@@ -37,12 +37,14 @@ function CardItem({
   const dispatch = useAppDispatch();
 
   const progress = useSelector((store: RootState) => store.progress.progress);
+  const flag = useSelector((store: RootState) => store.progress.flagForUpdate);
 
   dispatch(loadCardProgress(card.id));
 
   useEffect(() => {
     dispatch(loadCardProgress(card.id));
-  }, [progress]);
+    console.log('load card progress');
+  }, [flag, progress]);
 
   return (
     <div className="card__container">

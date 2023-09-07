@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Card } from './types/types';
 import { RootState, useAppDispatch } from '../../redux/store';
-import { sendAnswer } from '../carditem/progressSlice';
+import { sendAnswer, setFlagForUpdate } from '../carditem/progressSlice';
 
 function TypeAnswerItem({
   card,
@@ -31,17 +31,21 @@ function TypeAnswerItem({
     e.preventDefault();
     if (answer.toLowerCase() === card.definition.toLowerCase()) {
       // setCorrectAnswers('Правильно');
-      setAnswer('');
       if (authUser) {
         dispatch(sendAnswer({ user_id: authUser.id, card_id: card.id, isCorrect: true }));
+        dispatch(setFlagForUpdate());
+      }
+      setAnswer('');
+    } else {
+      // setCorrectAnswers(`Неверно. Ответ: ${card.definition}`);
+      if (authUser) {
+        dispatch(sendAnswer({ user_id: authUser.id, card_id: card.id, isCorrect: false }));
+        dispatch(setFlagForUpdate());
+        setAnswer('');
       }
     }
-    // setCorrectAnswers(`Неверно. Ответ: ${card.definition}`);
-    if (authUser) {
-      dispatch(sendAnswer({ user_id: authUser.id, card_id: card.id, isCorrect: false }));
-      setAnswer('');
-    }
   };
+
   const changeCard = (): void => {
     setInput((prev) => !prev);
     setColorWords('#fff');

@@ -5,6 +5,7 @@ import { Answer, CardId } from '../cardsPage/types/types';
 
 const initialState: State = {
   progress: 0,
+  flagForUpdate: false,
   error: undefined,
 };
 
@@ -20,7 +21,11 @@ export const sendAnswer = createAsyncThunk(
 const progressSlice = createSlice({
   name: 'progress',
   initialState,
-  reducers: {},
+  reducers: {
+    setFlagForUpdate: (state) => {
+      state.flagForUpdate = !state.flagForUpdate;
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(loadCardProgress.fulfilled, (state, action) => {
@@ -38,4 +43,5 @@ const progressSlice = createSlice({
   },
 });
 
+export const { setFlagForUpdate } = progressSlice.actions;
 export default progressSlice.reducer;
