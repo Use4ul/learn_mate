@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Module } from './types/types';
 import './styles/style.scss';
@@ -9,7 +9,7 @@ import { deleteModule } from '../profilepage/profileSlice';
 import { ModuleWithCards } from '../profilepage/types/type';
 
 function ModulItem({ module }: { module: Module | ModuleWithCards }): JSX.Element {
-  const navigate = useNavigate();
+  /* const navigate = useNavigate(); */
   const dispatch = useAppDispatch();
 
   const user = useSelector((store: RootState) => store.auth.authUser);

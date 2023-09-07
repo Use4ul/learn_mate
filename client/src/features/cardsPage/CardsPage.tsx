@@ -26,7 +26,7 @@ function CardsPage(): JSX.Element {
     id = +moduleId;
   }
 
-  const modules = useSelector((store: RootState) => store.modules.modules);
+  /*  const modules = useSelector((store: RootState) => store.modules.modules); */
   const cards = useSelector((store: RootState) => store.cards.cards);
 
   console.log(cards);
@@ -49,7 +49,10 @@ function CardsPage(): JSX.Element {
 
   return (
     <div style={{ textAlign: 'center' }}>
-      {/* {Boolean(moduleId) && <h1>{modules.filter((el) => el.id === Number(moduleId))[0].title}</h1>} */}
+
+      {/*       {Boolean(moduleId) && <h1>{modules.filter((el) =>
+         el.id === Number(moduleId))[0].title}</h1>} */}
+
       <div className="btn_and_card">
         {cards.length && (
           <CardItem
@@ -99,7 +102,7 @@ function CardsPage(): JSX.Element {
               card={cards[cardIndex]}
               cards={cards}
               cardIndex={cardIndex}
-              setCorrectAnswers={setCorrectAnswers}
+              /* setCorrectAnswers={setCorrectAnswers} */
               input={input}
               setInput={setInput}
               setColorWords={setColorWords}
@@ -112,8 +115,8 @@ function CardsPage(): JSX.Element {
           {trainingOptions === 'WriteAnswers' ? (
             <TypeAnswerItem
               card={cards[cardIndex]}
-              setCorrectAnswers={setCorrectAnswers}
-              correctAnswers={correctAnswers}
+              /*  setCorrectAnswers={setCorrectAnswers} */
+              /* correctAnswers={correctAnswers} */
               input={input}
               setInput={setInput}
               setColorWords={setColorWords}

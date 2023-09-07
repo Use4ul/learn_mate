@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { RootState, useAppDispatch } from '../../redux/store';
 import { loadModulesForUser } from './profileSlice';
 import ModulItem from '../modulitem/ModulItem';

@@ -51,8 +51,6 @@ function ModuleAddPage(): React.JSX.Element {
     }
   }, []);
 
-  //Рустут
-
   const imgInput = useRef<HTMLInputElement>(null);
   const termInput = useRef<HTMLInputElement>(null);
   const definitionInput = useRef<HTMLInputElement>(null);

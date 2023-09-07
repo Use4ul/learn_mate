@@ -1,16 +1,16 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo } from 'react';
+import { useSelector } from 'react-redux';
 import { Card } from './types/types';
 import getFourAnswers from './getForAnswers';
 import './styles/style.scss';
 import { sendAnswer, setFlagForUpdate } from '../carditem/progressSlice';
 import { RootState, useAppDispatch } from '../../redux/store';
-import { useSelector } from 'react-redux';
 
 function FourAnswerItem({
   cards,
   cardIndex,
   card,
-  setCorrectAnswers,
+  /*  setCorrectAnswers, */
   input,
   setInput,
 
@@ -19,7 +19,7 @@ function FourAnswerItem({
   cards: Card[];
   cardIndex: number;
   card: Card;
-  setCorrectAnswers: React.Dispatch<React.SetStateAction<string>>;
+  /* setCorrectAnswers: React.Dispatch<React.SetStateAction<string>>; */
   input: Boolean;
   setInput: React.Dispatch<React.SetStateAction<boolean>>;
 
@@ -32,13 +32,11 @@ function FourAnswerItem({
   const authUser = useSelector((store: RootState) => store.auth.authUser);
 
   const handeleAnswer = (answer: string): void => {
-    if (answer === card.definition) {
-      if (authUser) {
+    if (authUser) {
+      if (answer === card.definition) {
         dispatch(sendAnswer({ user_id: authUser.id, card_id: card.id, isCorrect: true }));
         dispatch(setFlagForUpdate());
-      }
-    } else {
-      if (authUser) {
+      } else {
         dispatch(sendAnswer({ user_id: authUser.id, card_id: card.id, isCorrect: false }));
         dispatch(setFlagForUpdate());
       }

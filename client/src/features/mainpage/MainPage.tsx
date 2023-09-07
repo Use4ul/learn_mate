@@ -22,6 +22,7 @@ function MainPage(): JSX.Element {
     category !== 'Все категории'
       ? modules.filter((module) => module.Category.title === category)
       : modules;
+  console.log(modules);
 
   useEffect(() => {
     dispatch(loadCategories());
