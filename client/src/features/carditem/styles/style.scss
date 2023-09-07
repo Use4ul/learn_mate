@@ -111,6 +111,11 @@
   height: 31px;
 }
 
+.card__progress {
+  position: relative;
+  top: -5px;
+  transition: 200s;
+}
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
 
 // label {
