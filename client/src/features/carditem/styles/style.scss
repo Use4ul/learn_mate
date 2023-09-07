@@ -20,8 +20,8 @@
     display: block;
     width: 700px;
     height: 250px;
-    position: absolute;
-    left: 50%;
+    position: relative;
+    left: 70%;
     top: 50%;
     -webkit-transform: translate(-100%, -100%);
     transform: translate(-73%, -90%);
@@ -76,8 +76,9 @@
     -webkit-transform: rotateX(160deg);
     box-shadow: 0 20px 20px rgba(255, 255, 255, 0.2);
   }
-
-
+  &__progress {
+    font-size: large;
+  }
 }
 
 .btn_and_card {
@@ -87,8 +88,26 @@
 
 .actions_container {
   display: flex;
-  justify-content: center;
   margin-top: 20px;
+  justify-content: flex-start;
+  margin-left: 180px;
+}
+
+.stat_bar {
+  padding: 5px 0;
+  position: relative;
+  top: -21px;
+  height: max-content;
+  background: var(--nav-background-color);
+  border-radius: 4px;
+  z-index: -1;
+}
+
+.stat_wrapper {
+  width: 100%;
+  border: 2px solid black;
+  border-radius: 6px;
+  height: 31px;
 }
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);

@@ -47,28 +47,32 @@ function LoginPage(): JSX.Element {
       <form onSubmit={handleSubmitAuth}>
         <h1>Вход</h1>
         {/** добавить обработчик на форму с учетом слайсера и редюсера */}
-        <div>
-          <label>
-            <input
-              value={email}
-              onChange={changeEmail}
-              name="email"
-              type="text"
-              placeholder="Имя"
-            />
-          </label>
+        <div className="input-group">
+          <input
+            className="input"
+            value={email}
+            onChange={changeEmail}
+            name="email"
+            type="text"
+            placeholder=" "
+          />
+          <label className="placeholder">Ваш Email</label>
         </div>
-        <div>
-          <label>
-            <input
-              value={password}
-              onChange={changePassword}
-              name="password"
-              type={passwordShown ? 'text' : 'password'}
-              placeholder="Пароль"
-            />
-            <i className="password-control" onClick={togglePassword} />
-          </label>
+        <div className="input-group">
+          <input
+            className="input"
+            value={password}
+            onChange={changePassword}
+            name="password"
+            type={passwordShown ? 'text' : 'password'}
+            placeholder=" "
+          />
+          <label className="placeholder">Ваш пароль </label>
+          <i
+            className="password-control"
+            onClick={togglePassword}
+            style={{ top: '35px', left: '460px' }}
+          />
         </div>
         <button className="btn login__btn" type="submit">
           Войти

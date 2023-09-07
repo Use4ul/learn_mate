@@ -78,19 +78,13 @@ function ModuleAddPage(): React.JSX.Element {
       formData.append('audio', audio);
       formData.append('module_id', modulee);
       dispatch(addCardToModule(formData));
-      console.log(formData);
     }
   };
 
   return (
     <>
       <form onSubmit={handleModuleAdd}>
-        <input
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
+        <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
         <select value={category} onChange={(e) => setCategory(e.target.value)} required>
           {/* <option disabled>Все категории</option>{' '} */}
           {categories.map((el) => (

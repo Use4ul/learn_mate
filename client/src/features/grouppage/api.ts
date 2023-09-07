@@ -20,8 +20,10 @@ export const fetchGroupAdd = async (group: NewGroup): Promise<Group[]> => {
     headers: { 'Content-type': 'application/json' },
     body: JSON.stringify(group),
   });
-
-  console.log(res);
+  if (!res.ok) {
+    const data = await res.json();
+    throw new Error(data.message);
+  }
   return res.json();
 };
 

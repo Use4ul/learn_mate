@@ -44,7 +44,11 @@ export const loadGroupsWithTask = createAsyncThunk('groupsWithTask/load', (id: M
 const groupsSlice = createSlice({
   name: 'groups',
   initialState,
-  reducers: {},
+  reducers: {
+    clearError: (state) => {
+      state.error = undefined;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(loadGroups.fulfilled, (state, action) => {
@@ -99,5 +103,5 @@ const groupsSlice = createSlice({
       });
   },
 });
-
+export const { clearError } = groupsSlice.actions;
 export default groupsSlice.reducer;

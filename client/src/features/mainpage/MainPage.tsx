@@ -27,7 +27,7 @@ function MainPage(): JSX.Element {
 
   return (
     <div className="main__container">
-      <div>
+      <div className="main__select">
         <select value={category} onChange={(e) => setCategory(e.target.value)}>
           <option>Все категории</option>{' '}
           {categories.map((el) => (
@@ -39,7 +39,7 @@ function MainPage(): JSX.Element {
           <option>Category2</option> */}
         </select>
       </div>
-      <div className="modules_wrapper">
+      <div className="main__wrapper">
         {filteredModules.map((module) => (
           <ModulItem key={module.id} module={module} />
         ))}

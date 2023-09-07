@@ -1,33 +1,56 @@
+:root {
+  --extra-a-color: black;
+}
+
 html[data-theme='Темная тема'] {
-  --nav-background-color: #d9ed92;
+  --nav-background-color: #415a77;
+  --nav-font-color: #ffffff;
+
+  --card-border-color: #ffffff;
+
+  --a-font-color: #ffffff;
+  --a-hover-font-color: #ffffff;
 
   --main-text-color: #ffffff;
 
-  --button-text-color: #ffffff;
-  --button-background-color: #99d98c;
-  --button-border-color: #00b4d8;
+  --box-shadow-color: rgba(214, 218, 220, 0.58);
+
+  --button-text-color: #0d1b2a;
+  --button-hover-font-color: #000000;
+  --button-background-color: #e0e1dd;
+  --button-border-color: #778da9;
 
   --input-text-color: #ffffff;
-  --input-background-color: #0077b6;
-  --input-border-color: #00b4d8;
+  --input-background-color: #415a77;
+  --input-border-color: #778da9;
   --input-placeholder-color: #ffffff;
 
-  --background-color: #1e6091;
+  --background-color: #1b263b;
 }
 
 html[data-theme='Светлая тема'] {
-  --nav-background-color: #d9ed92;
+  --nav-background-color: #3e7cb1;
+  --nav-font-color: #000000;
+
+  --card-border-color: #000000;
+
+  --a-font-color: #000000;
+  --a-hover-font-color: #000000;
 
   --main-text-color: #000000;
 
+  --box-shadow-color: rgba(34, 60, 80, 0.58);
+
   --button-text-color: #000000;
-  --button-background-color: #52b69a;
-  --button-border-color: #00b4d8;
+  --button-hover-font-color: #ffffff;
+  --button-background-color: #81a4cd;
+  --button-border-color: #81a4cd;
 
   --input-text-color: #ffffff;
-  --input-background-color: #0077b6;
+  --input-background-color: #3a3a3a;
   --input-border-color: #00b4d8;
-  --input-placeholder-color: #ffffff;
+  --input-placeholder-color: #000000;
+  --div-border-color: #00b4d8;
 
-  --background-color: #168aad;
+  --background-color: #dbe4ee;
 }

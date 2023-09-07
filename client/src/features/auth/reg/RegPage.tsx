@@ -57,22 +57,21 @@ function RegPage(): JSX.Element {
 
   return (
     <div className="form_wrapper">
-      <form onSubmit={handleSubmit} className="reg__form">
+      <form onSubmit={handleSubmit} className="reg__form form">
         <h1>Регистрация</h1>
         {/** добавить обработчик на форму с учетомч слайсера и редюсера */}
-        <div>
-          <label>
-            <input
-              className="reg__input"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              name="name"
-              type="text"
-              placeholder="Ваше имя здесь"
-            />
-          </label>
+        <div className="input-group">
+          <input
+            className="reg__input input"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            name="name"
+            type="text"
+            placeholder=" "
+          />
+          <label className="placeholder">Ваше имя</label>
         </div>
-        <div>
+        <div className="input-group">
           {!nickNameCheck && (
             <p
               style={{
@@ -86,52 +85,52 @@ function RegPage(): JSX.Element {
               Никнейм занят
             </p>
           )}
-          <label>
-            <input
-              className="reg__input"
-              value={nickname}
-              onChange={(e) => {
-                setNickName(e.target.value);
-              }}
-              name="nickname"
-              type="text"
-              placeholder="Никнейм"
-            />
-          </label>
+          <input
+            className="reg__input input"
+            value={nickname}
+            onChange={(e) => {
+              setNickName(e.target.value);
+            }}
+            name="nickname"
+            type="text"
+            placeholder=" "
+          />
+          <label className="placeholder">Ваш Никнейм</label>
         </div>
-
-        <div>
-          <label>
-            <input
-              className="reg__input"
-              value={email}
-              onChange={handleChangeEmail}
-              name="email"
-              type="text"
-              placeholder="Email"
-            />
-          </label>
+        <div className="input-group">
+          <input
+            className="reg__input input"
+            value={email}
+            onChange={handleChangeEmail}
+            name="email"
+            type="text"
+            placeholder=" "
+          />
+        <label className="placeholder">Ваш Email</label>
         </div>
-        <div>
-          <label>
+        <div className="input-group">
+          <div>
             <input
-              className="reg__input"
+              className="reg__input input"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               name="password"
               type={passwordShown ? 'text' : 'password'}
-              placeholder="Ваш пароль здесь"
+              placeholder=" "
             />
-            <i className="password-control" onClick={togglePassword} />
-          </label>
+          <label className="placeholder">Ваш пароль</label>
+          </div>
+          <i
+            className="password-control"
+            onClick={togglePassword}
+            style={{ top: '26px', left: '460px' }}
+          />
         </div>
         <div>
-          <label>
-            <select className="reg__input" value={role} onChange={(e) => setRole(+e.target.value)}>
-              <option disabled>Выберите:</option> <option value="2">Обычный пользователь</option>
-              <option value="1">Учитель</option>
-            </select>
-          </label>
+          <select className="reg__input" value={role} onChange={(e) => setRole(+e.target.value)}>
+            <option disabled>Выберите:</option> <option value="2">Обычный пользователь</option>
+            <option value="1">Учитель</option>
+          </select>
         </div>
 
         <button className="btn login__btn reg__button" type="submit">

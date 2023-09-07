@@ -62,7 +62,22 @@ function CardItem({
             {rightAnswer}
           </div>
         </div>
-        <div>{`Правильных ответов по карточке: ${progress}%`}</div>
+        <div style={{ marginTop: '30px' }}>
+          <div className="stat_wrapper">
+            <div className="card__progress">
+              {`Правильных ответов по карточке: ${progress}%`}
+              <div
+                className="stat_bar"
+                style={{
+                  width: `${progress}%`,
+                  height: '21px',
+                }}
+              >
+                {' '}
+              </div>
+            </div>
+          </div>
+        </div>
       </label>
     </div>
   );

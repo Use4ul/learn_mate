@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Card } from './types/types';
 import getFourAnswers from './getForAnswers';
+import './styles/style.scss';
 
 function FourAnswerItem({
   cards,
@@ -46,7 +47,7 @@ function FourAnswerItem({
   return (
     <>
       <form onSubmit={handeleAnswer}>
-        <div>
+        <div className="cards__answers">
           {arrAnswers.map((el) => (
             <button type="button" onClick={() => changeCard()}>
               {el}

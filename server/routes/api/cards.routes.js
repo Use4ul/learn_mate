@@ -31,8 +31,7 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    console.log(req.files);
-    console.log(req.body);
+   
     const { img } = req.files;
     const { term, definition, audio, module_id } = req.body;
 
