@@ -31,25 +31,23 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    console.log(req.files);
-    console.log(req.body);
-    const { img } = req.files;
     const { term, definition, audio, module_id } = req.body;
-
+    let img = req.files?.img;
     const newCard = await Card.create({
-      term,
-      definition,
-      img: img.name,
-      audio,
-      module_id,
+      term: term || null,
+      definition: definition || null,
+      img: `/${req.files?.img?.name}` || null,
+      audio: audio || null,
+      module_id: module_id || null,
     });
-
-    img.mv(`${__dirname}/../../assets/${img.name}`, (err) => {
-      if (err) {
-        return res.status(500).send(err);
-      }
-      return res.status(201).json(newCard);
-    });
+    if (img) {
+      img.mv(`${__dirname}/../../assets/${img.name}`, (err) => {
+        if (err) {
+          return res.status(500).send(err);
+        }
+      });
+    }
+    return res.status(201).json(newCard);
   } catch (error) {
     res.status(500).json(console.log(error.message));
   }

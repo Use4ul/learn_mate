@@ -12,6 +12,9 @@ import {
   userGroupItemDelete,
   userInGroup,
 } from './slices/groupsSlice';
+import { deleteTask, loadTasks } from '../taskPage/taskSlice';
+import ModulItem from '../modulitem/ModulItem';
+import { TaskId } from '../taskPage/types/type';
 
 function GroupUpdatePage(): JSX.Element {
   const { userId } = useParams();
@@ -24,7 +27,8 @@ function GroupUpdatePage(): JSX.Element {
   const group = useSelector((store: RootState) => store.groups.groups);
   const users = useSelector((store: RootState) => store.groups.users);
   const oneGroupIt = useSelector((store: RootState) => store.groups.groupItem);
-  console.log(oneGroupIt);
+  const tasks = useSelector((store: RootState) => store.tasks.tasks);
+  console.log(tasks);
 
   let id: GroupId;
   if (groupId) {
@@ -61,71 +65,90 @@ function GroupUpdatePage(): JSX.Element {
     dispatch(userAdd({ student_id, group_id }));
   };
 
+  const handleDeleteTask = (taskId: TaskId): void => {
+    dispatch(deleteTask(taskId));
+  };
+
   useEffect(() => {
     dispatch(userInGroup(groupItem[0]));
     dispatch(loadUsers());
     dispatch(loadGroups());
+    dispatch(loadTasks(id));
   }, []);
 
   return (
     <div className="group__container">
       <div>
-        <form onSubmit={handeleNewTitleGroup}>
-          <input
-            placeholder="введите новое название группы"
-            value={title}
-            type="text"
-            onChange={(e) => setNewTitle(e.target.value)}
-          />
-          <button type="submit" onClick={() => setchangeTitle(true)}>
-            Изменить название группы
-          </button>
-          {changeTitle === true && <div>Новое название: {title}</div>}
-        </form>
-      </div>
-      <div>
-        <form>
-          <input
-            type="text"
-            className="search"
-            placeholder="Введите никнейм "
-            value={searchName}
-            onChange={(e) => handeleSearch(e)}
-          />
-          {visibility === true && (
-            <ul className="list">
-              {filterNikname.map((user) => (
-                <li className="list">
-                  {user.nickname}
-                  <button
-                    type="button"
-                    onClick={() =>
-                      handeleNewUser({ student_id: user.id, group_id: groupToSend.id })
-                    }
-                  >
-                    Добавить
-                  </button>
-                </li>
-              ))}
-            </ul>
-          )}
-        </form>
-      </div>
-
-      <div>
         <div>
-          {oneGroupIt.map((groupIt) => (
-            <div>
-              {groupIt.User.nickname}
-              <button
-                type="button"
-                onClick={() => dispatch(userGroupItemDelete({ groupIt, deleteGroup }))}
-              >
-                Удалить из группы
-              </button>
-            </div>
-          ))}
+          <form onSubmit={handeleNewTitleGroup}>
+            <input
+              placeholder="введите новое название группы"
+              value={title}
+              type="text"
+              onChange={(e) => setNewTitle(e.target.value)}
+            />
+            <button type="submit" onClick={() => setchangeTitle(true)}>
+              Изменить название группы
+            </button>
+            {changeTitle === true && <div>Новое название: {title}</div>}
+          </form>
         </div>
+        <div>
+          <form>
+            <input
+              type="text"
+              className="search"
+              placeholder="Введите никнейм "
+              value={searchName}
+              onChange={(e) => handeleSearch(e)}
+            />
+            {visibility === true && (
+              <ul className="list">
+                {filterNikname.map((user) => (
+                  <li className="list">
+                    {user.nickname}
+                    <button
+                      type="button"
+                      onClick={() =>
+                        handeleNewUser({ student_id: user.id, group_id: groupToSend.id })
+                      }
+                    >
+                      Добавить
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </form>
+        </div>
+
+        <div>
+          <div>
+            {oneGroupIt.map((groupIt) => (
+              <div>
+                {groupIt.User.nickname}
+                <button
+                  type="button"
+                  onClick={() => dispatch(userGroupItemDelete({ groupIt, deleteGroup }))}
+                >
+                  Удалить из группы
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div>
+        <h1>Модули, назначенные группе:</h1>
+        {Boolean(tasks.length) &&
+          tasks.map((task) => (
+            <>
+              <ModulItem module={task.Module} />
+              <button type="button" onClick={() => handleDeleteTask(task.id)}>
+                удалить назначение модуля {task.Module.title} группе {title}
+              </button>
+            </>
+          ))}
       </div>
       <Link to={`/profile/${userId}`}>
         <button type="button">Вернуться в личный кабинет</button>

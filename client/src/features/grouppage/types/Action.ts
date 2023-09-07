@@ -1,4 +1,4 @@
-import { Group, GroupId, GroupItem, GroupItemID, User } from './types';
+import { Group, GroupId, GroupItem, GroupItemID, GroupWithTasks, User } from './types';
 
 export type Action =
   | { type: 'groups/load'; payload: Group[] }
@@ -8,4 +8,5 @@ export type Action =
   | { type: 'group/User'; payload: GroupItem[] }
   | { type: 'user/delete'; payload: GroupItemID }
   | { type: 'user/lod'; payload: User[] }
-  | { type: 'user/add'; payload: GroupItem };
+  | { type: 'user/add'; payload: GroupItem }
+  | { type: 'groupsWithTask/load'; payload: GroupWithTasks[] };

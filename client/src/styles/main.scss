@@ -4,8 +4,10 @@
   font-family: Comic Sans MS, Comic Sans, cursive;
 }
 body {
+
   // font-family: fantasy;
   color: var(--main-text-color);
+
   background-color: var(--background-color);
   transition: background-color 500ms linear;
 }
@@ -22,6 +24,7 @@ button {
   transition: background-color 300ms linear;
 }
 $btn-color: var(--button-background-color);
+
 button {
   background-color: transparent;
   border: 2px solid black;
@@ -39,7 +42,7 @@ button {
 
   &:hover,
   &:focus {
-    color: var(--button-text-color);
+    color: var(--button-hover-text-color);
     outline: 0;
   }
 
@@ -55,10 +58,15 @@ button {
 
 a {
   text-decoration: none;
+  color: var(--a-font-color);
 }
 
 a:visited {
-  color: inherit;
+  color: var(--a-font-color);
+}
+
+a:hover {
+  color: var(--a-hover-font-color);
 }
 h2 {
   color: aliceblue;
@@ -69,17 +77,19 @@ form {
   border: 2px solid #81a4cd;
   font-size: 24px;
   padding: 15px;
+  margin: 10px;
 }
 
 input,
 select {
   padding-left: 10px;
+
+
   max-height: max-content;
   font-size: 24px;
   border: 2px solid #000000;
   border-radius: 6px;
   margin-bottom: 10px;
-  width: 97%;
 }
 
 select {
@@ -90,4 +100,35 @@ select {
   display: flex;
   justify-content: center;
   text-align: center;
+}
+
+button > a:visited {
+  color: var(--extra-a-color);
+}
+
+button:hover > a:visited {
+  color: var(--a-font-color);
+}
+
+.input-group {
+  position: relative;
+}
+
+.placeholder {
+  position: absolute;
+  top: 26px;
+  left: 120px;
+  font-size: 24px;
+  padding: 0px 5px;
+  color: black;
+  transition: 0.3s;
+  pointer-events: none;
+}
+.input:focus + .placeholder,
+input:not(:placeholder-shown) + label {
+  background-color: var(--nav-background-color);
+  border-radius: 4px;
+  top: 2px;
+  font-size: 16px;
+  color: var(--nav-font-color);
 }

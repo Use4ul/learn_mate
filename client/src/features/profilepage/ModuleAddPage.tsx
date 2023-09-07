@@ -21,9 +21,6 @@ function ModuleAddPage(): React.JSX.Element {
   const [cardImg, setCardImg] = useState('');
   const [cardAudio, setCardAudio] = useState(''); */
 
-  console.log(category);
-  
-
   const handleModuleAdd: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     dispatch(addModule({ title, category }));
@@ -61,39 +58,35 @@ function ModuleAddPage(): React.JSX.Element {
 
   const handleCardAdd = (event: React.FormEvent): void => {
     event.preventDefault();
-    if (
-      imgInput.current?.files?.length &&
-      termInput.current?.value &&
-      definitionInput.current?.value &&
-      audioInput.current?.value &&
-      moduleInput.current?.value
-    ) {
+    const formData = new FormData();
+    if (imgInput.current?.files?.length) {
       const img = imgInput.current.files[0];
-      const term = termInput.current.value;
-      const definition = definitionInput.current.value;
-      const audio = audioInput.current.value;
-      const modulee = moduleInput.current.value;
-
-      const formData = new FormData();
       formData.append('img', img);
-      formData.append('term', term);
-      formData.append('definition', definition);
-      formData.append('audio', audio);
-      formData.append('module_id', modulee);
-      dispatch(addCardToModule(formData));
-      console.log(formData);
     }
+    if (termInput.current?.value) {
+      const term = termInput.current.value;
+      formData.append('term', term);
+    }
+    if (definitionInput.current?.value) {
+      const definition = definitionInput.current.value;
+      formData.append('definition', definition);
+    }
+    if (audioInput.current?.value) {
+      const audio = audioInput.current.value;
+      formData.append('audio', audio);
+    }
+    if (moduleInput.current?.value) {
+      const modulee = moduleInput.current.value;
+      formData.append('module_id', modulee);
+    }
+
+    dispatch(addCardToModule(formData));
   };
 
   return (
     <>
       <form onSubmit={handleModuleAdd}>
-        <input
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
+        <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
         <select value={category} onChange={(e) => setCategory(e.target.value)} required>
           {/* <option disabled>Все категории</option>{' '} */}
           {categories.map((el) => (

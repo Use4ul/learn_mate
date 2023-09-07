@@ -5,6 +5,7 @@ import { Link, useParams } from 'react-router-dom';
 import { RootState, useAppDispatch } from '../../redux/store';
 import {
   addGroup,
+  clearError,
   loadGroups,
   loadUsers,
   userAdd,
@@ -22,6 +23,7 @@ function GroupPage(): React.JSX.Element {
   const group = useSelector((store: RootState) => store.groups.group);
   const groups = useSelector((store: RootState) => store.groups.group);
   const oneGroupIt = useSelector((store: RootState) => store.groups.groupItem);
+  const { error } = useSelector((store: RootState) => store.groups);
 
   const groupDelete = groups.filter((el) => el.id === group[0].id);
   const deleteItemGroup: Group = groupDelete[0];
@@ -30,6 +32,11 @@ function GroupPage(): React.JSX.Element {
   const handeleAddGroup = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     dispatch(addGroup({ title }));
+    setTimeout(() => {
+      if (!error) {
+        setNewGroup(true);
+      }
+    }, 300);
   };
   const filterNikname = users.filter((user) =>
     user.nickname.toLowerCase().includes(searchName.toLowerCase()),
@@ -37,6 +44,12 @@ function GroupPage(): React.JSX.Element {
   const handeleSearch: React.ChangeEventHandler<HTMLInputElement> = (e): void => {
     setSearchName(e.target.value);
     setVisibility(true);
+  };
+
+  const newGroupAdd: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    setNewTitle(e.target.value);
+    setNewGroup(false);
+    dispatch(clearError());
   };
 
   const handeleNewUser = async ({
@@ -57,15 +70,14 @@ function GroupPage(): React.JSX.Element {
       <div>
         <form onSubmit={handeleAddGroup}>
           <input
-            placeholder="введите название группы"
+            placeholder="Введите название группы"
             value={title}
             type="text"
-            onChange={(e) => setNewTitle(e.target.value)}
+            onChange={newGroupAdd}
           />
-          <button type="submit" onClick={() => setNewGroup(true)}>
-            Cоздать группу
-          </button>
-          {newGroup === true && <div> Вы создали группу: {title}</div>}
+          <button type="submit" /* onClick={() => setNewGroup(true)} */>Cоздать группу</button>
+          {error && <span> {error} </span>}
+          {!error && newGroup === true && <div> Вы создали группу: {title}</div>}
         </form>
       </div>
       <div>

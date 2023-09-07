@@ -57,13 +57,35 @@ function CardItem({
           type="checkbox"
         />
         <div className="card__card">
-          <div className="card__front card__div">{card.term}</div>
+          {card.term ? (
+            <div className="card__front card__div">{card.term}</div>
+          ) : card.img ? (
+            <div className="card__front card__div">
+              <img src={card.img} alt=" " />
+            </div>
+          ) : (
+            <div className="card__front card__div">{/* <audio src={`${card.audio}`} /> */}</div>
+          )}
+          {/* <div className="card__front card__div">{card.term}</div> */}
           <div className="card__back card__div" style={{ color: colorWords }}>
             {rightAnswer}
           </div>
         </div>
-        <div>
-          <p className="card__progress">{`Правильных ответов по карточке: ${progress}%`}</p>
+        <div style={{ marginTop: '30px' }}>
+          <div className="stat_wrapper">
+            <div className="card__progress">
+              {`Правильных ответов по карточке: ${progress}%`}
+              <div
+                className="stat_bar"
+                style={{
+                  width: `${progress}%`,
+                  height: '21px',
+                }}
+              >
+                {' '}
+              </div>
+            </div>
+          </div>
         </div>
       </label>
     </div>

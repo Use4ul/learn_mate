@@ -16,7 +16,6 @@ function ProfilePage(): React.JSX.Element {
   const grops = useSelector((store: RootState) => store.groups.groups);
   const user = useSelector((store: RootState) => store.auth.authUser);
 
-  console.log(modules);
 
   const { userId } = useParams();
 
@@ -33,6 +32,7 @@ function ProfilePage(): React.JSX.Element {
 
   return (
     <div className="profile__container">
+
       <div className="profile__buttons">
         {/* <Link to={`/profile/${userId}/statistics`}> */}
         <button type="button">
@@ -47,6 +47,7 @@ function ProfilePage(): React.JSX.Element {
           {/* <Link to={`/profile/${userId}/statistics`} />  */}
         </button>
         {/* </Link> */}
+
 
         <div>
           {/* <Link to="/modules/add"> */}

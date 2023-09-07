@@ -27,18 +27,15 @@
   }
 }
 
-// .container_wrapper {
-//   width: 300px;
-//   height: 300px;
-//   border-radius: 10px;
-//   margin: 20px;
-//   position: relative;
-//   border: 2px solid black;
-//   display: flex;
-//   justify-content: center;
-//   text-align: center;
-//   transition: 400ms;
-// }
+
+.container_wrapper {
+
+  
+  -webkit-box-shadow: 7px 4px 8px 0px var(--box-shadow-color, 0.2);
+  -moz-box-shadow: 7px 4px 8px 0px var(--box-shadow-color, 0.2);
+  box-shadow: 7px 4px 8px 0px var(--box-shadow-color, 0.2);
+}
+
 
 // .container_wrapper:hover {
 //   -webkit-transform: scale(1.1);
