@@ -1,6 +1,6 @@
 import { Module, ModuleId } from '../modulitem/types/types';
 import { AuthUserId } from '../auth/log/types/types';
-import { CardProgress, CardWithoutId, GroupProgress, ModuleWithCards, ModuleWithoutUser } from './types/type';
+import { CardProgress, GroupProgress, ModuleWithCards, ModuleWithoutUser } from './types/type';
 import { Card, CardId } from '../cardsPage/types/types';
 
 export const fetchModulesForUser = async (id: AuthUserId): Promise<Module[]> => {

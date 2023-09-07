@@ -4,7 +4,7 @@ import * as api from './api';
 import State from './types/State';
 import { AuthUserId } from '../auth/log/types/types';
 import { ModuleId } from '../modulitem/types/types';
-import { CardWithoutId, ModuleWithoutUser } from './types/type';
+import { ModuleWithoutUser } from './types/type';
 import { CardId } from '../cardsPage/types/types';
 
 const initialState: State = {
@@ -32,7 +32,7 @@ export const sendModuleToUpdate = createAsyncThunk(
 
 export const addCardToModule = createAsyncThunk('user/addCardToModule', (formData: FormData) =>
   api.fetchCardToAdd(formData),
-); ///Тута
+);
 
 export const addModule = createAsyncThunk(
   'user/addModule',
@@ -56,9 +56,8 @@ export const loadCardStat = createAsyncThunk('user/loadCardStat', (id: AuthUserI
   api.fetchCardStat(id),
 );
 
-export const loadgroupStat = createAsyncThunk(
-  'user/loadGroupStat',
-  (id: AuthUserId) => api.fetchGroupStat(id),
+export const loadgroupStat = createAsyncThunk('user/loadGroupStat', (id: AuthUserId) =>
+  api.fetchGroupStat(id),
 );
 
 const profileSlice = createSlice({

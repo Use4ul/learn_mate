@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../../redux/store';
@@ -31,7 +31,7 @@ function ModuleUpdateForm(): React.JSX.Element {
     `${module.length > 0 ? module[0].Category?.title : 'Все категории'}`,
   );
 
-  /* 
+  /*
   const [cardTerm, setCardTerm] = useState('');
   const [cardDefinition, setCardDefinition] = useState('');
   const [cardImg, setCardImg] = useState('');
