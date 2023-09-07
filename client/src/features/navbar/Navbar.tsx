@@ -66,7 +66,7 @@ function Navbar(): JSX.Element {
               </>
             )}
 
-            <button className="themeBtn" onClick={themeFunc}>
+            <button type="button" className="themeBtn" onClick={themeFunc}>
               {themeName}
             </button>
           </ul>

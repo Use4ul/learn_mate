@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { RootState, useAppDispatch } from '../../redux/store';
 import { loadModulesForUser } from './profileSlice';
 import ModulItem from '../modulitem/ModulItem';
@@ -15,7 +15,6 @@ function ProfilePage(): React.JSX.Element {
   const modules = useSelector((store: RootState) => store.profile.modules);
   const grops = useSelector((store: RootState) => store.groups.groups);
   const user = useSelector((store: RootState) => store.auth.authUser);
-
 
   const { userId } = useParams();
 
@@ -32,7 +31,6 @@ function ProfilePage(): React.JSX.Element {
 
   return (
     <div className="profile__container">
-
       <div className="profile__buttons">
         {/* <Link to={`/profile/${userId}/statistics`}> */}
         <button type="button">
@@ -47,8 +45,6 @@ function ProfilePage(): React.JSX.Element {
           {/* <Link to={`/profile/${userId}/statistics`} />  */}
         </button>
         {/* </Link> */}
-
-
         <div>
           {/* <Link to="/modules/add"> */}
           <button type="button">

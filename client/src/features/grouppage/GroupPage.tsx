@@ -11,7 +11,7 @@ import {
   userAdd,
   userGroupItemDelete,
 } from './slices/groupsSlice';
-import { Group, GroupId } from './types/types';
+import { Group } from './types/types';
 
 function GroupPage(): React.JSX.Element {
   const { userId } = useParams();
@@ -116,8 +116,7 @@ function GroupPage(): React.JSX.Element {
             <button
               type="button"
               onClick={() =>
-                dispatch(userGroupItemDelete({ groupIt, deleteGroup: deleteItemGroup }))
-              }
+                dispatch(userGroupItemDelete({ groupIt, deleteGroup: deleteItemGroup }))}
             >
               Удалить из группы
             </button>
