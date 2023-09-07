@@ -112,8 +112,7 @@ function GroupUpdatePage(): JSX.Element {
                       <button
                         type="button"
                         onClick={() =>
-                          handeleNewUser({ student_id: user.id, group_id: groupToSend.id })
-                        }
+                          handeleNewUser({ student_id: user.id, group_id: groupToSend.id })}
                       >
                         Добавить
                       </button>

@@ -1,6 +1,6 @@
 import { AuthUserId } from '../auth/log/types/types';
-import { Group, GroupId, GroupWithTasks } from '../grouppage/types/types';
-import { ModuleId } from '../modulitem/types/types';
+import { GroupId, GroupWithTasks } from '../grouppage/types/types';
+
 import { Task, TaskId, TaskToSend } from './types/type';
 
 export const fetchGroupForTasks = async (id: AuthUserId): Promise<GroupWithTasks[]> => {

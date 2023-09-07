@@ -40,7 +40,7 @@ const tasksSlice = createSlice({
       .addCase(loadGroupForTasks.rejected, (state, action) => {
         state.error = action.error.message;
       })
-      .addCase(taskGroup.fulfilled, (state, action) => {})
+      .addCase(taskGroup.fulfilled, () => {})
       .addCase(taskGroup.rejected, (state, action) => {
         state.error = action.error.message;
       })
