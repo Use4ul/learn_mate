@@ -15,8 +15,6 @@ function ProfilePage(): React.JSX.Element {
   const grops = useSelector((store: RootState) => store.groups.groups);
   const user = useSelector((store: RootState) => store.auth.authUser);
 
-  console.log(modules);
-
   const { userId } = useParams();
 
   const dispatch = useAppDispatch();

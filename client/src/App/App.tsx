@@ -19,6 +19,7 @@ import preloader from './Preloader1.gif';
 import './App.css';
 import StatisticsPage from '../features/profilepage/StatisticsPage';
 import TaskPage from '../features/taskPage/TaskPage';
+import AddTaskPage from '../features/taskPage/AddTaskPage';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -55,6 +56,7 @@ function App(): JSX.Element {
             <Route path="/profile/:userId/:groupId" element={<GroupUpdatePage />} />
             <Route path="/profile/:userId/statistics" element={<StatisticsPage />} />
             <Route path="/profile/:userId/modules" element={<TaskPage />} />
+            <Route path="/modules/:moduleId/task" element={<AddTaskPage />} />
           </Route>
         </Routes>
       )}

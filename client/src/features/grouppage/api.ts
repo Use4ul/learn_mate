@@ -1,4 +1,5 @@
-import { Group, GroupId, GroupItem, GroupItemID, NewGroup, User } from './types/types';
+import { ModuleId } from '../modulitem/types/types';
+import { Group, GroupId, GroupItem, GroupItemID, GroupWithTasks, NewGroup, User } from './types/types';
 
 export const fetchGroups = async (): Promise<Group[]> => {
   const res = await fetch('/api/groups');
@@ -72,5 +73,10 @@ export const featchAddUser = async ({
     headers: { 'Content-type': 'application/json' },
     body: JSON.stringify({ student_id, group_id }),
   });
+  return res.json();
+};
+
+export const fetchGroupsWithTask = async (id: ModuleId):Promise<GroupWithTasks[]> => {
+  const res = await fetch(`/api/groups/task/${id}`);
   return res.json();
 };

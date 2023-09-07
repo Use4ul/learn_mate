@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const { User, Group, GroupItem, Role } = require('../../db/models');
+const { User, Group, GroupItem, Role, Task } = require('../../db/models');
 
 router.get('/', async (req, res) => {
   const currentUser = await User.findOne({
@@ -11,6 +11,30 @@ router.get('/', async (req, res) => {
     if (currentUser && currentUser.Role.title === 'Учитель') {
       const groups = await Group.findAll({ where: { teacher_id: req.session.user_id } });
       res.json(groups);
+      return;
+    } else {
+      res.json({ message: 'Ты не учитель, куда лезешь!' });
+      return;
+    }
+  } catch ({ message }) {
+    res.json({ message });
+  }
+});
+
+// получение групп по айди учителя, которым не назначен модуль с айди их парамсов
+router.get('/task/:moduleId', async (req, res) => {
+  const {moduleId} = req.params
+  const currentUser = await User.findOne({
+    where: { id: req.session.user_id },
+    include: { model: Role },
+  });
+
+  console.log(req.session.user_id);
+  try {
+    if (currentUser && currentUser.Role.title === 'Учитель') {
+      const groups = await Group.findAll({ where: { teacher_id: req.session.user_id }, include: {model: Task} });
+      const groupToSend = groups.filter((el) => el.Tasks.some((task) => task.module_id === +moduleId) ? 0 : el)
+      res.json(groupToSend);
       return;
     } else {
       res.json({ message: 'Ты не учитель, куда лезешь!' });
