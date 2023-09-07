@@ -6,6 +6,7 @@ import { loadModulesForUser } from './profileSlice';
 import ModulItem from '../modulitem/ModulItem';
 import { loadGroups } from '../grouppage/slices/groupsSlice';
 import GroupItem from '../groupItem/GroupItem';
+import './styles/style.scss';
 
 function ProfilePage(): React.JSX.Element {
   const [search, setSearch] = useState('');

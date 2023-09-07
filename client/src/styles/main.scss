@@ -1,7 +1,10 @@
 @import url('../styles/variables.scss');
 
+* {
+  font-family: Comic Sans MS, Comic Sans, cursive;
+}
 body {
-  font-family: 'Bentham';
+  // font-family: fantasy;
   color: var(--main-text-color);
   background-color: var(--background-color);
   transition: background-color 500ms linear;
@@ -31,7 +34,7 @@ button {
   text-decoration: none;
   text-align: center;
   text-transform: uppercase;
-  font-family: 'Montserrat', sans-serif;
+  // font-family: 'Montserrat', sans-serif;
   font-weight: 700;
 
   &:hover,

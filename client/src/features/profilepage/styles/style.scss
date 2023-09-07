@@ -27,3 +27,60 @@
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+.stasistics {
+  &__container {
+    display: flex;
+    flex-direction: column;
+  }
+  &__modules {
+    display: flex;
+    align-content: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: center;
+  }
+  &__cards {
+    width: 200px;
+    height: 110px;
+    border: 2px solid rgb(118, 114, 114);
+    margin: 5px;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  &__button {
+    flex-direction: row;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+  }
+  &__moduleOne {
+    flex-direction: row;
+    align-items: center;
+    display: flex;
+  }
+  &__moduleTitle {
+    width: 200px;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    margin: 16px;
+  }
+  &__groups {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: stretch;
+    align-items: center;
+    margin: 16px;
+    padding: 10px;
+  }
+  &__groupsOne {
+    border: 2px solid rgb(118, 114, 114);
+    margin: 5px;
+    padding: 10px;
+    width: 200px;
+    height: 110px;
+    border-radius: 10px;
+  }
+}

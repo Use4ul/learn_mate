@@ -19,7 +19,7 @@
     background-color: #81a4cd;
     font-size: 30px;
     display: grid;
-
+    padding: 10px;
     grid-template-columns: repeat(3, 1fr);
   }
   &__button {
