@@ -32,48 +32,47 @@ function ProfilePage(): React.JSX.Element {
 
   return (
     <div className="profile__container">
-      <div>
-        <div className="profile__buttons">
-          {/* <Link to={`/profile/${userId}/statistics`}> */}
+      <div className="profile__buttons">
+        {/* <Link to={`/profile/${userId}/statistics`}> */}
+        <button type="button">
+          <a href={`/profile/${userId}/statistics`}>Статистика</a>
+          {/* <Link to={`/profile/${userId}/statistics`} />  */}
+        </button>
+        {/* </Link> */}
+
+        {/* <Link to={`/profile/${userId}/statistics`}> */}
+        <button type="button">
+          <a href={`/profile/${userId}/modules`}>Мои назначенные модули</a>
+          {/* <Link to={`/profile/${userId}/statistics`} />  */}
+        </button>
+        {/* </Link> */}
+
+        <div>
+          {/* <Link to="/modules/add"> */}
           <button type="button">
-            <a href={`/profile/${userId}/statistics`}>Статистика</a>
-            {/* <Link to={`/profile/${userId}/statistics`} />  */}
+            <a href="/modules/add">Создать новый модуль</a>
           </button>
           {/* </Link> */}
-
-          {/* <Link to={`/profile/${userId}/statistics`}> */}
-          <button type="button">
-            <a href={`/profile/${userId}/modules`}>Мои назначенные модули</a>
-            {/* <Link to={`/profile/${userId}/statistics`} />  */}
-          </button>
-          {/* </Link> */}
-
-          <div>
-            {/* <Link to="/modules/add"> */}
-            <button type="button">
-              <a href="/modules/add">Создать новый модуль</a>
-            </button>
-            {/* </Link> */}
-          </div>
         </div>
+      </div>
 
-        <div className="profile__input">
-          <label>
-            Поиск по своим модулям
-            <br />
-            <input
-              value={search}
-              placeholder="Введите название модуля"
-              onChange={(e) => {
-                setSearch(e.target.value);
-              }}
-            />
-          </label>
-        </div>
-
+      <div className="profile__input">
+        <label>
+          Поиск по своим модулям
+          <br />
+          <input
+            value={search}
+            placeholder="Введите название модуля"
+            onChange={(e) => {
+              setSearch(e.target.value);
+            }}
+          />
+        </label>
+      </div>
+      <div className="profile__modulesOne">
         {filteredModules.length ? (
           filteredModules.map((module) => (
-            <div>
+            <div className="profile__modules">
               <ModulItem key={module.id} module={module} />
             </div>
           ))
@@ -81,15 +80,16 @@ function ProfilePage(): React.JSX.Element {
           <div>Ничего не найдено</div>
         )}
       </div>
+
       {user?.role_id === 1 && (
         <div>
           <button type="button" onClick={() => navigate('/newGrop')}>
             Создать новую группу
           </button>
           {/* <button type="button"> назначить модуль для обучения</button> */}
-          <div className="profil__grups">
+          <div>
             <div>
-              <div>
+              <div className="profile__grups">
                 {Boolean(grops.length) && grops.map((elGroup) => <GroupItem elGroup={elGroup} />)}
               </div>
             </div>

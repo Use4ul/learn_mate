@@ -15,13 +15,14 @@ function GroupItem({ elGroup }: { elGroup: Group }): JSX.Element {
   const user = useSelector((store: RootState) => store.auth.authUser);
 
   return (
-    <div className="card__container">
+    <div className="groups__container">
       <div>
-        <div>{elGroup.title}</div>
-        <Link to={`/profile/${user?.id}/${elGroup.id}`}>
-          <button type="button">Изменить</button>
-        </Link>
-
+        <div className="groups__groups">
+          <div>{elGroup.title}</div>
+          <Link to={`/profile/${user?.id}/${elGroup.id}`}>
+            <button type="button">Изменить</button>
+          </Link>
+        </div>
         <button type="button" onClick={() => dispatch(groupsDelete(elGroup.id))}>
           удалить
         </button>
