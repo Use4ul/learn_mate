@@ -94,7 +94,7 @@ function CardsPage(): JSX.Element {
               card={cards[cardIndex]}
               cards={cards}
               cardIndex={cardIndex}
-              setCorrectAnswers={setCorrectAnswers}
+              /* setCorrectAnswers={setCorrectAnswers} */
               input={input}
               setInput={setInput}
               setColorWords={setColorWords}
@@ -107,8 +107,8 @@ function CardsPage(): JSX.Element {
           {trainingOptions === 'WriteAnswers' ? (
             <TypeAnswerItem
               card={cards[cardIndex]}
-              setCorrectAnswers={setCorrectAnswers}
-              correctAnswers={correctAnswers}
+             /*  setCorrectAnswers={setCorrectAnswers} */
+              /* correctAnswers={correctAnswers} */
               input={input}
               setInput={setInput}
               setColorWords={setColorWords}
