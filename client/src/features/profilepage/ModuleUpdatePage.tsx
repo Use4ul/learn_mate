@@ -31,7 +31,7 @@ function ModuleUpdateForm(): React.JSX.Element {
     `${module.length > 0 ? module[0].Category?.title : 'Все категории'}`,
   );
 
-
+  /* 
   const [cardTerm, setCardTerm] = useState('');
   const [cardDefinition, setCardDefinition] = useState('');
   const [cardImg, setCardImg] = useState('');
@@ -111,7 +111,6 @@ function ModuleUpdateForm(): React.JSX.Element {
   return (
     <>
       <form onSubmit={handleModuleUpdate}>
-
         <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
         <select value={category} onChange={(e) => setCategory(e.target.value)}>
           <option disabled>Все категории</option>
@@ -124,19 +123,22 @@ function ModuleUpdateForm(): React.JSX.Element {
           Обновить модуль
         </button>
       </form>
+      {Boolean(module.length) && (
+        <>
+          <form onSubmit={handleCardAdd}>
+            <input ref={termInput} placeholder="термин" />
+            <input ref={definitionInput} placeholder="определение" />
+            <input type="file" ref={imgInput} placeholder="изображение" />
+            <input ref={audioInput} placeholder="аудио" />
+            <input style={{ display: 'none' }} value={module[0].id} type="text" ref={moduleInput} />
 
-      <form onSubmit={handleCardAdd}>
-        <input ref={termInput} placeholder="термин" />
-        <input ref={definitionInput} placeholder="определение" />
-        <input type="file" ref={imgInput} placeholder="изображение" />
-        <input ref={audioInput} placeholder="аудио" />
-        <input style={{ display: 'none' }} value={module[0].id} type="text" ref={moduleInput} />
-
-        <button type="submit">Добавить карточку</button>
-      </form>
-      <div>
-        {module.length && module[0].Cards.map((card) => <CardItemForProfilePage card={card} />)}
-      </div>
+            <button type="submit">Добавить карточку</button>
+          </form>
+          <div>
+            {module.length && module[0].Cards.map((card) => <CardItemForProfilePage card={card} />)}
+          </div>
+        </>
+      )}
     </>
   );
 }
