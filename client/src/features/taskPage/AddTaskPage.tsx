@@ -42,8 +42,8 @@ function AddTaskPage(): React.JSX.Element {
     setVisibility(true);
   };
 
-  const handleTask = ():void => {
-    dispatch(taskGroup({groups: groupToAdd, id: moduleid}));
+  const handleTask = (): void => {
+    dispatch(taskGroup({ groups: groupToAdd, id: moduleid }));
   };
 
   useEffect(() => {
