@@ -32,6 +32,8 @@ router.post('/', async (req, res) => {
   try {
     const { title, category } = req.body;
 
+
+    
     const categ = await Category.findOne({ where: { title: category } });
     const categoryId = categ.id;
 

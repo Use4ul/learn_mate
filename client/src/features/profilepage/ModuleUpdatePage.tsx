@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../../redux/store';
@@ -31,10 +31,11 @@ function ModuleUpdateForm(): React.JSX.Element {
     `${module.length > 0 ? module[0].Category?.title : 'Все категории'}`,
   );
 
+
   const [cardTerm, setCardTerm] = useState('');
   const [cardDefinition, setCardDefinition] = useState('');
   const [cardImg, setCardImg] = useState('');
-  const [cardAudio, setCardAudio] = useState('');
+  const [cardAudio, setCardAudio] = useState(''); */
 
   const handleModuleUpdate: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
@@ -74,12 +75,47 @@ function ModuleUpdateForm(): React.JSX.Element {
     }
   }, [module]);
 
+  const imgInput = useRef<HTMLInputElement>(null);
+  const termInput = useRef<HTMLInputElement>(null);
+  const definitionInput = useRef<HTMLInputElement>(null);
+  const audioInput = useRef<HTMLInputElement>(null);
+  const moduleInput = useRef<HTMLInputElement>(null);
+
+  const handleCardAdd = (event: React.FormEvent): void => {
+    event.preventDefault();
+    const formData = new FormData();
+    if (imgInput.current?.files?.length) {
+      const img = imgInput.current.files[0];
+      formData.append('img', img);
+    }
+    if (termInput.current?.value) {
+      const term = termInput.current.value;
+      formData.append('term', term);
+    }
+    if (definitionInput.current?.value) {
+      const definition = definitionInput.current.value;
+      formData.append('definition', definition);
+    }
+    if (audioInput.current?.value) {
+      const audio = audioInput.current.value;
+      formData.append('audio', audio);
+    }
+    if (moduleInput.current?.value) {
+      const modulee = moduleInput.current.value;
+      formData.append('module_id', modulee);
+    }
+
+    dispatch(addCardToModule(formData));
+  };
+
   return (
     <>
       <form onSubmit={handleModuleUpdate}>
+
         <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
         <select value={category} onChange={(e) => setCategory(e.target.value)}>
           <option disabled>Все категории</option>
+
           {categories.map((el) => (
             <option key={el.id}>{el.title}</option>
           ))}
@@ -88,43 +124,14 @@ function ModuleUpdateForm(): React.JSX.Element {
           Обновить модуль
         </button>
       </form>
-      <form className="form" /* onSubmit={handleCardAdd} */>
-        <div className="input-group">
-          <input
-            className="input"
-            value={cardTerm}
-            onChange={(e) => setCardTerm(e.target.value)}
-            placeholder=" "
-          />
-          <label className="placeholder">Термин</label>
-        </div>
-        <div className="input-group">
-          <input
-            className="input"
-            value={cardDefinition}
-            onChange={(e) => setCardDefinition(e.target.value)}
-            placeholder=" "
-          />
-          <label className="placeholder">Определение</label>
-        </div>
-        <div className="input-group">
-          <input
-            className="input"
-            value={cardImg}
-            onChange={(e) => setCardImg(e.target.value)}
-            placeholder=" "
-          />
-          <label className="placeholder">Изображение</label>
-        </div>
-        <div className="input-group">
-          <input
-            className="input"
-            value={cardAudio}
-            onChange={(e) => setCardAudio(e.target.value)}
-            placeholder=" "
-          />
-          <label className="placeholder">Аудио</label>
-        </div>
+
+      <form onSubmit={handleCardAdd}>
+        <input ref={termInput} placeholder="термин" />
+        <input ref={definitionInput} placeholder="определение" />
+        <input type="file" ref={imgInput} placeholder="изображение" />
+        <input ref={audioInput} placeholder="аудио" />
+        <input style={{ display: 'none' }} value={module[0].id} type="text" ref={moduleInput} />
+
         <button type="submit">Добавить карточку</button>
       </form>
       <div>
