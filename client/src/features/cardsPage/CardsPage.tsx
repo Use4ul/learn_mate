@@ -107,7 +107,7 @@ function CardsPage(): JSX.Element {
           {trainingOptions === 'WriteAnswers' ? (
             <TypeAnswerItem
               card={cards[cardIndex]}
-             /*  setCorrectAnswers={setCorrectAnswers} */
+              /*  setCorrectAnswers={setCorrectAnswers} */
               /* correctAnswers={correctAnswers} */
               input={input}
               setInput={setInput}
