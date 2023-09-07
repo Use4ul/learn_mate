@@ -5,7 +5,7 @@ const { Module, Category, Card } = require('../../db/models');
 //отображение модулей
 router.get('/', async (req, res) => {
   try {
-    const modules = await Module.findAll({ include: { model: Category } });
+    const modules = await Module.findAll({ order: [['id', 'ASC']] }, { include: { model: Category } });
     res.json(modules);
   } catch ({ message }) {
     res.json({ message });

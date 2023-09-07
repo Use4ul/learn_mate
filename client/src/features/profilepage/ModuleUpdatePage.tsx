@@ -30,11 +30,7 @@ function ModuleUpdateForm(): React.JSX.Element {
   const [category, setCategory] = useState(
     `${module.length > 0 ? module[0].Category?.title : 'Все категории'}`,
   );
-  /* 
-  console.log(module);
 
-  console.log(title);
-  console.log(category);
 
   const [cardTerm, setCardTerm] = useState('');
   const [cardDefinition, setCardDefinition] = useState('');
@@ -115,21 +111,27 @@ function ModuleUpdateForm(): React.JSX.Element {
   return (
     <>
       <form onSubmit={handleModuleUpdate}>
-        <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
-        <select value={category} onChange={(e) => setCategory(e.target.value)} required>
-          <option disabled>Все категории</option>{' '}
+
+        <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+        <select value={category} onChange={(e) => setCategory(e.target.value)}>
+          <option disabled>Все категории</option>
+
           {categories.map((el) => (
             <option key={el.id}>{el.title}</option>
           ))}
         </select>
-        <button type="submit">обновить данные модуля</button>
+        <button type="submit" className="button">
+          Обновить модуль
+        </button>
       </form>
+
       <form onSubmit={handleCardAdd}>
         <input ref={termInput} placeholder="термин" />
         <input ref={definitionInput} placeholder="определение" />
         <input type="file" ref={imgInput} placeholder="изображение" />
         <input ref={audioInput} placeholder="аудио" />
         <input style={{ display: 'none' }} value={module[0].id} type="text" ref={moduleInput} />
+
         <button type="submit">Добавить карточку</button>
       </form>
       <div>

@@ -21,8 +21,6 @@ function ModuleAddPage(): React.JSX.Element {
   const [cardImg, setCardImg] = useState('');
   const [cardAudio, setCardAudio] = useState(''); */
 
-  console.log(category);
-
   const handleModuleAdd: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     dispatch(addModule({ title, category }));

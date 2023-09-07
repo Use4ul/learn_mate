@@ -10,13 +10,16 @@ a > h2 {
   width: 300px;
   height: 300px;
   border-radius: 10px;
-  margin: 20px;
+  margin: 30px;
   position: relative;
-  border: 2px solid black;
+  border: 2px solid var(--card-border-color);
   display: flex;
   justify-content: center;
   text-align: center;
   transition: 400ms;
+  -webkit-box-shadow: 7px 4px 8px 0px var(--box-shadow-color, 0.2);
+  -moz-box-shadow: 7px 4px 8px 0px var(--box-shadow-color, 0.2);
+  box-shadow: 7px 4px 8px 0px var(--box-shadow-color, 0.2);
 }
 
 .container_wrapper:hover {

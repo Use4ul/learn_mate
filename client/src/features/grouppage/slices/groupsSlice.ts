@@ -3,12 +3,14 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from '../api';
 import { State } from '../types/State';
 import { Group, GroupId, GroupItem, NewGroup } from '../types/types';
+import { ModuleId } from '../../modulitem/types/types';
 
 const initialState: State = {
   groups: [],
   groupItem: [],
   users: [],
   group: [],
+  groupsWithTasks: [],
   error: undefined,
 };
 
@@ -36,6 +38,8 @@ export const userAdd = createAsyncThunk(
   ({ student_id, group_id }: { student_id: number; group_id: number }) =>
     api.featchAddUser({ student_id, group_id }),
 );
+
+export const loadGroupsWithTask = createAsyncThunk('groupsWithTask/load', (id: ModuleId) => api.fetchGroupsWithTask(id));
 
 const groupsSlice = createSlice({
   name: 'groups',
@@ -89,6 +93,12 @@ const groupsSlice = createSlice({
         state.groupItem.push(action.payload);
       })
       .addCase(userAdd.rejected, (state, action) => {
+        state.error = action.error.message;
+      })
+      .addCase(loadGroupsWithTask.fulfilled, (state, action) => {
+        state.groupsWithTasks = action.payload;
+      })
+      .addCase(loadGroupsWithTask.rejected, (state, action) => {
         state.error = action.error.message;
       });
   },
