@@ -36,7 +36,7 @@ router.post('/', async (req, res) => {
     const newCard = await Card.create({
       term: term || null,
       definition: definition || null,
-      img: req.files?.img?.name || null,
+      img: `/${req.files?.img?.name}` || null,
       audio: audio || null,
       module_id: module_id || null,
     });

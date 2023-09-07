@@ -16,9 +16,7 @@ function CardItemForProfilePage({ card }: { card: Card }): React.JSX.Element {
   return (
     <div className="card__container">
       <div>
-        <div>
-          <img src={card.img ? card.img : ' '} alt="f" />
-        </div>
+        <div>{card.img && <img src={card.img} alt=" " />}</div>
         <div>{card.term}</div>
         <div>{card.definition}</div>
       </div>
