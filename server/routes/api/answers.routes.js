@@ -95,7 +95,8 @@ router.post('/', async (req, res) => {
       res.json(result);
     } else {
       const newAnswer = await Answer.create({ user_id, card_id, isCorrect });
-      const correctAnswers = newAnswer.filter((el) => el.isCorrect === true);
+      const answers = await Answer.findAll({ where: { card_id } });
+      const correctAnswers = answers.filter((el) => el.isCorrect === true);
       const result = Math.round((correctAnswers.length / answers.length) * 100);
       res.json(result);
     }

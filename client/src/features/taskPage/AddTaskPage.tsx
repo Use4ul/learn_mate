@@ -37,6 +37,8 @@ function AddTaskPage(): React.JSX.Element {
     group.title.toLowerCase().includes(search.toLowerCase()),
   );
 
+  const groupsToShow = filteredGroups.filter((el) => !groupToAdd.includes(el));
+
   const handeleSearch: React.ChangeEventHandler<HTMLInputElement> = (e): void => {
     setSearch(e.target.value);
     setVisibility(true);
@@ -44,6 +46,8 @@ function AddTaskPage(): React.JSX.Element {
 
   const handleTask = (): void => {
     dispatch(taskGroup({ groups: groupToAdd, id: moduleid }));
+    setGroupToAdd([]);
+    dispatch(loadGroupsWithTask(moduleid));
   };
 
   useEffect(() => {
@@ -51,10 +55,6 @@ function AddTaskPage(): React.JSX.Element {
     setVisibility(true);
     dispatch(loadModulesForUserToUpdate(userId));
   }, []);
-
-  //   useEffect(() => {
-
-  //   }, [groups])
 
   return (
     <div>
@@ -69,14 +69,10 @@ function AddTaskPage(): React.JSX.Element {
           />
           {visibility === true && (
             <ul className="list">
-              {filteredGroups.map((group) => (
+              {groupsToShow.map((group) => (
                 <li className="list" onClick={() => setGroupToAdd((prev) => [...prev, group])}>
                   {group.title}
-                  {/* <button type="button" onClick={() => 
-                  setGroupToAdd((prev) => [...prev, group])}>
-                    Добавить
-                  </button> */}
-                </li>
+                </li> // "этот li кликабельный"
               ))}
             </ul>
           )}
@@ -84,7 +80,7 @@ function AddTaskPage(): React.JSX.Element {
       </div>
 
       <div>
-        {/* <p>Назначить модуль {module[0].title} группам:</p> */}
+        {Boolean(module.length) && <p>Назначить модуль {module[0].title} группам:</p>}
         {groupToAdd.map((el) => (
           <div>{el.title}</div>
         ))}

@@ -2,6 +2,9 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Card } from './types/types';
 import getFourAnswers from './getForAnswers';
 import './styles/style.scss';
+import { sendAnswer, setFlagForUpdate } from '../carditem/progressSlice';
+import { RootState, useAppDispatch } from '../../redux/store';
+import { useSelector } from 'react-redux';
 
 function FourAnswerItem({
   cards,
@@ -21,23 +24,31 @@ function FourAnswerItem({
   setInput: React.Dispatch<React.SetStateAction<boolean>>;
 
   setColorWords: React.Dispatch<React.SetStateAction<string>>;
-}): JSX.Element {
+}): React.JSX.Element {
   // const [answer, setAnswer] = useState('');
   const arrAnswers = useMemo(() => getFourAnswers(cards, cardIndex), []);
-  console.log(input);
 
-  const handeleAnswer: React.FormEventHandler<HTMLFormElement> = (): void => {
-    // if (answer === card.definition) {
-    //   setCorrectAnswers('Правильно');
-    //   console.log(answer);
-    // } else {
-    //   setCorrectAnswers(`Неверно. Ответ: ${card.definition}`);
-    // }
+  const dispatch = useAppDispatch();
+  const authUser = useSelector((store: RootState) => store.auth.authUser);
+
+  const handeleAnswer = (answer: string): void => {
+    if (answer === card.definition) {
+      if (authUser) {
+        dispatch(sendAnswer({ user_id: authUser.id, card_id: card.id, isCorrect: true }));
+        dispatch(setFlagForUpdate());
+      }
+    } else {
+      if (authUser) {
+        dispatch(sendAnswer({ user_id: authUser.id, card_id: card.id, isCorrect: false }));
+        dispatch(setFlagForUpdate());
+      }
+    }
   };
   const changeCard = (): void => {
     setInput((prev) => !prev);
     setColorWords('#fff');
   };
+
   useEffect(() => {
     setInput(true);
     setColorWords('#222');
@@ -46,10 +57,16 @@ function FourAnswerItem({
   // onSubmit={handeleAnswer}
   return (
     <>
-      <form onSubmit={handeleAnswer}>
+      <form>
         <div className="cards__answers">
           {arrAnswers.map((el) => (
-            <button type="button" onClick={() => changeCard()}>
+            <button
+              type="button"
+              onClick={() => {
+                changeCard();
+                handeleAnswer(el);
+              }}
+            >
               {el}
             </button>
           ))}

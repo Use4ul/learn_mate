@@ -20,13 +20,15 @@ function CardsPage(): JSX.Element {
   const [colorWords, setColorWords] = useState('#222');
 
   const dispatch = useAppDispatch();
+
   let id: ModuleId;
   if (moduleId) {
     id = +moduleId;
   }
+  console.log(Number(moduleId));
 
+  const modules = useSelector((store: RootState) => store.modules.modules);
   const cards = useSelector((store: RootState) => store.cards.cards);
-  console.log(cards);
 
   const handeleForward = (): void => {
     setCardIndex((prev) => prev + 1);
@@ -46,7 +48,7 @@ function CardsPage(): JSX.Element {
 
   return (
     <div style={{ textAlign: 'center' }}>
-      <h1>Название модуля</h1>
+      {Boolean(moduleId) && <h1>{modules.filter((el) => el.id === Number(moduleId))[0].title}</h1>}
       <div className="btn_and_card">
         {cards.length && (
           <CardItem

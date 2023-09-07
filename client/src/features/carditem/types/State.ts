@@ -1,5 +1,6 @@
 type State = {
   progress: number;
+  flagForUpdate: boolean;
   error: undefined | string;
 };
 
