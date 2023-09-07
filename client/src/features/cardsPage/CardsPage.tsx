@@ -25,10 +25,11 @@ function CardsPage(): JSX.Element {
   if (moduleId) {
     id = +moduleId;
   }
-  console.log(Number(moduleId));
 
   /*  const modules = useSelector((store: RootState) => store.modules.modules); */
   const cards = useSelector((store: RootState) => store.cards.cards);
+
+  console.log(cards);
 
   const handeleForward = (): void => {
     setCardIndex((prev) => prev + 1);
@@ -48,8 +49,10 @@ function CardsPage(): JSX.Element {
 
   return (
     <div style={{ textAlign: 'center' }}>
+
       {/*       {Boolean(moduleId) && <h1>{modules.filter((el) =>
          el.id === Number(moduleId))[0].title}</h1>} */}
+
       <div className="btn_and_card">
         {cards.length && (
           <CardItem
@@ -79,12 +82,17 @@ function CardsPage(): JSX.Element {
           <button type="button" onClick={() => handeleTypeTraining('')}>
             Заучивание
           </button>
-          <button type="button" onClick={() => handeleTypeTraining('SeveralAnswers')}>
-            Варианты ответа
-          </button>
-          <button type="button" onClick={() => handeleTypeTraining('WriteAnswers')}>
-            Напиши правильный ответ
-          </button>
+
+          {cards.length > 3 && (
+            <>
+              <button type="button" onClick={() => handeleTypeTraining('SeveralAnswers')}>
+                Варианты ответа
+              </button>
+              <button type="button" onClick={() => handeleTypeTraining('WriteAnswers')}>
+                Напиши правильный ответ
+              </button>
+            </>
+          )}
         </div>
       </div>
       <div className="actions_container">

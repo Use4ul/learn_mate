@@ -32,25 +32,18 @@ function ProfilePage(): React.JSX.Element {
   return (
     <div className="profile__container">
       <div className="profile__buttons">
-        {/* <Link to={`/profile/${userId}/statistics`}> */}
         <button type="button">
-          <a href={`/profile/${userId}/statistics`}>Статистика</a>
-          {/* <Link to={`/profile/${userId}/statistics`} />  */}
+          <Link to={`/profile/${userId}/statistics`}>Статистика</Link>
         </button>
-        {/* </Link> */}
 
-        {/* <Link to={`/profile/${userId}/statistics`}> */}
         <button type="button">
-          <a href={`/profile/${userId}/modules`}>Мои назначенные модули</a>
-          {/* <Link to={`/profile/${userId}/statistics`} />  */}
+          <Link to={`/profile/${userId}/statistics`}>Мои назначенные модули</Link>
         </button>
-        {/* </Link> */}
+
         <div>
-          {/* <Link to="/modules/add"> */}
           <button type="button">
-            <a href="/modules/add">Создать новый модуль</a>
+            <Link to="/modules/add">Создать новый модуль</Link>
           </button>
-          {/* </Link> */}
         </div>
       </div>
 

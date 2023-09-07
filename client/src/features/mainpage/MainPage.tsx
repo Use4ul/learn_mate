@@ -15,6 +15,9 @@ function MainPage(): JSX.Element {
   const categories = useSelector((store: RootState) => store.categories.categories);
   const modules = useSelector((store: RootState) => store.modules.modules);
 
+  const modulesUser = useSelector((store: RootState) => store.profile.modules)
+  
+
   const filteredModules =
     category !== 'Все категории'
       ? modules.filter((module) => module.Category.title === category)
@@ -23,8 +26,11 @@ function MainPage(): JSX.Element {
 
   useEffect(() => {
     dispatch(loadCategories());
-    dispatch(loadModules());
   }, []);
+
+  useEffect(() => {
+    dispatch(loadModules());
+  }, [modulesUser]);
 
   return (
     <div className="main__container">
