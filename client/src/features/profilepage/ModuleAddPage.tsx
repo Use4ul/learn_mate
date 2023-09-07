@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../../redux/store';
-import { addCardToModule, addModule } from './profileSlice';
+import { addCardToModule, addModule, clearModuleForUpdate } from './profileSlice';
 import { loadCategories } from '../mainpage/slices/categoriesSlice';
 import CardItemForProfilePage from './CardItemForProfilePage';
 
@@ -46,6 +46,9 @@ function ModuleAddPage(): React.JSX.Element {
 
   useEffect(() => {
     dispatch(loadCategories());
+    return () => {
+      dispatch(clearModuleForUpdate())
+    }
   }, []);
 
   //Рустут

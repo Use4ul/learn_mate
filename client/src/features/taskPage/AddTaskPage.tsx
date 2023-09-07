@@ -19,7 +19,6 @@ function AddTaskPage(): React.JSX.Element {
   const groups = useSelector((store: RootState) => store.groups.groupsWithTasks);
   const user = useSelector((store: RootState) => store.auth.authUser);
   const module = useSelector((store: RootState) => store.profile.module);
-  console.log(groupToAdd);
 
   let userId: number;
   if (user) {
@@ -46,8 +45,8 @@ function AddTaskPage(): React.JSX.Element {
 
   const handleTask = (): void => {
     dispatch(taskGroup({ groups: groupToAdd, id: moduleid }));
-    setGroupToAdd([]);
     dispatch(loadGroupsWithTask(moduleid));
+    setGroupToAdd([]);
   };
 
   useEffect(() => {

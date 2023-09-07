@@ -13,7 +13,11 @@ export const loadModules = createAsyncThunk('modules/load', () => fetchModules()
 const modulesSlice = createSlice({
   name: 'modules',
   initialState,
-  reducers: {},
+  reducers: {
+    // deleteModulesFromMain: (state) => {
+    //   state.modules = state.modules.filter((el) => el.id !== action.payload)
+    // }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(loadModules.fulfilled, (state, action) => {

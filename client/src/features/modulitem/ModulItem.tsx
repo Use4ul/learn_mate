@@ -15,40 +15,35 @@ function ModulItem({ module }: { module: Module | ModuleWithCards }): JSX.Elemen
   const user = useSelector((store: RootState) => store.auth.authUser);
 
   const handleDeleteModule: React.MouseEventHandler<HTMLButtonElement> = async (e) => {
-    e.nativeEvent.stopPropagation();
-    console.log(e);
+    e.stopPropagation();
     dispatch(deleteModule(module.id));
+    console.log(e);
   };
 
   return (
-    <div className="container_wrapper">
-      <Link to={`/modules/${module.id}`}>
+    <div className="container_wrapper" onClick={() => navigate(`/modules/${module.id}`)}>
+      {/* <Link to={`/modules/${module.id}`}> */}
         <h2>{module.title}</h2>
         {/* onClick={() => navigate(`/modules/${module.id}`)}> */}
 
         {module.user_id === user?.id && (
           <>
-            <Link to={`/profile/${module.user_id}/modules/${module.id}`}>
-              <button type="button">
-                Изменить
-                {/* <a href={`/profile/${module.user_id}/modules/${module.id}`}>изменить</a> */}
-              </button>
-            </Link>
+            <button type="button">
+              <Link to={`/profile/${module.user_id}/modules/${module.id}`}>Изменить</Link>
+            </button>
             <button type="button" onClick={handleDeleteModule}>
               Удалить
             </button>
             {user && user.role_id === 1 ? (
-
-              <Link to={`/modules/${module.id}/task`}>
-                <button type="button"> Назначить модуль группе</button>
-              </Link>
-
+              <button type="button">
+                <Link to={`/modules/${module.id}/task`}>Назначить модуль группе</Link>
+              </button>
             ) : (
               <div />
             )}
           </>
         )}
-      </Link>
+      {/* </Link> */}
     </div>
   );
 }
