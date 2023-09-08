@@ -41,9 +41,8 @@ function CardItem({
   const flag = useSelector((store: RootState) => store.progress.flagForUpdate);
 
   useEffect(() => {
-    dispatch(loadCardProgress(card.id));  
+    dispatch(loadCardProgress(card.id));
   }, [flag, progress, card]);
-
 
   return (
     <div style={{ marginTop: '120px' }}>

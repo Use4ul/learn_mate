@@ -24,7 +24,7 @@ function TaskPage(): React.JSX.Element {
   }, []);
 
   return (
-    <div >
+    <div>
       {groupsWithTasks.length ? (
         groupsWithTasks.map((group) => (
           <>
