@@ -37,7 +37,7 @@ function ProfilePage(): React.JSX.Element {
         </button>
 
         <button type="button">
-          <Link to={`/profile/${userId}/statistics`}> назначенные модули</Link>
+          <Link to={`/profile/${userId}/modules`}> назначенные модули</Link>
         </button>
 
         <div>
