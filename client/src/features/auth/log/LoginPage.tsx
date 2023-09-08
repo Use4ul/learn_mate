@@ -56,7 +56,13 @@ function LoginPage(): JSX.Element {
             type="text"
             placeholder=" "
           />
-          <label id="loglog" className="placeholder">Ваш Email</label>
+          <label
+            style={{ visibility: email ? 'hidden' : 'visible' }}
+            id="loglog"
+            className="placeholder"
+          >
+            Ваш Email
+          </label>
         </div>
         <div className="input-group">
           <input
@@ -67,7 +73,13 @@ function LoginPage(): JSX.Element {
             type={passwordShown ? 'text' : 'password'}
             placeholder=" "
           />
-          <label id="loglog" className="placeholder">Ваш пароль </label>
+          <label
+            style={{ visibility: password ? 'hidden' : 'visible' }}
+            id="loglog"
+            className="placeholder"
+          >
+            Ваш пароль{' '}
+          </label>
           <i
             className="password-control"
             onClick={togglePassword}
