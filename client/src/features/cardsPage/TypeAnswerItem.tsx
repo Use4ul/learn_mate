@@ -53,7 +53,7 @@ function TypeAnswerItem({
   }, [card]);
 
   return (
-    <div className="cards__inputAnswer" style={{ marginLeft: '-45px' }}>
+    <div className="cards__inputAnswer" style={{ marginLeft: '-155px' }}>
       <form className="cards__inputInput" onSubmit={handaleAnswer}>
         <input
           type="text"

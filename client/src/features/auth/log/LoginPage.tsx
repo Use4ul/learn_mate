@@ -56,7 +56,7 @@ function LoginPage(): JSX.Element {
             type="text"
             placeholder=" "
           />
-          <label className="placeholder">Ваш Email</label>
+          <label id="loglog" className="placeholder">Ваш Email</label>
         </div>
         <div className="input-group">
           <input
@@ -67,11 +67,11 @@ function LoginPage(): JSX.Element {
             type={passwordShown ? 'text' : 'password'}
             placeholder=" "
           />
-          <label className="placeholder">Ваш пароль </label>
+          <label id="loglog" className="placeholder">Ваш пароль </label>
           <i
             className="password-control"
             onClick={togglePassword}
-            style={{ top: '35px', left: '460px' }}
+            style={{ top: '44px', left: '340px' }}
           />
         </div>
         <button className="btn login__btn" type="submit">

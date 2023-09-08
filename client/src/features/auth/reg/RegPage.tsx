@@ -69,7 +69,7 @@ function RegPage(): JSX.Element {
             type="text"
             placeholder=" "
           />
-          <label className="placeholder">Ваше имя</label>
+          <label id="regreg" className="placeholder">Ваше имя</label>
         </div>
         <div className="input-group">
           {!nickNameCheck && (
@@ -95,7 +95,7 @@ function RegPage(): JSX.Element {
             type="text"
             placeholder=" "
           />
-          <label className="placeholder">Ваш Никнейм</label>
+          <label id="regreg" className="placeholder">Ваш Никнейм</label>
         </div>
         <div className="input-group">
           <input
@@ -106,7 +106,9 @@ function RegPage(): JSX.Element {
             type="text"
             placeholder=" "
           />
-        <label className="placeholder">Ваш Email</label>
+          <label id="regreg" className="placeholder">
+            Ваш Email
+          </label>
         </div>
         <div className="input-group">
           <div>
@@ -118,12 +120,12 @@ function RegPage(): JSX.Element {
               type={passwordShown ? 'text' : 'password'}
               placeholder=" "
             />
-          <label className="placeholder">Ваш пароль</label>
+            <label id="regreg" className="placeholder">Ваш пароль</label>
           </div>
           <i
             className="password-control"
             onClick={togglePassword}
-            style={{ top: '26px', left: '460px' }}
+            style={{ top: '30px', left: '340px' }}
           />
         </div>
         <div>
