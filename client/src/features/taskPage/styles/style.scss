@@ -1,0 +1,32 @@
+.task {
+  &__container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: flex-start;
+
+    font-size: 25px;
+  }
+  &__listeOne {
+    border: 2px solid rgb(118, 114, 114);
+    margin: 10px;
+    width: 170px;
+    border-radius: 10px;
+    align-items: center;
+  }
+  &__lists {
+    width: 431px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  &__list {
+    border: 2px solid rgb(118, 114, 114);
+    margin: 10px;
+    width: 170px;
+    border-radius: 10px;
+    align-items: center;
+  }
+}

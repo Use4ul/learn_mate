@@ -9,7 +9,7 @@ import { deleteModule } from '../profilepage/profileSlice';
 import { ModuleWithCards } from '../profilepage/types/type';
 
 function ModulItem({ module }: { module: Module | ModuleWithCards }): JSX.Element {
-  /* const navigate = useNavigate(); */
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -29,8 +29,13 @@ function ModulItem({ module }: { module: Module | ModuleWithCards }): JSX.Elemen
 
       {module.user_id === user?.id && (
         <>
-          <button type="button" onClick={(e) => e.stopPropagation()}>
-            <Link to={`/profile/${module.user_id}/modules/${module.id}`}>Изменить</Link>
+          <button type="button">
+            <Link
+              to={`/profile/${module.user_id}/modules/${module.id}`}
+              onClick={(e) => e.stopPropagation()}
+            >
+              Изменить
+            </Link>
           </button>
           <button type="button" onClick={handleDeleteModule}>
             Удалить

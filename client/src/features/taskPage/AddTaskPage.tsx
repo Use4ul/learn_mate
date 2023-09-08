@@ -8,6 +8,7 @@ import { Group } from '../grouppage/types/types';
 import { loadModulesForUserToUpdate } from '../profilepage/profileSlice';
 import { ModuleId } from '../modulitem/types/types';
 import { taskGroup } from './taskSlice';
+import './styles/style.scss';
 
 function AddTaskPage(): React.JSX.Element {
   const { moduleId } = useParams();
@@ -56,7 +57,7 @@ function AddTaskPage(): React.JSX.Element {
 
   return (
     <div>
-      <div>
+      <div className="task__container">
         <label>
           Поиск среди своих групп
           <br />
@@ -66,18 +67,23 @@ function AddTaskPage(): React.JSX.Element {
             onChange={(e) => handeleSearch(e)}
           />
           {visibility === true && (
-            <ul className="list">
-              {groupsToShow.map((group) => (
-                <li className="list" onClick={() => setGroupToAdd((prev) => [...prev, group])}>
-                  {group.title}
-                </li> // "этот li кликабельный"
-              ))}
-            </ul>
+            <div className="task__lists">
+              <ul>
+                {groupsToShow.map((group) => (
+                  <div className="task__listeOne">
+                    <li className="list" onClick={() => setGroupToAdd((prev) => [...prev, group])}>
+                      {group.title}
+                    </li>
+                    {/* // "этот li кликабельный" */}
+                  </div>
+                ))}
+              </ul>
+            </div>
           )}
         </label>
       </div>
 
-      <div>
+      <div className="task__list">
         {Boolean(module.length) && <p>Назначить модуль {module[0].title} группам:</p>}
         {groupToAdd.map((el) => (
           <div>{el.title}</div>
