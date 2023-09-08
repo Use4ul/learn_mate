@@ -47,8 +47,8 @@ function ModuleAddPage(): React.JSX.Element {
   useEffect(() => {
     dispatch(loadCategories());
     return () => {
-      dispatch(clearModuleForUpdate())
-    }
+      dispatch(clearModuleForUpdate());
+    };
   }, []);
 
   const imgInput = useRef<HTMLInputElement>(null);
@@ -82,6 +82,11 @@ function ModuleAddPage(): React.JSX.Element {
     }
 
     dispatch(addCardToModule(formData));
+
+    if (audioInput.current) audioInput.current.value = '';
+    if (termInput.current) termInput.current.value = '';
+    if (definitionInput.current) definitionInput.current.value = '';
+    if (imgInput.current) imgInput.current.value = '';
   };
 
   return (
