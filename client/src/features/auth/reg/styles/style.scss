@@ -13,11 +13,11 @@
 form {
   padding: 20px;
   text-align: center;
-  width: 550px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
+  text-align: center;
 }
 
 .reg {
@@ -25,7 +25,6 @@ form {
     margin: 15px 0;
     position: relative;
     background-color: aliceblue;
-    width: 60%;
   }
 
   &__button {
@@ -34,5 +33,6 @@ form {
 
   &__form {
     border: none;
+    border: 2px solid #81a4cd;
   }
 }

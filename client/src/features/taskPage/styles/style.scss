@@ -1,6 +1,7 @@
 .task {
   &__container {
     display: flex;
+    justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
@@ -14,6 +15,7 @@
     width: 170px;
     border-radius: 10px;
     align-items: center;
+    padding: 10px;
   }
   &__lists {
     width: 431px;
@@ -24,9 +26,13 @@
   }
   &__list {
     border: 2px solid rgb(118, 114, 114);
-    margin: 10px;
-    width: 170px;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    width: 790px;
     border-radius: 10px;
     align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
   }
 }

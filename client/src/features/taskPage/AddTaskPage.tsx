@@ -86,14 +86,16 @@ function AddTaskPage(): React.JSX.Element {
       <div className="task__list">
         {Boolean(module.length) && <p>Назначить модуль {module[0].title} группам:</p>}
         {groupToAdd.map((el) => (
-          <div>{el.title}</div>
+          <div className="task__listeOne">{el.title}</div>
         ))}
-        <button type="button" onClick={handleTask}>
-          Добавить
-        </button>
-        <button type="button" onClick={() => setGroupToAdd([])}>
-          Очистить
-        </button>
+        <div>
+          <button type="button" onClick={handleTask}>
+            Добавить
+          </button>
+          <button type="button" onClick={() => setGroupToAdd([])}>
+            Очистить
+          </button>
+        </div>
       </div>
     </div>
   );
