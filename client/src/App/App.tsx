@@ -20,6 +20,7 @@ import './App.css';
 import StatisticsPage from '../features/profilepage/StatisticsPage';
 import TaskPage from '../features/taskPage/TaskPage';
 import AddTaskPage from '../features/taskPage/AddTaskPage';
+import Error from '../features/404/404';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -57,6 +58,7 @@ function App(): JSX.Element {
             <Route path="/profile/:userId/statistics" element={<StatisticsPage />} />
             <Route path="/profile/:userId/modules" element={<TaskPage />} />
             <Route path="/modules/:moduleId/task" element={<AddTaskPage />} />
+            <Route path="*" element={<Error />} />
           </Route>
         </Routes>
       )}

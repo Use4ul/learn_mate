@@ -29,7 +29,6 @@ function CardsPage(): JSX.Element {
   /*  const modules = useSelector((store: RootState) => store.modules.modules); */
   const cards = useSelector((store: RootState) => store.cards.cards);
 
-  console.log(cards);
 
   const handeleForward = (): void => {
     setCardIndex((prev) => prev + 1);
@@ -49,10 +48,6 @@ function CardsPage(): JSX.Element {
 
   return (
     <div style={{ textAlign: 'center' }}>
-
-      {/*       {Boolean(moduleId) && <h1>{modules.filter((el) =>
-         el.id === Number(moduleId))[0].title}</h1>} */}
-
       <div className="btn_and_card">
         {cards.length && (
           <CardItem
@@ -63,22 +58,23 @@ function CardsPage(): JSX.Element {
             setColorWords={setColorWords}
           />
         )}
-        <div className="buttons_container">
-          <button type="button" disabled={!cardIndex} onClick={handeleBack}>
-            Назад
-          </button>
-
-          {cards ? (
-            <button
-              type="button"
-              disabled={!(cards.length - cardIndex - 1)}
-              onClick={handeleForward}
-            >
-              Вперед
+        <div className="buttons_container" style={{ marginTop: '35px' }}>
+          <div style={{ display: 'flex' }}>
+            <button type="button" disabled={!cardIndex} onClick={handeleBack}>
+              Назад
             </button>
-          ) : (
-            'Упс'
-          )}
+            {cards ? (
+              <button
+                type="button"
+                disabled={!(cards.length - cardIndex - 1)}
+                onClick={handeleForward}
+              >
+                Вперед
+              </button>
+            ) : (
+              'Упс'
+            )}
+          </div>
           <button type="button" onClick={() => handeleTypeTraining('')}>
             Заучивание
           </button>
@@ -96,7 +92,7 @@ function CardsPage(): JSX.Element {
         </div>
       </div>
       <div className="actions_container">
-        <div>
+        <div style={{ marginLeft: '260px' }}>
           {trainingOptions === 'SeveralAnswers' ? (
             <FourAnswerItem
               card={cards[cardIndex]}

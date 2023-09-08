@@ -11,6 +11,7 @@ import { ModuleWithCards } from '../profilepage/types/type';
 function ModulItem({ module }: { module: Module | ModuleWithCards }): JSX.Element {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const user = useSelector((store: RootState) => store.auth.authUser);
 

@@ -43,21 +43,12 @@ function CardItem({
 
   useEffect(() => {
     dispatch(loadCardProgress(card.id));
-    console.log('load card progress');
   }, [flag, progress]);
 
   return (
-    <div className="card__container">
+    <div style={{ marginTop: '120px' }}>
       <label className="card__label">
-        <input
-          className="card__check-input"
-          checked={!input}
-          /*  onChange={() => {
-            setInput((prev) => !prev), ;
-          }} */
-          onChange={func}
-          type="checkbox"
-        />
+        <input className="card__check-input" checked={!input} onChange={func} type="checkbox" />
         <div className="card__card">
           {card.term ? (
             <div className="card__front card__div">{card.term}</div>
@@ -68,7 +59,6 @@ function CardItem({
           ) : (
             <div className="card__front card__div">{/* <audio src={`${card.audio}`} /> */}</div>
           )}
-          {/* <div className="card__front card__div">{card.term}</div> */}
           <div className="card__back card__div" style={{ color: colorWords }}>
             {rightAnswer}
           </div>
