@@ -44,7 +44,7 @@ function MainPage(): JSX.Element {
       <div className="main__wrapper">
         {filteredModules.map((module) => (
           <ModulItem key={module.id} module={module} />
-        ))} 
+        ))}
       </div>
     </div>
   );

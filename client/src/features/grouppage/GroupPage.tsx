@@ -116,8 +116,7 @@ function GroupPage(): React.JSX.Element {
             <button
               type="button"
               onClick={() =>
-                dispatch(userGroupItemDelete({ groupIt, deleteGroup: deleteItemGroup }))
-              }
+                dispatch(userGroupItemDelete({ groupIt, deleteGroup: deleteItemGroup }))}
             >
               Удалить
             </button>
