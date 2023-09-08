@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { RootState, useAppDispatch } from '../../redux/store';
 import CardItem from '../carditem/CardItem';
 
-import { loadCards } from './cardsSlice';
+import { clearStateCard, loadCards } from './cardsSlice';
 import { ModuleId } from '../modulitem/types/types';
 import TypeAnswerItem from './TypeAnswerItem';
 import FourAnswerItem from './FourAnswerItem';
@@ -29,7 +29,6 @@ function CardsPage(): JSX.Element {
   /*  const modules = useSelector((store: RootState) => store.modules.modules); */
   const cards = useSelector((store: RootState) => store.cards.cards);
 
-
   const handeleForward = (): void => {
     setCardIndex((prev) => prev + 1);
     setCorrectAnswers('');
@@ -44,12 +43,16 @@ function CardsPage(): JSX.Element {
 
   useEffect(() => {
     dispatch(loadCards(id));
+
+    return () => {
+      dispatch(clearStateCard());
+    };
   }, []);
 
   return (
     <div style={{ textAlign: 'center' }}>
       <div className="btn_and_card">
-        {cards.length && (
+        {Boolean(cards.length) && (
           <CardItem
             card={cards[cardIndex]}
             input={input}

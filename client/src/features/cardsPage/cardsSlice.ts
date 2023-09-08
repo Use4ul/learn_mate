@@ -18,7 +18,11 @@ export const loadCards = createAsyncThunk('cards/load', (id: ModuleId) => fetchC
 const cardsSlice = createSlice({
   name: 'cards',
   initialState,
-  reducers: {},
+  reducers: {
+    clearStateCard: (state) => {
+      state.cards = [];
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(loadCards.fulfilled, (state, action) => {
@@ -35,5 +39,5 @@ const cardsSlice = createSlice({
     // });
   },
 });
-
+export const { clearStateCard } = cardsSlice.actions;
 export default cardsSlice.reducer;
