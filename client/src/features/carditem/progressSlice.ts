@@ -24,7 +24,10 @@ const progressSlice = createSlice({
   reducers: {
     setFlagForUpdate: (state) => {
       state.flagForUpdate = !state.flagForUpdate;
-    }
+    },
+    clearProgress: (state) => {
+      state.progress = 0;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -43,5 +46,5 @@ const progressSlice = createSlice({
   },
 });
 
-export const { setFlagForUpdate } = progressSlice.actions;
+export const { setFlagForUpdate, clearProgress } = progressSlice.actions;
 export default progressSlice.reducer;

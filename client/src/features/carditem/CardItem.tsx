@@ -1,11 +1,11 @@
 /* eslint-disable no-undef */
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Card } from '../cardsPage/types/types';
 import './styles/style.scss';
 import { RootState, useAppDispatch } from '../../redux/store';
-import { loadCardProgress } from './progressSlice';
+import { clearProgress, loadCardProgress } from './progressSlice';
 
 function CardItem({
   card,
@@ -37,13 +37,13 @@ function CardItem({
   const dispatch = useAppDispatch();
 
   const progress = useSelector((store: RootState) => store.progress.progress);
+
   const flag = useSelector((store: RootState) => store.progress.flagForUpdate);
 
-  dispatch(loadCardProgress(card.id));
-
   useEffect(() => {
-    dispatch(loadCardProgress(card.id));
-  }, [flag, progress]);
+    dispatch(loadCardProgress(card.id));  
+  }, [flag, progress, card]);
+
 
   return (
     <div style={{ marginTop: '120px' }}>

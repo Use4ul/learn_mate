@@ -46,7 +46,10 @@ function AddTaskPage(): React.JSX.Element {
   const handleTask = (): void => {
     dispatch(taskGroup({ groups: groupToAdd, id: moduleid }));
     dispatch(loadGroupsWithTask(moduleid));
-    setGroupToAdd([]);
+    setTimeout(() => {
+      setGroupToAdd([]);
+    }, 500);
+    // setGroupToAdd([]);
   };
 
   useEffect(() => {
