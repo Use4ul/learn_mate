@@ -109,16 +109,17 @@ function GroupPage(): React.JSX.Element {
           )}
         </form>
       </div>
-      <div>
+      <div style={{ display: 'flex' }}>
         {oneGroupIt.map((groupIt) => (
-          <div>
+          <div className="group__listOne" style={{ fontSize: '24px' }}>
             {groupIt.User.nickname}
             <button
               type="button"
               onClick={() =>
-                dispatch(userGroupItemDelete({ groupIt, deleteGroup: deleteItemGroup }))}
+                dispatch(userGroupItemDelete({ groupIt, deleteGroup: deleteItemGroup }))
+              }
             >
-              Удалить из группы
+              Удалить
             </button>
           </div>
         ))}
