@@ -69,7 +69,13 @@ function RegPage(): JSX.Element {
             type="text"
             placeholder=" "
           />
-          <label id="regreg" className="placeholder">Ваше имя</label>
+          <label
+            style={{ visibility: name ? 'hidden' : 'visible' }}
+            id="regreg"
+            className="placeholder"
+          >
+            Ваше имя
+          </label>
         </div>
         <div className="input-group">
           {!nickNameCheck && (
@@ -95,7 +101,13 @@ function RegPage(): JSX.Element {
             type="text"
             placeholder=" "
           />
-          <label id="regreg" className="placeholder">Ваш Никнейм</label>
+          <label
+            style={{ visibility: nickname ? 'hidden' : 'visible' }}
+            id="regreg"
+            className="placeholder"
+          >
+            Ваш Никнейм
+          </label>
         </div>
         <div className="input-group">
           <input
@@ -106,7 +118,11 @@ function RegPage(): JSX.Element {
             type="text"
             placeholder=" "
           />
-          <label id="regreg" className="placeholder">
+          <label
+            style={{ visibility: email ? 'hidden' : 'visible' }}
+            id="regreg"
+            className="placeholder"
+          >
             Ваш Email
           </label>
         </div>
@@ -120,7 +136,13 @@ function RegPage(): JSX.Element {
               type={passwordShown ? 'text' : 'password'}
               placeholder=" "
             />
-            <label id="regreg" className="placeholder">Ваш пароль</label>
+            <label
+              style={{ visibility: password ? 'hidden' : 'visible' }}
+              id="regreg"
+              className="placeholder"
+            >
+              Ваш пароль
+            </label>
           </div>
           <i
             className="password-control"
