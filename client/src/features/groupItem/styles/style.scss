@@ -21,21 +21,18 @@
     display: grid;
     padding: 10px;
     grid-template-columns: repeat(3, 1fr);
+    flex-direction: column;
   }
   &__button {
     justify-content: left;
   }
 }
 
-
 .container_wrapper {
-
-  
   -webkit-box-shadow: 7px 4px 8px 0px var(--box-shadow-color, 0.2);
   -moz-box-shadow: 7px 4px 8px 0px var(--box-shadow-color, 0.2);
   box-shadow: 7px 4px 8px 0px var(--box-shadow-color, 0.2);
 }
-
 
 // .container_wrapper:hover {
 //   -webkit-transform: scale(1.1);
